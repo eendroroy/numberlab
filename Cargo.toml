@@ -32,3 +32,8 @@ criterion = "=0.5.1"
 
 [features]
 html_reports = ["criterion/html_reports"]
+
+[[bench]]
+name = "fibonacci"
+harness = false
+
