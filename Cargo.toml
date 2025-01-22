@@ -37,3 +37,7 @@ html_reports = ["criterion/html_reports"]
 name = "fibonacci"
 harness = false
 
+[[bench]]
+name = "square"
+harness = false
+
