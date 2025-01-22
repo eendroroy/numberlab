@@ -14,3 +14,6 @@ pub fn triangle_sequence(n: u128) -> Vec<BigUint> {
     }
     sequence
 }
+
+#[cfg(test)]
+mod triangle_tests;
