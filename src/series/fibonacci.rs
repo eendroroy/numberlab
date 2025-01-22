@@ -19,3 +19,7 @@ pub fn fibonacci_sequence(first_fibonacci: BigUint, n: usize) -> Vec<BigUint> {
     }
     sequence[..n].to_vec()
 }
+
+#[cfg(test)]
+mod fibonacci_tests;
+
