@@ -1,0 +1,34 @@
+[package]
+name = "numseries"
+version = "0.1.0"
+edition = "2021"
+authors = ["indrajit"]
+description = ""
+documentation = "https://docs.rs/numseries"
+readme = "README.md"
+homepage = "https://eendroroy.github.io/numseries"
+repository = "https://github.com/eendroroy/numseries"
+license = "AGPL-3.0"
+keywords = []
+categories = ["algorithms"]
+exclude = ["/tests", "/examples"]
+
+[lib]
+name = "numseries"
+path = "src/lib.rs"
+edition = "2021"
+crate-type = ["staticlib", "lib", "cdylib"]
+
+[[bin]]
+name = "fibonacci"
+path = "src/bin/fibonacci.rs"
+
+[dependencies]
+colored = "3.0.0"
+num-bigint = "=0.4.6"
+
+[dev-dependencies]
+criterion = "=0.5.1"
+
+[features]
+html_reports = ["criterion/html_reports"]
