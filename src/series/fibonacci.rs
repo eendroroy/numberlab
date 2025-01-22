@@ -1,3 +1,4 @@
+use std::cmp::min;
 use num_bigint::BigUint;
 
 pub fn nth_fibonacci_memoized(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint {
@@ -13,7 +14,7 @@ pub fn nth_fibonacci_memoized(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint 
 }
 
 pub fn fibonacci_sequence(first_fibonacci: BigUint, n: usize) -> Vec<BigUint> {
-    let mut sequence = vec![first_fibonacci, BigUint::from(1u128)];
+    let mut sequence = vec![min(first_fibonacci, BigUint::from(1u128)), BigUint::from(1u128)];
     for i in 0..n {
         nth_fibonacci_memoized(i, &mut sequence);
     }
