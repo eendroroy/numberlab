@@ -17,5 +17,5 @@ pub fn fibonacci_sequence(first_fibonacci: BigUint, n: usize) -> Vec<BigUint> {
     for i in 0..n {
         nth_fibonacci_memoized(i, &mut sequence);
     }
-    sequence
+    sequence[..n].to_vec()
 }
