@@ -53,3 +53,7 @@ harness = false
 name = "hexagonal"
 harness = false
 
+[[bench]]
+name = "lazy_caterer"
+harness = false
+
