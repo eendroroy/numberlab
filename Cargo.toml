@@ -3,7 +3,7 @@ name = "numseries"
 version = "0.1.0"
 edition = "2021"
 authors = ["indrajit"]
-description = ""
+description = "A Rust library for generating series of numbers"
 documentation = "https://docs.rs/numseries"
 readme = "README.md"
 homepage = "https://eendroroy.github.io/numseries"
@@ -11,7 +11,6 @@ repository = "https://github.com/eendroroy/numseries"
 license = "AGPL-3.0"
 keywords = []
 categories = ["algorithms"]
-exclude = ["/tests", "/examples"]
 
 [lib]
 name = "numseries"
