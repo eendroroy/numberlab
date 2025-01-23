@@ -41,3 +41,7 @@ harness = false
 name = "square"
 harness = false
 
+[[bench]]
+name = "triangular"
+harness = false
+
