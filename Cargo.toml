@@ -45,3 +45,11 @@ harness = false
 name = "triangular"
 harness = false
 
+[[bench]]
+name = "pentagonal"
+harness = false
+
+[[bench]]
+name = "hexagonal"
+harness = false
+
