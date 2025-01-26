@@ -83,3 +83,7 @@ harness = false
 [[bench]]
 name = "sieve"
 harness = false
+
+[[bench]]
+name = "recaman"
+harness = false

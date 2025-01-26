@@ -23,3 +23,6 @@ pub mod tribonacci;
 /// Prime series
 /// [OEIS A000040](https://oeis.org/A000040)
 pub mod prime;
+/// Recaman series
+/// [OEIS A005132](https://oeis.org/A005132)
+pub mod recaman;
