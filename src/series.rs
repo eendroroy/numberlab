@@ -20,3 +20,6 @@ pub mod sylvester;
 /// Tribonacci series
 /// [OEIS A000073](https://oeis.org/A000073)
 pub mod tribonacci;
+/// Prime series
+/// [OEIS A000040](https://oeis.org/A000040)
+pub mod prime;
