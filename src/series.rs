@@ -12,3 +12,6 @@ pub mod figurate;
 /// Lucas series
 /// [OEIS A000032](https://oeis.org/A000032)
 pub mod lucas;
+/// Sylvester's series
+/// [OEIS A000058](https://oeis.org/A000058)
+pub mod sylvester;
