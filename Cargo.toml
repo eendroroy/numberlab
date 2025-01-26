@@ -63,3 +63,7 @@ harness = false
 [[bench]]
 name = "arithmetic"
 harness = false
+
+[[bench]]
+name = "lucas"
+harness = false
