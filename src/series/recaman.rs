@@ -1,8 +1,9 @@
 pub fn nth_recaman_memoized(memoizer: &mut Vec<u128>, n: usize) -> u128 {
-    if memoizer.len() > n {
-        memoizer[n]
-    } else if n == 0 {
+    if memoizer.len() == 0 {
         memoizer.push(0);
+    }
+
+    if memoizer.len() > n {
         memoizer[n]
     } else {
         let mth_recaman = nth_recaman_memoized(memoizer, n - 1);
@@ -18,7 +19,7 @@ pub fn nth_recaman_memoized(memoizer: &mut Vec<u128>, n: usize) -> u128 {
 }
 
 pub fn recaman_sequence(n: usize) -> Vec<u128> {
-    let mut sequence = vec![0, 1];
+    let mut sequence = vec![0];
     for i in 2..n {
         nth_recaman_memoized(&mut sequence, i);
     }

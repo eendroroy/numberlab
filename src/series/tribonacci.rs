@@ -1,6 +1,17 @@
 use num_bigint::BigUint;
 
 pub fn nth_tribonacci_memoized(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint {
+    if memoizer.len() == 0 {
+        memoizer.push(BigUint::from(0u128));
+        memoizer.push(BigUint::from(1u128));
+        memoizer.push(BigUint::from(1u128));
+    } else if memoizer.len() == 1 {
+        memoizer.push(BigUint::from(1u128));
+        memoizer.push(BigUint::from(1u128));
+    } else if memoizer.len() == 2 {
+        memoizer.push(BigUint::from(1u128));
+    }
+
     if n < memoizer.len() {
         memoizer[n].clone()
     } else {

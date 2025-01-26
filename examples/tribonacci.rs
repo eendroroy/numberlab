@@ -1,7 +1,10 @@
-use numseries::series::tribonacci::tribonacci_sequence;
+use numseries::series::tribonacci::{nth_tribonacci_memoized, tribonacci_sequence};
 
 fn main() {
-    tribonacci_sequence(10)
+    let mut memoizer = vec![];
+    println!("11th Fibonacci: {}", nth_tribonacci_memoized(10, &mut memoizer));
+
+    tribonacci_sequence(11)
         .iter()
         .for_each(|n| println!("{}", n));
 }

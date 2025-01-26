@@ -2,7 +2,14 @@ use num_bigint::BigUint;
 use std::cmp::min;
 
 pub fn nth_fibonacci_memoized(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint {
-    if n < memoizer.len() {
+    if memoizer.len() == 0 {
+        memoizer.push(BigUint::from(0u128));
+        memoizer.push(BigUint::from(1u128));
+    } else if memoizer.len() == 1 {
+        memoizer.push(BigUint::from(1u128));
+    }
+
+    if memoizer.len() > n {
         memoizer[n].clone()
     } else {
         let lth_fibonacci = nth_fibonacci_memoized(n - 1, memoizer);
