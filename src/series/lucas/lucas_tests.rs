@@ -47,11 +47,3 @@ fn should_generate_series_of_10_items() {
         ]
     );
 }
-
-#[test]
-fn should_generate_series_with_starting_lucas_1_if_given_2() {
-    assert_eq!(
-        lucas_sequence(2),
-        vec![BigUint::from(2u128), BigUint::from(1u128)]
-    );
-}

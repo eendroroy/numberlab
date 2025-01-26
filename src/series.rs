@@ -15,3 +15,6 @@ pub mod lucas;
 /// Sylvester's series
 /// [OEIS A000058](https://oeis.org/A000058)
 pub mod sylvester;
+/// Tribonacci series
+/// [OEIS A000073](https://oeis.org/A000073)
+pub mod tribonacci;

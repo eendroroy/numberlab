@@ -67,3 +67,11 @@ harness = false
 [[bench]]
 name = "lucas"
 harness = false
+
+[[bench]]
+name = "sylvester"
+harness = false
+
+[[bench]]
+name = "tribonacci"
+harness = false

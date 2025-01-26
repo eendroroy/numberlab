@@ -64,6 +64,3 @@ fn should_generate_series_of_10_items() {
         ]
     );
 }
-
-#[test]
-fn should_generate_series_with_starting_sylvester_1_if_given_2() {}
