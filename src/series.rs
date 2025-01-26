@@ -9,6 +9,8 @@ pub mod factorial;
 pub mod fibonacci;
 /// Figurate series
 pub mod figurate;
+/// Geometric series
+pub mod geometric;
 /// Lucas series
 /// [OEIS A000032](https://oeis.org/A000032)
 pub mod lucas;

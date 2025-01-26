@@ -3,7 +3,7 @@ use numseries::series::arithmetic::arithmetic_sequence;
 
 fn generate_arithmetic_series_of_10(c: &mut Criterion) {
     c.bench_function("generate_arithmetic_series_of_10", |b| {
-        b.iter(|| arithmetic_sequence(1.001, 1.002,10));
+        b.iter(|| arithmetic_sequence(1.001, 1.002, 10));
     });
 }
 

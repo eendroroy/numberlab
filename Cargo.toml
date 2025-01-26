@@ -75,3 +75,7 @@ harness = false
 [[bench]]
 name = "tribonacci"
 harness = false
+
+[[bench]]
+name = "geometric"
+harness = false
