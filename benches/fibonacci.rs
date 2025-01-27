@@ -7,9 +7,9 @@ fn generate_5th_fibonacci(c: &mut Criterion) {
     });
 }
 
-fn generate_100th_fibonacci(c: &mut Criterion) {
-    c.bench_function("generate_100th_fibonacci", |b| {
-        b.iter(|| nth_fibonacci(100));
+fn generate_20th_fibonacci(c: &mut Criterion) {
+    c.bench_function("generate_20th_fibonacci", |b| {
+        b.iter(|| nth_fibonacci(20));
     });
 }
 
@@ -34,7 +34,7 @@ fn generate_fibonacci_series_of_500(c: &mut Criterion) {
 criterion_group!(
     benches,
     generate_5th_fibonacci,
-    generate_100th_fibonacci,
+    generate_20th_fibonacci,
     generate_5th_fibonacci_memoized,
     generate_100th_fibonacci_memoized,
     generate_fibonacci_series_of_500,
