@@ -6,8 +6,13 @@ fn round_to_precision(number: f64, precision: u8) -> f64 {
 
 #[test]
 #[should_panic(expected = "'n' must be greater than 0")]
-fn should_panic_when_n_is_less_than_1() {
+fn nth_arithmetic_should_panic_when_n_is_less_than_1() {
     nth_arithmetic(1.0, 1.0, 0);
+}
+
+#[test]
+#[should_panic(expected = "'n' must be greater than 0")]
+fn arithmetic_sequence_should_panic_when_n_is_less_than_1() {
     arithmetic_sequence(1.0, 1.0, 0);
 }
 
