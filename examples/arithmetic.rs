@@ -2,20 +2,10 @@ use numseries::series::arithmetic::{arithmetic_sequence, arithmetic_series, nth_
 
 fn main() {
     let series = arithmetic_sequence(1.0, 1.0, 10);
-    println!(
-        "{:?} == {}",
-        series,
-        series.iter().fold(0.0, |acc, n| acc + n)
-    );
+    println!("{:?} == {}", series, series.iter().sum::<f64>());
 
-    let n_series: Vec<f64> = (1..=10)
-        .map(|n| nth_arithmetic(1.0, 1.0, n))
-        .collect();
-    println!(
-        "{:?} == {}",
-        n_series,
-        n_series.iter().fold(0.0, |acc, n| acc + n)
-    );
+    let n_series: Vec<f64> = (1..=10).map(|n| nth_arithmetic(1.0, 1.0, n)).collect();
+    println!("{:?} == {}", n_series, n_series.iter().sum::<f64>());
 
     println!("{}", arithmetic_series(1.0, 1.0, 10));
 }
