@@ -1,9 +1,27 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numseries::series::factorial::factorial_sequence;
+use numseries::series::factorial::{factorial_sequence, nth_factorial, nth_factorial_memoized};
 
-fn generate_factorial_series_of_10(c: &mut Criterion) {
-    c.bench_function("generate_factorial_series_of_10", |b| {
-        b.iter(|| factorial_sequence(10));
+fn generate_5th_factorial(c: &mut Criterion) {
+    c.bench_function("generate_5th_factorial", |b| {
+        b.iter(|| nth_factorial(5));
+    });
+}
+
+fn generate_20th_factorial(c: &mut Criterion) {
+    c.bench_function("generate_20th_factorial", |b| {
+        b.iter(|| nth_factorial(20));
+    });
+}
+
+fn generate_5th_factorial_memoized(c: &mut Criterion) {
+    c.bench_function("generate_5th_factorial_memoized", |b| {
+        b.iter(|| nth_factorial_memoized(5));
+    });
+}
+
+fn generate_100th_factorial_memoized(c: &mut Criterion) {
+    c.bench_function("generate_100th_factorial_memoized", |b| {
+        b.iter(|| nth_factorial_memoized(100));
     });
 }
 
@@ -13,17 +31,13 @@ fn generate_factorial_series_of_500(c: &mut Criterion) {
     });
 }
 
-fn generate_factorial_series_of_1000(c: &mut Criterion) {
-    c.bench_function("generate_factorial_series_of_1000", |b| {
-        b.iter(|| factorial_sequence(1000));
-    });
-}
-
 criterion_group!(
     benches,
-    generate_factorial_series_of_10,
+    generate_5th_factorial,
+    generate_20th_factorial,
+    generate_5th_factorial_memoized,
+    generate_100th_factorial_memoized,
     generate_factorial_series_of_500,
-    generate_factorial_series_of_1000,
 );
 
 criterion_main!(benches);
