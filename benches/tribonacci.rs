@@ -1,9 +1,27 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numseries::series::tribonacci::tribonacci_sequence;
+use numseries::series::tribonacci::{nth_tribonacci, nth_tribonacci_memoized, tribonacci_sequence};
 
-fn generate_tribonacci_series_of_10(c: &mut Criterion) {
-    c.bench_function("generate_tribonacci_series_of_10", |b| {
-        b.iter(|| tribonacci_sequence(10));
+fn generate_5th_tribonacci(c: &mut Criterion) {
+    c.bench_function("generate_5th_tribonacci", |b| {
+        b.iter(|| nth_tribonacci(5));
+    });
+}
+
+fn generate_20th_tribonacci(c: &mut Criterion) {
+    c.bench_function("generate_20th_tribonacci", |b| {
+        b.iter(|| nth_tribonacci(20));
+    });
+}
+
+fn generate_5th_tribonacci_memoized(c: &mut Criterion) {
+    c.bench_function("generate_5th_tribonacci_memoized", |b| {
+        b.iter(|| nth_tribonacci_memoized(5));
+    });
+}
+
+fn generate_100th_tribonacci_memoized(c: &mut Criterion) {
+    c.bench_function("generate_100th_tribonacci_memoized", |b| {
+        b.iter(|| nth_tribonacci_memoized(100));
     });
 }
 
@@ -13,17 +31,13 @@ fn generate_tribonacci_series_of_500(c: &mut Criterion) {
     });
 }
 
-fn generate_tribonacci_series_of_1000(c: &mut Criterion) {
-    c.bench_function("generate_tribonacci_series_of_1000", |b| {
-        b.iter(|| tribonacci_sequence(1000));
-    });
-}
-
 criterion_group!(
     benches,
-    generate_tribonacci_series_of_10,
+    generate_5th_tribonacci,
+    generate_20th_tribonacci,
+    generate_5th_tribonacci_memoized,
+    generate_100th_tribonacci_memoized,
     generate_tribonacci_series_of_500,
-    generate_tribonacci_series_of_1000,
 );
 
 criterion_main!(benches);

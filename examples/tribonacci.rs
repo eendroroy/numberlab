@@ -1,8 +1,7 @@
 use numseries::series::tribonacci::{nth_tribonacci_memoized, tribonacci_sequence};
 
 fn main() {
-    let mut memoizer = vec![];
-    println!("11th Fibonacci: {}", nth_tribonacci_memoized(10, &mut memoizer));
+    println!("11th tribonacci: {}", nth_tribonacci_memoized(10));
 
     tribonacci_sequence(11)
         .iter()
