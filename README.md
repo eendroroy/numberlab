@@ -1,6 +1,6 @@
 # numberlab
 
-Implementation of popular mathematical number series algorithms.
+A collection of number theory algorithms
 
 ## Installation
 
