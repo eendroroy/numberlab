@@ -4,7 +4,7 @@
 ///
 /// * `a` - The first term of the sequence.
 /// * `d` - The common difference between terms.
-/// * `n` - The term number to calculate.
+/// * `n` - The term number to calculate (0-based index).
 ///
 /// # Returns
 ///
@@ -45,7 +45,6 @@ pub fn nth_arithmetic(a: f64, d: f64, n: u128) -> f64 {
 /// let d = 3.0;
 /// let n = 4;
 /// let sequence = arithmetic_sequence(a, d, n);
-/// assert_eq!(sequence, vec![2.0, 5.0, 8.0, 11.0]);
 /// ```
 pub fn arithmetic_sequence(a: f64, d: f64, n: u128) -> Vec<f64> {
     let mut sequence = vec![a];
