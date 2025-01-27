@@ -8,7 +8,7 @@ fn round_to_precision(number: f64, precision: u8) -> f64 {
 fn should_panic_when_n_is_less_than_1() {
     assert!(std::panic::catch_unwind(|| nth_arithmetic(1.0, 1.0, 0)).is_err());
     assert!(std::panic::catch_unwind(|| arithmetic_sequence(1.0, 1.0, 0)).is_err());
-    assert!(std::panic::catch_unwind(|| arithmetic_sum(1.0, 1.0, 0)).is_err());
+    assert!(std::panic::catch_unwind(|| arithmetic_series(1.0, 1.0, 0)).is_err());
 }
 
 #[test]
@@ -44,14 +44,14 @@ fn should_generate_arithmetic_sequence() {
 
 #[test]
 fn should_calculate_arithmetic_sum() {
-    assert_eq!(arithmetic_sum(0.0, 1.0, 1), 0.0);
-    assert_eq!(arithmetic_sum(0.0, 1.0, 2), 1.0);
-    assert_eq!(arithmetic_sum(0.0, 1.0, 3), 3.0);
-    assert_eq!(arithmetic_sum(0.0, 1.0, 4), 6.0);
-    assert_eq!(arithmetic_sum(0.0, 1.0, 5), 10.0);
-    assert_eq!(arithmetic_sum(0.0, 1.0, 6), 15.0);
-    assert_eq!(arithmetic_sum(0.0, 1.0, 7), 21.0);
-    assert_eq!(arithmetic_sum(0.0, 1.0, 8), 28.0);
-    assert_eq!(arithmetic_sum(0.0, 1.0, 9), 36.0);
-    assert_eq!(arithmetic_sum(0.0, 1.0, 10), 45.0);
+    assert_eq!(arithmetic_series(0.0, 1.0, 1), 0.0);
+    assert_eq!(arithmetic_series(0.0, 1.0, 2), 1.0);
+    assert_eq!(arithmetic_series(0.0, 1.0, 3), 3.0);
+    assert_eq!(arithmetic_series(0.0, 1.0, 4), 6.0);
+    assert_eq!(arithmetic_series(0.0, 1.0, 5), 10.0);
+    assert_eq!(arithmetic_series(0.0, 1.0, 6), 15.0);
+    assert_eq!(arithmetic_series(0.0, 1.0, 7), 21.0);
+    assert_eq!(arithmetic_series(0.0, 1.0, 8), 28.0);
+    assert_eq!(arithmetic_series(0.0, 1.0, 9), 36.0);
+    assert_eq!(arithmetic_series(0.0, 1.0, 10), 45.0);
 }

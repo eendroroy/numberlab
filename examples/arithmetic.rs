@@ -1,4 +1,4 @@
-use numseries::series::arithmetic::{arithmetic_sequence, arithmetic_sum, nth_arithmetic};
+use numseries::series::arithmetic::{arithmetic_sequence, arithmetic_series, nth_arithmetic};
 
 fn main() {
     let series = arithmetic_sequence(1.0, 1.0, 10);
@@ -17,5 +17,5 @@ fn main() {
         n_series.iter().fold(0.0, |acc, n| acc + n)
     );
 
-    println!("{}", arithmetic_sum(1.0, 1.0, 10));
+    println!("{}", arithmetic_series(1.0, 1.0, 10));
 }

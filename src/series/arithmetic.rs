@@ -72,7 +72,7 @@ pub fn arithmetic_sequence(a: f64, d: f64, n: u128) -> Vec<f64> {
 ///
 /// # Arguments
 ///
-/// * `a` - The first term of the sequence.
+/// * `a` - The first term of the series.
 /// * `d` - The common difference between terms.
 /// * `n` - The number of terms to sum.
 ///
@@ -80,25 +80,18 @@ pub fn arithmetic_sequence(a: f64, d: f64, n: u128) -> Vec<f64> {
 ///
 /// The sum of the first `n` terms of the arithmetic sequence.
 ///
-/// # Panics
-///
-/// Panics if `n` is less than 1.
-///
 /// # Examples
 ///
 /// ```
-/// use numseries::series::arithmetic::arithmetic_sum;
+/// use numseries::series::arithmetic::arithmetic_series;
 ///
 /// let a = 1.0;
 /// let d = 1.0;
 /// let n = 10;
-/// let sum = arithmetic_sum(a, d, n);
+/// let sum = arithmetic_series(a, d, n);
 /// assert_eq!(sum, 55.0);
 /// ```
-pub fn arithmetic_sum(a: f64, d: f64, n: u64) -> f64 {
-    if n < 1 {
-        panic!("'n' must be greater than 0");
-    }
+pub fn arithmetic_series(a: f64, d: f64, n: u64) -> f64 {
     ((2.0 * a + ((n as f64) - 1.0) * d) * (n as f64)) / 2.0
 }
 
