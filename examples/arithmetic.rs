@@ -6,6 +6,7 @@ fn main() {
         .iter()
         .for_each(|n| print!("{}, ", n));
 
+    println!();
     println!("Arithmetic sum of 10 numbers starting from 5.4 with a progression of -2.9233:");
     print!("{}", arithmetic_sum(5.4, -2.9233, 10));
 }

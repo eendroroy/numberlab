@@ -1,18 +1,82 @@
-pub fn nth_arithmetic(starting_number: f64, progression: f64, n: u128) -> f64 {
-    starting_number + (progression * n as f64)
+/// Calculates the nth term of an arithmetic sequence.
+///
+/// # Arguments
+///
+/// * `a1` - The first term of the sequence.
+/// * `d` - The common difference between terms.
+/// * `n` - The term number to calculate.
+///
+/// # Returns
+///
+/// The nth term of the arithmetic sequence.
+///
+/// # Examples
+///
+/// ```
+/// use numseries::series::arithmetic::nth_arithmetic;
+///
+/// let a1 = 2.0;
+/// let d = 3.0;
+/// let n = 4;
+/// let nth_term = nth_arithmetic(a1, d, n);
+/// ```
+pub fn nth_arithmetic(a1: f64, d: f64, n: u128) -> f64 {
+    a1 + (d * n as f64)
 }
 
-pub fn arithmetic_sequence(starting_number: f64, progression: f64, n: u128) -> Vec<f64> {
-    let mut sequence = vec![starting_number];
-    for _ in 1..n {
-        let ith = nth_arithmetic(sequence.last().unwrap().clone(), progression, 1);
-        sequence.push(ith);
-    }
+/// Generates an arithmetic sequence.
+///
+/// # Arguments
+///
+/// * `a1` - The first term of the sequence.
+/// * `d` - The common difference between terms.
+/// * `n` - The number of terms to generate.
+///
+/// # Returns
+///
+/// A vector containing the arithmetic sequence.
+///
+/// # Examples
+///
+/// ```
+/// use numseries::series::arithmetic::arithmetic_sequence;
+///
+/// let a1 = 2.0;
+/// let d = 3.0;
+/// let n = 4;
+/// let sequence = arithmetic_sequence(a1, d, n);
+/// assert_eq!(sequence, vec![2.0, 5.0, 8.0, 11.0]);
+/// ```
+pub fn arithmetic_sequence(a1: f64, d: f64, n: u128) -> Vec<f64> {
+    let mut sequence = vec![a1];
+    (1..n).for_each(|i| sequence.push(nth_arithmetic(a1, d, i)));
     sequence
 }
 
-pub fn arithmetic_sum(starting_number: f64, progression: f64, n: u64) -> f64 {
-    ((2.0 * starting_number + ((n as f64) - 1.0) * progression) * (n as f64)) / 2.0
+/// Calculates the sum of the first `n` terms of an arithmetic sequence.
+///
+/// # Arguments
+///
+/// * `a1` - The first term of the sequence.
+/// * `d` - The common difference between terms.
+/// * `n` - The number of terms to sum.
+///
+/// # Returns
+///
+/// The sum of the first `n` terms of the arithmetic sequence.
+///
+/// # Examples
+///
+/// ```
+/// use numseries::series::arithmetic::arithmetic_sum;
+///
+/// let a1 = 5.4;
+/// let d = -2.9233;
+/// let n = 10;
+/// let sum = arithmetic_sum(a1, d, n);
+/// ```
+pub fn arithmetic_sum(a1: f64, d: f64, n: u64) -> f64 {
+    ((2.0 * a1 + ((n as f64) - 1.0) * d) * (n as f64)) / 2.0
 }
 
 #[cfg(test)]

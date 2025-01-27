@@ -1,5 +1,4 @@
 /// Arithmetic series
-/// [OEIS A037123](https://oeis.org/A037123)
 pub mod arithmetic;
 /// Factorial series
 /// [OEIS A000142](https://oeis.org/A000142)
