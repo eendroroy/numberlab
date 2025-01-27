@@ -13,9 +13,6 @@ pub mod geometric;
 /// Lucas sequence
 /// [OEIS A000032](https://oeis.org/A000032)
 pub mod lucas;
-/// Prime sequence
-/// [OEIS A000040](https://oeis.org/A000040)
-pub mod prime;
 /// Recaman sequence
 /// [OEIS A005132](https://oeis.org/A005132)
 pub mod recaman;

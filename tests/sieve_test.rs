@@ -1,4 +1,4 @@
-use numberlab::sequence::prime::sieve::sieve_prime_sequence;
+use numberlab::prime::sieve::sieve_prime_sequence;
 
 #[test]
 fn should_generate_sieve_prime_sequence() {
