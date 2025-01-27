@@ -1,11 +1,11 @@
-use numberlab::sequence::geometric::{geometric_sequence, geometric_sum};
+use numberlab::sequence::geometric::{geometric_sequence, geometric_series, nth_geometric};
 
 fn main() {
-    println!("Geometric sequence of 10 numbers starting from 1.5 with a progression of -1.5:");
-    geometric_sequence(1.5, -1.5, 10)
-        .iter()
-        .for_each(|n| print!("{}, ", n));
+    let series = geometric_sequence(1.12, 2.23, 10);
+    println!("{:?} == {}", series, series.iter().sum::<f64>());
 
-    println!("Geometric sum of 10 numbers starting from 1.5 with a progression of -1.5:");
-    print!("{}", geometric_sum(1.5, -1.5, 10));
+    let n_series: Vec<f64> = (1..=10).map(|n| nth_geometric(1.12, 2.23, n)).collect();
+    println!("{:?} == {}", n_series, n_series.iter().sum::<f64>());
+
+    println!("{}", geometric_series(1.12, 2.23, 10));
 }
