@@ -8,9 +8,9 @@ fn main() {
         series.iter().fold(0.0, |acc, n| acc + n)
     );
 
-    let n_series = (1..=10)
+    let n_series: Vec<f64> = (1..=10)
         .map(|n| nth_arithmetic(1.0, 1.0, n))
-        .collect::<Vec<f64>>();
+        .collect();
     println!(
         "{:?} == {}",
         n_series,
