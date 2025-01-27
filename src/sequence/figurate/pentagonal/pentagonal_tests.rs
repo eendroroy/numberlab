@@ -1,4 +1,4 @@
-use crate::series::figurate::pentagonal::{nth_pentagonal, pentagonal_sequence};
+use crate::sequence::figurate::pentagonal::{nth_pentagonal, pentagonal_sequence};
 use num_bigint::BigUint;
 
 #[test]

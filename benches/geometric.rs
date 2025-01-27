@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numberlab::series::geometric::geometric_sequence;
+use numberlab::sequence::geometric::geometric_sequence;
 
 fn generate_geometric_series_of_10(c: &mut Criterion) {
     c.bench_function("generate_geometric_series_of_10", |b| {

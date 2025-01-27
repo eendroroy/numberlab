@@ -1,4 +1,4 @@
-use crate::series::figurate::lazy_caterer::{lazy_caterer_sequence, nth_lazy_caterer};
+use crate::sequence::figurate::lazy_caterer::{lazy_caterer_sequence, nth_lazy_caterer};
 use num_bigint::BigUint;
 
 #[test]

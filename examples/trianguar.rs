@@ -1,4 +1,4 @@
-use numberlab::series::figurate::triangular::triangular_sequence;
+use numberlab::sequence::figurate::triangular::triangular_sequence;
 
 fn main() {
     triangular_sequence(10)

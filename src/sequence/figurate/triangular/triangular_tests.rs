@@ -1,4 +1,4 @@
-use crate::series::figurate::triangular::{nth_triangular, triangular_sequence};
+use crate::sequence::figurate::triangular::{nth_triangular, triangular_sequence};
 use num_bigint::BigUint;
 
 #[test]

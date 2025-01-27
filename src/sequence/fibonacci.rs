@@ -14,7 +14,7 @@ use num_bigint::BigUint;
 ///
 /// ```
 /// use num_bigint::BigUint;
-/// use numberlab::series::fibonacci::nth_fibonacci;
+/// use numberlab::sequence::fibonacci::nth_fibonacci;
 ///
 /// let result = nth_fibonacci(10);
 /// assert_eq!(result, BigUint::from(55u128));
@@ -43,7 +43,7 @@ pub fn nth_fibonacci(n: usize) -> BigUint {
 ///
 /// ```
 /// use num_bigint::BigUint;
-/// use numberlab::series::fibonacci::nth_fibonacci_memoized;
+/// use numberlab::sequence::fibonacci::nth_fibonacci_memoized;
 ///
 /// let result = nth_fibonacci_memoized(10);
 /// assert_eq!(result, BigUint::from(55u128));
@@ -79,7 +79,7 @@ fn nth_fibonacci_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint
 ///
 /// ```
 /// use num_bigint::BigUint;
-/// use numberlab::series::fibonacci::fibonacci_sequence;
+/// use numberlab::sequence::fibonacci::fibonacci_sequence;
 ///
 /// let sequence = fibonacci_sequence(5);
 /// assert_eq!(
@@ -121,7 +121,7 @@ pub fn fibonacci_sequence(n: usize) -> Vec<BigUint> {
 ///
 /// ```
 /// use num_bigint::BigUint;
-/// use numberlab::series::fibonacci::fibonacci_series;
+/// use numberlab::sequence::fibonacci::fibonacci_series;
 ///
 /// let result = fibonacci_series(10);
 /// assert_eq!(result, BigUint::from(88u128));

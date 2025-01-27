@@ -1,4 +1,4 @@
-use crate::series::sylvester::{nth_sylvester_memoized, sylvester_sequence};
+use crate::sequence::sylvester::{nth_sylvester_memoized, sylvester_sequence};
 use num_bigint::BigUint;
 
 #[test]

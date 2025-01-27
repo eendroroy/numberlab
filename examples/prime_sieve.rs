@@ -1,4 +1,4 @@
-use numberlab::series::prime::sieve::sieve_prime_sequence;
+use numberlab::sequence::prime::sieve::sieve_prime_sequence;
 
 fn main() {
     let n = 1000;

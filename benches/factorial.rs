@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numberlab::series::factorial::{factorial_sequence, nth_factorial, nth_factorial_memoized};
+use numberlab::sequence::factorial::{factorial_sequence, nth_factorial, nth_factorial_memoized};
 
 fn generate_5th_factorial(c: &mut Criterion) {
     c.bench_function("generate_5th_factorial", |b| {

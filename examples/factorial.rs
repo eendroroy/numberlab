@@ -1,5 +1,5 @@
 use num_bigint::BigUint;
-use numberlab::series::factorial::{factorial_sequence, factorial_series, nth_factorial};
+use numberlab::sequence::factorial::{factorial_sequence, factorial_series, nth_factorial};
 
 fn main() {
     let series = factorial_sequence(10);

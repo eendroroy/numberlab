@@ -15,7 +15,7 @@ use std::ops::Mul;
 ///
 /// ```
 /// use num_bigint::BigUint;
-/// use numberlab::series::factorial::nth_factorial;
+/// use numberlab::sequence::factorial::nth_factorial;
 ///
 /// let result = nth_factorial(5);
 /// assert_eq!(result, BigUint::from(120_u128));
@@ -23,7 +23,7 @@ use std::ops::Mul;
 ///
 /// ```
 /// use num_bigint::BigUint;
-/// use numberlab::series::factorial::nth_factorial;
+/// use numberlab::sequence::factorial::nth_factorial;
 ///
 /// let result = nth_factorial(10);
 /// assert_eq!(result, BigUint::from(3628800_u128));
@@ -51,7 +51,7 @@ pub fn nth_factorial(n: usize) -> BigUint {
 ///
 /// ```
 /// use num_bigint::BigUint;
-/// use numberlab::series::factorial::nth_factorial_memoized;
+/// use numberlab::sequence::factorial::nth_factorial_memoized;
 ///
 /// let result = nth_factorial_memoized(5);
 /// assert_eq!(result, BigUint::from(120_u128));
@@ -89,7 +89,7 @@ fn nth_factorial_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint
 ///
 /// ```
 /// use num_bigint::BigUint;
-/// use numberlab::series::factorial::factorial_sequence;
+/// use numberlab::sequence::factorial::factorial_sequence;
 ///
 /// let sequence = factorial_sequence(5);
 /// assert_eq!(
@@ -120,7 +120,7 @@ pub fn factorial_sequence(n: usize) -> Vec<BigUint> {
 ///
 /// # Arguments
 ///
-/// * `n` - A positive integer representing the number of terms in the factorial series.
+/// * `n` - A positive integer representing the number of terms in the factorial sequence.
 ///
 /// # Returns
 ///
@@ -130,7 +130,7 @@ pub fn factorial_sequence(n: usize) -> Vec<BigUint> {
 ///
 /// ```
 /// use num_bigint::BigUint;
-/// use numberlab::series::factorial::factorial_series;
+/// use numberlab::sequence::factorial::factorial_series;
 ///
 /// let result = factorial_series(5);
 /// assert_eq!(result, BigUint::from(153_u128)); // 1! + 2! + 3! + 4! + 5! = 153

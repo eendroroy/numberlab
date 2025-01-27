@@ -1,4 +1,4 @@
-use crate::series::figurate::hexagonal::{hexagonal_sequence, nth_hexagonal};
+use crate::sequence::figurate::hexagonal::{hexagonal_sequence, nth_hexagonal};
 use num_bigint::BigUint;
 
 #[test]

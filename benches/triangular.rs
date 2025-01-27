@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numberlab::series::figurate::triangular::triangular_sequence;
+use numberlab::sequence::figurate::triangular::triangular_sequence;
 
 fn generate_triangular_series_of_10(c: &mut Criterion) {
     c.bench_function("generate_triangular_series_of_10", |b| {

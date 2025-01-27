@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numberlab::series::prime::sieve::sieve_prime_sequence;
+use numberlab::sequence::prime::sieve::sieve_prime_sequence;
 
 fn generate_sieve_series_of_10(c: &mut Criterion) {
     c.bench_function("generate_sieve_series_of_10", |b| {

@@ -1,2 +1,2 @@
-/// Popular number series algorithms
-pub mod series;
+/// Popular number sequence algorithms
+pub mod sequence;

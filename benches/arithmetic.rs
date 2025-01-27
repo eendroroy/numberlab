@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numberlab::series::arithmetic::arithmetic_sequence;
+use numberlab::sequence::arithmetic::arithmetic_sequence;
 
 fn nth_arithmetic(c: &mut Criterion) {
     c.bench_function("nth_arithmetic", |b| {

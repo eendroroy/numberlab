@@ -1,5 +1,5 @@
 use num_bigint::BigUint;
-use numberlab::series::fibonacci::{fibonacci_sequence, fibonacci_series, nth_fibonacci};
+use numberlab::sequence::fibonacci::{fibonacci_sequence, fibonacci_series, nth_fibonacci};
 
 fn main() {
     let series = fibonacci_sequence(10);

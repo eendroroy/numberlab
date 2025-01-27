@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numberlab::series::sylvester::sylvester_sequence;
+use numberlab::sequence::sylvester::sylvester_sequence;
 
 fn generate_sylvester_series_of_10(c: &mut Criterion) {
     c.bench_function("generate_sylvester_series_of_10", |b| {

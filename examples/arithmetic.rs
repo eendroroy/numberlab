@@ -1,4 +1,4 @@
-use numberlab::series::arithmetic::{arithmetic_sequence, arithmetic_series, nth_arithmetic};
+use numberlab::sequence::arithmetic::{arithmetic_sequence, arithmetic_series, nth_arithmetic};
 
 fn main() {
     let series = arithmetic_sequence(1.0, 1.0, 10);
