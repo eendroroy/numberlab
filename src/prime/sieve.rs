@@ -1,3 +1,21 @@
+/// Generates a sequence of prime numbers up to a given number `n` using the Sieve of Eratosthenes algorithm.
+///
+/// # Arguments
+///
+/// * `n` - The upper limit of the range to generate prime numbers (inclusive).
+///
+/// # Returns
+///
+/// A vector containing all prime numbers up to `n`.
+///
+/// # Examples
+///
+/// ```
+/// use numberlab::prime::sieve::sieve_prime_sequence;
+///
+/// let primes = sieve_prime_sequence(30);
+/// assert_eq!(primes, vec![2, 3, 5, 7, 11, 13, 17, 19, 23, 29]);
+/// ```
 pub fn sieve_prime_sequence(n: u128) -> Vec<u128> {
     let mut primes = vec![];
     let mut sieve = vec![true; n as usize + 1];
