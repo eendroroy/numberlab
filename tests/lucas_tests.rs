@@ -1,4 +1,5 @@
-use super::*;
+use num_bigint::BigUint;
+use numberlab::sequence::lucas::{lucas_sequence, nth_lucas_memoized};
 
 #[test]
 fn should_generate_nth_lucas() {

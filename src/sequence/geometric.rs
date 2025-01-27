@@ -83,6 +83,3 @@ pub fn geometric_series(a: f64, r: f64, n: u64) -> f64 {
         _ => a * ((r.powf(n as f64) - 1f64) / (r - 1f64)),
     }
 }
-
-#[cfg(test)]
-mod geometric_test;

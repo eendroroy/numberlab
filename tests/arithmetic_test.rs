@@ -1,4 +1,4 @@
-use super::*;
+use numberlab::sequence::arithmetic::{arithmetic_sequence, arithmetic_series, nth_arithmetic};
 
 fn round_to_precision(number: f64, precision: u8) -> f64 {
     (number * 10_f64.powf(precision as f64)).round() / 10.0_f64.powf(precision as f64)

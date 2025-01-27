@@ -95,6 +95,3 @@ pub fn arithmetic_series(a: f64, d: f64, n: u64) -> f64 {
         _ => ((2.0 * a + ((n as f64) - 1.0) * d) * (n as f64)) / 2.0,
     }
 }
-
-#[cfg(test)]
-mod arithmetic_test;

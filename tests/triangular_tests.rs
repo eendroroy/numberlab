@@ -1,5 +1,5 @@
-use crate::sequence::figurate::triangular::{nth_triangular, triangular_sequence};
 use num_bigint::BigUint;
+use numberlab::sequence::figurate::triangular::{nth_triangular, triangular_sequence};
 
 #[test]
 fn should_generate_nth_triangular() {

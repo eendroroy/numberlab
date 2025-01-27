@@ -13,6 +13,3 @@ pub fn sieve_prime_sequence(n: u128) -> Vec<u128> {
     }
     primes
 }
-
-#[cfg(test)]
-mod sieve_test;

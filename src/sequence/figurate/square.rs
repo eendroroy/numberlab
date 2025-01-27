@@ -11,6 +11,3 @@ pub fn square_sequence(n: u128) -> Vec<BigUint> {
     }
     sequence
 }
-
-#[cfg(test)]
-mod square_tests;

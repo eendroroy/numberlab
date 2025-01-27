@@ -18,6 +18,3 @@ pub fn sylvester_sequence(n: usize) -> Vec<BigUint> {
     }
     sequence[..n].to_vec()
 }
-
-#[cfg(test)]
-mod sylvester_tests;

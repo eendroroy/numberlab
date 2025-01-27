@@ -14,6 +14,3 @@ pub fn pentagonal_sequence(n: u128) -> Vec<BigUint> {
     }
     sequence
 }
-
-#[cfg(test)]
-mod pentagonal_tests;

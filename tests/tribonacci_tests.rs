@@ -1,4 +1,7 @@
-use super::*;
+use num_bigint::BigUint;
+use numberlab::sequence::tribonacci::{
+    nth_tribonacci, nth_tribonacci_memoized, tribonacci_sequence,
+};
 
 #[test]
 fn should_generate_nth_tribonacci() {

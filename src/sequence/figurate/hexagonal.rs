@@ -19,6 +19,3 @@ pub fn hexagonal_sequence(n: u128) -> Vec<BigUint> {
     }
     sequence
 }
-
-#[cfg(test)]
-mod hexagonal_tests;

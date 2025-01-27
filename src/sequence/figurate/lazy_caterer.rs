@@ -16,6 +16,3 @@ pub fn lazy_caterer_sequence(n: u128) -> Vec<BigUint> {
     }
     sequence
 }
-
-#[cfg(test)]
-mod lazy_caterer_tests;

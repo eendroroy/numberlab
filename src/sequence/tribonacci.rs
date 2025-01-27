@@ -57,6 +57,3 @@ pub fn tribonacci_sequence(n: usize) -> Vec<BigUint> {
         sequence
     }
 }
-
-#[cfg(test)]
-mod tribonacci_tests;

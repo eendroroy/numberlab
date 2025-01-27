@@ -1,4 +1,7 @@
-use super::*;
+use num_bigint::BigUint;
+use numberlab::sequence::factorial::{
+    factorial_sequence, factorial_series, nth_factorial, nth_factorial_memoized,
+};
 
 #[test]
 fn should_panic_when_n_is_less_than_1() {

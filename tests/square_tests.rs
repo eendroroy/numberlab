@@ -1,6 +1,7 @@
+use numberlab::sequence::figurate::square::{nth_squire, square_sequence};
+
 #[test]
 fn should_generate_nth_square() {
-    use super::*;
     assert_eq!(nth_squire(1), 1u128.into());
     assert_eq!(nth_squire(2), 4u128.into());
     assert_eq!(nth_squire(3), 9u128.into());
@@ -15,13 +16,11 @@ fn should_generate_nth_square() {
 
 #[test]
 fn should_generate_series_of_1_items() {
-    use super::*;
     assert_eq!(square_sequence(1), vec![1u128.into()]);
 }
 
 #[test]
 fn should_generate_series_of_20_items() {
-    use super::*;
     assert_eq!(
         square_sequence(20),
         vec![

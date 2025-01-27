@@ -1,5 +1,5 @@
-use crate::sequence::figurate::lazy_caterer::{lazy_caterer_sequence, nth_lazy_caterer};
 use num_bigint::BigUint;
+use numberlab::sequence::figurate::lazy_caterer::{lazy_caterer_sequence, nth_lazy_caterer};
 
 #[test]
 fn should_generate_nth_lazy_caterer() {

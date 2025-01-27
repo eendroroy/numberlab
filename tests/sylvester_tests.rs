@@ -1,5 +1,5 @@
-use crate::sequence::sylvester::{nth_sylvester_memoized, sylvester_sequence};
 use num_bigint::BigUint;
+use numberlab::sequence::sylvester::{nth_sylvester_memoized, sylvester_sequence};
 
 #[test]
 fn should_generate_nth_sylvester() {

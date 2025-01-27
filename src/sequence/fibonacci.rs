@@ -129,6 +129,3 @@ pub fn fibonacci_sequence(n: usize) -> Vec<BigUint> {
 pub fn fibonacci_series(n: usize) -> BigUint {
     fibonacci_sequence(n).iter().sum()
 }
-
-#[cfg(test)]
-mod fibonacci_tests;

@@ -133,6 +133,3 @@ pub fn factorial_series(n: usize) -> BigUint {
     }
     factorial_sequence(n).iter().sum()
 }
-
-#[cfg(test)]
-mod factorial_test;
