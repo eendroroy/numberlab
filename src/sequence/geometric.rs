@@ -49,13 +49,11 @@ pub fn nth_geometric(a: f64, r: f64, n: u64) -> f64 {
 /// assert_eq!(sequence, vec![1.12, 1.12 * 2.23, 1.12 * 2.23 * 2.23]);
 /// ```
 pub fn geometric_sequence(a: f64, r: f64, n: u64) -> Vec<f64> {
-    let mut sequence = vec![];
-    for i in 1..=n {
-        let ith = nth_geometric(a, r, i);
-
-        sequence.push(ith);
+    match n {
+        0 => panic!("'n' must be greater than 0"),
+        1 => vec![a],
+        _ => (1..=n).map(|i| nth_geometric(a, r, i)).collect(),
     }
-    sequence
 }
 
 /// Calculates the sum of the first `n` terms of a geometric series.

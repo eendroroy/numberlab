@@ -6,8 +6,13 @@ fn round_to_precision(number: f64, precision: u8) -> f64 {
 
 #[test]
 #[should_panic(expected = "'n' must be greater than 0")]
-fn should_panic_when_n_is_less_than_1() {
+fn nth_geometric_should_panic_when_n_is_less_than_1() {
     nth_geometric(1.0, 1.0, 0);
+}
+
+#[test]
+#[should_panic(expected = "'n' must be greater than 0")]
+fn geometric_sequence_should_panic_when_n_is_less_than_1() {
     geometric_sequence(1.0, 1.0, 0);
 }
 
@@ -22,6 +27,9 @@ fn should_calculate_nth_geometric() {
 
 #[test]
 fn should_generate_geometric_sequence() {
+    let sequence = geometric_sequence(1.0, 1.2, 1);
+    assert_eq!(sequence, vec![1.0,]);
+
     let sequence = geometric_sequence(1.0, 1.2, 5)
         .iter()
         .map(|n| round_to_precision(*n, 5))
