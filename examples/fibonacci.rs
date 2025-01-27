@@ -1,9 +1,12 @@
-use numseries::series::fibonacci::{fibonacci_sequence, nth_fibonacci_memoized};
+use num_bigint::BigUint;
+use numseries::series::fibonacci::{fibonacci_sequence, fibonacci_series, nth_fibonacci};
 
 fn main() {
-    println!("11th Fibonacci: {}", nth_fibonacci_memoized(10));
+    let series = fibonacci_sequence(10);
+    println!("{:?} == {}", series, series.iter().sum::<BigUint>());
 
-    fibonacci_sequence(11)
-        .iter()
-        .for_each(|n| println!("{}", n));
+    let n_series: Vec<BigUint> = (0..10).map(|n| nth_fibonacci(n)).collect();
+    println!("{:?} == {}", n_series, n_series.iter().sum::<BigUint>());
+
+    println!("{}", fibonacci_series(10));
 }

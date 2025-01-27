@@ -23,7 +23,7 @@ fn should_generate_nth_fibonacci_memoized() {
 }
 
 #[test]
-fn should_generate_series() {
+fn should_generate_sequence() {
     assert_eq!(fibonacci_sequence(0), vec![]);
     assert_eq!(fibonacci_sequence(1), vec![BigUint::from(0u128)]);
     assert_eq!(

@@ -18,12 +18,7 @@ path = "src/lib.rs"
 edition = "2021"
 crate-type = ["staticlib", "lib", "cdylib"]
 
-[[bin]]
-name = "fibonacci"
-path = "src/bin/fibonacci.rs"
-
 [dependencies]
-colored = "3.0.0"
 num-bigint = "=0.4.6"
 
 [dev-dependencies]
