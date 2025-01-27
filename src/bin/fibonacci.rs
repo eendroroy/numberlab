@@ -1,7 +1,6 @@
 use colored::Colorize;
 use num_bigint::BigUint;
-use numseries::series::fibonacci::nth_fibonacci_memoized;
-use std::cmp::min;
+use numseries::series::fibonacci::nth_fibonacci_with_memoizer;
 use std::env;
 
 fn header(text: &str) -> String {
@@ -21,7 +20,12 @@ fn description(text: &str) -> String {
 }
 
 fn help() {
-    println!("{} {} {}", header("Usage:"), command("fibonacci"), value("[options]"));
+    println!(
+        "{} {} {}",
+        header("Usage:"),
+        command("fibonacci"),
+        value("[options]")
+    );
     println!();
     println!("{}", header("Options:"));
     println!(
@@ -30,15 +34,10 @@ fn help() {
         description("Print the help menu")
     );
     println!(
-        "  {} {}  {}",
-        command("-s, --start-fibonacci"),
-        value("<first-fibonacci>"),
-        description("Set the first Fibonacci number to print")
-    );
-    println!("  {} {}                      {}",
-             command("-c, --count"),
-             value("<count>"),
-             description("Set the number of Fibonacci numbers to print")
+        "  {} {}                      {}",
+        command("-c, --count"),
+        value("<count>"),
+        description("Set the number of Fibonacci numbers to print")
     );
     println!(
         "  {}                        {}",
@@ -48,23 +47,23 @@ fn help() {
     std::process::exit(0);
 }
 
-fn fibonacci_sequence_printer(first_fibonacci: BigUint, n: usize, print_n: bool) {
-    let mut sequence = vec![
-        min(first_fibonacci, BigUint::from(1u128)),
-        BigUint::from(1u128),
-    ];
+fn fibonacci_sequence_printer(n: usize, print_n: bool) {
+    let mut memoizer = vec![BigUint::from(0u128), BigUint::from(1u128)];
 
     for i in 0..n {
-        nth_fibonacci_memoized(i, &mut sequence);
+        nth_fibonacci_with_memoizer(i, &mut memoizer);
         if print_n {
-            println!("{}", format!(
-                "{: >width$}: {}",
-                i + 1,
-                sequence[i].to_string(),
-                width = 10
-            ))
+            println!(
+                "{}",
+                format!(
+                    "{: >width$}: {}",
+                    i + 1,
+                    memoizer[i].to_string(),
+                    width = 10
+                )
+            )
         } else {
-            println!("{:?}", sequence[i]);
+            println!("{:?}", memoizer[i]);
         }
     }
 }
@@ -72,7 +71,6 @@ fn fibonacci_sequence_printer(first_fibonacci: BigUint, n: usize, print_n: bool)
 pub fn main() {
     let mut args = env::args().skip(1);
 
-    let mut first_fibonacci = BigUint::from(0_u128);
     let mut count = 10_usize;
     let mut print_count = false;
 
@@ -80,11 +78,6 @@ pub fn main() {
         match &arg[..] {
             "-h" | "--help" => {
                 help();
-            }
-            "-s" | "--start-fibonacci" => {
-                if let Some(first_fibonacci_arg) = args.next() {
-                    first_fibonacci = first_fibonacci_arg.parse::<BigUint>().unwrap();
-                }
             }
             "-c" | "--count" => {
                 if let Some(count_arg) = args.next() {
@@ -106,7 +99,7 @@ pub fn main() {
         }
     }
 
-    fibonacci_sequence_printer(first_fibonacci, count, print_count);
+    fibonacci_sequence_printer(count, print_count);
 
     std::process::exit(0);
 }
