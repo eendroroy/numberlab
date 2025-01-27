@@ -5,9 +5,10 @@ fn round_to_precision(number: f64, precision: u8) -> f64 {
 }
 
 #[test]
+#[should_panic(expected = "'n' must be greater than 0")]
 fn should_panic_when_n_is_less_than_1() {
-    assert!(std::panic::catch_unwind(|| nth_arithmetic(1.0, 1.0, 0)).is_err());
-    assert!(std::panic::catch_unwind(|| arithmetic_sequence(1.0, 1.0, 0)).is_err());
+    nth_arithmetic(1.0, 1.0, 0);
+    arithmetic_sequence(1.0, 1.0, 0);
 }
 
 #[test]
@@ -42,7 +43,8 @@ fn should_generate_arithmetic_sequence() {
 }
 
 #[test]
-fn should_calculate_arithmetic_sum() {
+fn should_calculate_arithmetic_series() {
+    assert_eq!(arithmetic_series(1.0, 10.0, 0), 0.0);
     assert_eq!(arithmetic_series(0.0, 1.0, 1), 0.0);
     assert_eq!(arithmetic_series(0.0, 1.0, 2), 1.0);
     assert_eq!(arithmetic_series(0.0, 1.0, 3), 3.0);

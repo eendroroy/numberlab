@@ -26,10 +26,10 @@
 /// assert_eq!(term, 11.0);
 /// ```
 pub fn nth_arithmetic(a: f64, d: f64, n: u128) -> f64 {
-    if n < 1 {
-        panic!("'n' must be greater than 0");
+    match n {
+        0 => panic!("'n' must be greater than 0"),
+        _ => a + (d * (n as i128 - 1) as f64),
     }
-    a + (d * (n as i128 - 1) as f64)
 }
 
 /// Generates an arithmetic sequence.
@@ -60,12 +60,10 @@ pub fn nth_arithmetic(a: f64, d: f64, n: u128) -> f64 {
 /// assert_eq!(sequence, vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]);
 /// ```
 pub fn arithmetic_sequence(a: f64, d: f64, n: u128) -> Vec<f64> {
-    if n < 1 {
-        panic!("'n' must be greater than 0");
+    match n {
+        0 => panic!("'n' must be greater than 0"),
+        _ => (1..=n).map(|i| nth_arithmetic(a, d, i)).collect(),
     }
-    let mut sequence = vec![a];
-    (2..=n).for_each(|i| sequence.push(nth_arithmetic(a, d, i)));
-    sequence
 }
 
 /// Calculates the sum of the first `n` terms of an arithmetic sequence.
@@ -92,7 +90,10 @@ pub fn arithmetic_sequence(a: f64, d: f64, n: u128) -> Vec<f64> {
 /// assert_eq!(sum, 55.0);
 /// ```
 pub fn arithmetic_series(a: f64, d: f64, n: u64) -> f64 {
-    ((2.0 * a + ((n as f64) - 1.0) * d) * (n as f64)) / 2.0
+    match n {
+        0 => 0.0,
+        _ => ((2.0 * a + ((n as f64) - 1.0) * d) * (n as f64)) / 2.0,
+    }
 }
 
 #[cfg(test)]
