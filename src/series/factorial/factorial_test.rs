@@ -56,8 +56,16 @@ fn should_generate_factorial_sequence() {
 }
 
 #[test]
-fn should_calculate_sum_of_factorial_sequence() {
-    let series = factorial_sequence(10);
-    let sum = series.iter().fold(BigUint::from(0_u128), |acc, x| acc + x);
-    assert_eq!(sum, BigUint::from(4037913_u128));
+fn should_calculate_factorial_series() {
+    assert_eq!(factorial_series(0), BigUint::from(0_u128));
+    assert_eq!(factorial_series(1), BigUint::from(1_u128));
+    assert_eq!(factorial_series(2), BigUint::from(3_u128));
+    assert_eq!(factorial_series(3), BigUint::from(9_u128));
+    assert_eq!(factorial_series(4), BigUint::from(33_u128));
+    assert_eq!(factorial_series(5), BigUint::from(153_u128));
+    assert_eq!(factorial_series(6), BigUint::from(873_u128));
+    assert_eq!(factorial_series(7), BigUint::from(5913_u128));
+    assert_eq!(factorial_series(8), BigUint::from(46233_u128));
+    assert_eq!(factorial_series(9), BigUint::from(409113_u128));
+    assert_eq!(factorial_series(10), BigUint::from(4037913_u128));
 }

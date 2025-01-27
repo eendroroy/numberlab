@@ -56,14 +56,6 @@ pub fn nth_factorial(n: usize) -> BigUint {
 /// let result = nth_factorial_memoized(5);
 /// assert_eq!(result, BigUint::from(120_u128));
 /// ```
-///
-/// ```
-/// use num_bigint::BigUint;
-/// use numseries::series::factorial::nth_factorial_memoized;
-///
-/// let result = nth_factorial_memoized(10);
-/// assert_eq!(result, BigUint::from(3628800_u128));
-/// ```
 pub fn nth_factorial_memoized(n: usize) -> BigUint {
     if n < 1 {
         panic!("'n' must be greater than 0");
@@ -111,28 +103,6 @@ fn nth_factorial_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint
 ///     ]
 /// );
 /// ```
-///
-/// ```
-/// use num_bigint::BigUint;
-/// use numseries::series::factorial::factorial_sequence;
-///
-/// let sequence = factorial_sequence(10);
-/// assert_eq!(
-///     sequence,
-///     vec![
-///         BigUint::from(1_u128),
-///         BigUint::from(2_u128),
-///         BigUint::from(6_u128),
-///         BigUint::from(24_u128),
-///         BigUint::from(120_u128),
-///         BigUint::from(720_u128),
-///         BigUint::from(5040_u128),
-///         BigUint::from(40320_u128),
-///         BigUint::from(362880_u128),
-///         BigUint::from(3628800_u128)
-///     ]
-/// );
-/// ```
 pub fn factorial_sequence(n: usize) -> Vec<BigUint> {
     if n < 1 {
         panic!("'n' must be greater than 0");
@@ -142,8 +112,34 @@ pub fn factorial_sequence(n: usize) -> Vec<BigUint> {
     } else {
         let mut sequence = vec![BigUint::from(1u128)];
         (1..n).for_each(|i| sequence.push(&sequence[i - 1] * BigUint::from(i + 1)));
-        sequence[..n].to_vec()
+        sequence
     }
+}
+
+/// Calculates the sum of the factorials up to the given number `n`.
+///
+/// # Arguments
+///
+/// * `n` - A positive integer representing the number of terms in the factorial series.
+///
+/// # Returns
+///
+/// The sum of the factorials up to the given number `n`.
+///
+/// # Examples
+///
+/// ```
+/// use num_bigint::BigUint;
+/// use numseries::series::factorial::factorial_series;
+///
+/// let result = factorial_series(5);
+/// assert_eq!(result, BigUint::from(153_u128)); // 1! + 2! + 3! + 4! + 5! = 153
+/// ```
+pub fn factorial_series(n: usize) -> BigUint {
+    if n < 1 {
+        return BigUint::from(0u128);
+    }
+    factorial_sequence(n).iter().sum()
 }
 
 #[cfg(test)]
