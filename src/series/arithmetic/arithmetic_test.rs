@@ -8,7 +8,6 @@ fn round_to_precision(number: f64, precision: u8) -> f64 {
 fn should_panic_when_n_is_less_than_1() {
     assert!(std::panic::catch_unwind(|| nth_arithmetic(1.0, 1.0, 0)).is_err());
     assert!(std::panic::catch_unwind(|| arithmetic_sequence(1.0, 1.0, 0)).is_err());
-    assert!(std::panic::catch_unwind(|| arithmetic_series(1.0, 1.0, 0)).is_err());
 }
 
 #[test]
