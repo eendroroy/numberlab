@@ -4,11 +4,15 @@
 ///
 /// * `a` - The first term of the sequence.
 /// * `d` - The common difference between terms.
-/// * `n` - The term number to calculate (0-based index).
+/// * `n` - The position of the term to calculate.
 ///
 /// # Returns
 ///
 /// The nth term of the arithmetic sequence.
+///
+/// # Panics
+///
+/// Panics if `n` is less than 1.
 ///
 /// # Examples
 ///
@@ -18,10 +22,14 @@
 /// let a = 2.0;
 /// let d = 3.0;
 /// let n = 4;
-/// let nth_term = nth_arithmetic(a, d, n);
+/// let term = nth_arithmetic(a, d, n);
+/// assert_eq!(term, 11.0);
 /// ```
 pub fn nth_arithmetic(a: f64, d: f64, n: u128) -> f64 {
-    a + (d * n as f64)
+    if n < 1 {
+        panic!("'n' must be greater than 0");
+    }
+    a + (d * (n as i128 - 1) as f64)
 }
 
 /// Generates an arithmetic sequence.
@@ -36,19 +44,27 @@ pub fn nth_arithmetic(a: f64, d: f64, n: u128) -> f64 {
 ///
 /// A vector containing the arithmetic sequence.
 ///
+/// # Panics
+///
+/// Panics if `n` is less than 1.
+///
 /// # Examples
 ///
 /// ```
 /// use numseries::series::arithmetic::arithmetic_sequence;
 ///
-/// let a = 2.0;
-/// let d = 3.0;
-/// let n = 4;
+/// let a = 1.0;
+/// let d = 1.0;
+/// let n = 10;
 /// let sequence = arithmetic_sequence(a, d, n);
+/// assert_eq!(sequence, vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]);
 /// ```
 pub fn arithmetic_sequence(a: f64, d: f64, n: u128) -> Vec<f64> {
+    if n < 1 {
+        panic!("'n' must be greater than 0");
+    }
     let mut sequence = vec![a];
-    (1..n).for_each(|i| sequence.push(nth_arithmetic(a, d, i)));
+    (2..=n).for_each(|i| sequence.push(nth_arithmetic(a, d, i)));
     sequence
 }
 
@@ -64,17 +80,25 @@ pub fn arithmetic_sequence(a: f64, d: f64, n: u128) -> Vec<f64> {
 ///
 /// The sum of the first `n` terms of the arithmetic sequence.
 ///
+/// # Panics
+///
+/// Panics if `n` is less than 1.
+///
 /// # Examples
 ///
 /// ```
 /// use numseries::series::arithmetic::arithmetic_sum;
 ///
-/// let a = 5.4;
-/// let d = -2.9233;
+/// let a = 1.0;
+/// let d = 1.0;
 /// let n = 10;
 /// let sum = arithmetic_sum(a, d, n);
+/// assert_eq!(sum, 55.0);
 /// ```
 pub fn arithmetic_sum(a: f64, d: f64, n: u64) -> f64 {
+    if n < 1 {
+        panic!("'n' must be greater than 0");
+    }
     ((2.0 * a + ((n as f64) - 1.0) * d) * (n as f64)) / 2.0
 }
 
