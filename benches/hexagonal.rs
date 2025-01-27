@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numseries::series::figurate::hexagonal::hexagonal_sequence;
+use numberlab::series::figurate::hexagonal::hexagonal_sequence;
 
 fn generate_hexagonal_series_of_10(c: &mut Criterion) {
     c.bench_function("generate_hexagonal_series_of_10", |b| {

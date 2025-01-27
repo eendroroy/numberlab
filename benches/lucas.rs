@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numseries::series::lucas::lucas_sequence;
+use numberlab::series::lucas::lucas_sequence;
 
 fn generate_lucas_series_of_10(c: &mut Criterion) {
     c.bench_function("generate_lucas_series_of_10", |b| {

@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numseries::series::figurate::square::square_sequence;
+use numberlab::series::figurate::square::square_sequence;
 
 fn generate_square_series_of_10(c: &mut Criterion) {
     c.bench_function("generate_square_series_of_10", |b| {

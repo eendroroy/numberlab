@@ -1,19 +1,19 @@
 [package]
-name = "numseries"
+name = "numberlab"
 version = "0.1.0"
 edition = "2021"
 authors = ["indrajit"]
 description = "A Rust library for generating series of numbers"
-documentation = "https://docs.rs/numseries"
+documentation = "https://docs.rs/numberlab"
 readme = "README.md"
-homepage = "https://eendroroy.github.io/numseries"
-repository = "https://github.com/eendroroy/numseries"
+homepage = "https://eendroroy.github.io/numberlab"
+repository = "https://github.com/eendroroy/numberlab"
 license = "AGPL-3.0"
 keywords = []
 categories = ["algorithms"]
 
 [lib]
-name = "numseries"
+name = "numberlab"
 path = "src/lib.rs"
 edition = "2021"
 crate-type = ["staticlib", "lib", "cdylib"]

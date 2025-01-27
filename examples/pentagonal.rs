@@ -1,4 +1,4 @@
-use numseries::series::figurate::pentagonal::pentagonal_sequence;
+use numberlab::series::figurate::pentagonal::pentagonal_sequence;
 
 fn main() {
     pentagonal_sequence(10)

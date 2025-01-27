@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numseries::series::tribonacci::{nth_tribonacci, nth_tribonacci_memoized, tribonacci_sequence};
+use numberlab::series::tribonacci::{nth_tribonacci, nth_tribonacci_memoized, tribonacci_sequence};
 
 fn generate_5th_tribonacci(c: &mut Criterion) {
     c.bench_function("generate_5th_tribonacci", |b| {

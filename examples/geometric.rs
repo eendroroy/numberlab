@@ -1,4 +1,4 @@
-use numseries::series::geometric::{geometric_sequence, geometric_sum};
+use numberlab::series::geometric::{geometric_sequence, geometric_sum};
 
 fn main() {
     println!("Geometric sequence of 10 numbers starting from 1.5 with a progression of -1.5:");

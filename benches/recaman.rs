@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numseries::series::recaman::recaman_sequence;
+use numberlab::series::recaman::recaman_sequence;
 
 fn generate_recaman_series_of_10(c: &mut Criterion) {
     c.bench_function("generate_recaman_series_of_10", |b| {

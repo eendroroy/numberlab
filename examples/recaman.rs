@@ -1,4 +1,4 @@
-use numseries::series::recaman::{nth_recaman_memoized, recaman_sequence};
+use numberlab::series::recaman::{nth_recaman_memoized, recaman_sequence};
 
 fn main() {
     let mut memoizer = vec![];

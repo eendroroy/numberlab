@@ -1,4 +1,4 @@
-use numseries::series::figurate::hexagonal::hexagonal_sequence;
+use numberlab::series::figurate::hexagonal::hexagonal_sequence;
 
 fn main() {
     hexagonal_sequence(10)

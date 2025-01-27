@@ -1,4 +1,4 @@
-use numseries::series::figurate::lazy_caterer::lazy_caterer_sequence;
+use numberlab::series::figurate::lazy_caterer::lazy_caterer_sequence;
 
 fn main() {
     lazy_caterer_sequence(10)

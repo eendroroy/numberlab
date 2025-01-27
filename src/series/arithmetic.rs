@@ -17,7 +17,7 @@
 /// # Examples
 ///
 /// ```
-/// use numseries::series::arithmetic::nth_arithmetic;
+/// use numberlab::series::arithmetic::nth_arithmetic;
 ///
 /// let a = 2.0;
 /// let d = 3.0;
@@ -51,7 +51,7 @@ pub fn nth_arithmetic(a: f64, d: f64, n: u128) -> f64 {
 /// # Examples
 ///
 /// ```
-/// use numseries::series::arithmetic::arithmetic_sequence;
+/// use numberlab::series::arithmetic::arithmetic_sequence;
 ///
 /// let a = 1.0;
 /// let d = 1.0;
@@ -83,7 +83,7 @@ pub fn arithmetic_sequence(a: f64, d: f64, n: u128) -> Vec<f64> {
 /// # Examples
 ///
 /// ```
-/// use numseries::series::arithmetic::arithmetic_series;
+/// use numberlab::series::arithmetic::arithmetic_series;
 ///
 /// let a = 1.0;
 /// let d = 1.0;

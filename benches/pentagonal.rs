@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numseries::series::figurate::pentagonal::pentagonal_sequence;
+use numberlab::series::figurate::pentagonal::pentagonal_sequence;
 
 fn generate_pentagonal_series_of_10(c: &mut Criterion) {
     c.bench_function("generate_pentagonal_series_of_10", |b| {

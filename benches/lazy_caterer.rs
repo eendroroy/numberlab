@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numseries::series::figurate::lazy_caterer::lazy_caterer_sequence;
+use numberlab::series::figurate::lazy_caterer::lazy_caterer_sequence;
 
 fn generate_lazy_caterer_series_of_10(c: &mut Criterion) {
     c.bench_function("generate_lazy_caterer_series_of_10", |b| {

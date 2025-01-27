@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, Criterion};
-use numseries::series::fibonacci::{
+use numberlab::series::fibonacci::{
     fibonacci_sequence, fibonacci_series, nth_fibonacci, nth_fibonacci_memoized,
 };
 
