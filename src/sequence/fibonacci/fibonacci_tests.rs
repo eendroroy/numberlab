@@ -46,3 +46,14 @@ fn should_generate_sequence() {
         ]
     );
 }
+
+#[test]
+fn should_generate_series() {
+    assert_eq!(fibonacci_series(0), BigUint::from(0u128));
+    assert_eq!(fibonacci_series(1), BigUint::from(0u128));
+    assert_eq!(fibonacci_series(2), BigUint::from(1u128));
+    assert_eq!(fibonacci_series(3), BigUint::from(2u128));
+    assert_eq!(fibonacci_series(4), BigUint::from(4u128));
+    assert_eq!(fibonacci_series(5), BigUint::from(7u128));
+    assert_eq!(fibonacci_series(10), BigUint::from(88u128));
+}

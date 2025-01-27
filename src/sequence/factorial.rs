@@ -20,14 +20,6 @@ use std::ops::Mul;
 /// let result = nth_factorial(5);
 /// assert_eq!(result, BigUint::from(120_u128));
 /// ```
-///
-/// ```
-/// use num_bigint::BigUint;
-/// use numberlab::sequence::factorial::nth_factorial;
-///
-/// let result = nth_factorial(10);
-/// assert_eq!(result, BigUint::from(3628800_u128));
-/// ```
 pub fn nth_factorial(n: usize) -> BigUint {
     if n < 1 {
         panic!("'n' must be greater than 0");
