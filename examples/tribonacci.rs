@@ -1,9 +1,10 @@
+use num_bigint::BigUint;
 use numberlab::sequence::tribonacci::{nth_tribonacci_memoized, tribonacci_sequence};
 
 fn main() {
-    println!("11th tribonacci: {}", nth_tribonacci_memoized(10));
+    let series = tribonacci_sequence(10);
+    println!("{:?} == {}", series, series.iter().sum::<BigUint>());
 
-    tribonacci_sequence(11)
-        .iter()
-        .for_each(|n| println!("{}", n));
+    let n_series: Vec<BigUint> = (0..10).map(|n| nth_tribonacci_memoized(n)).collect();
+    println!("{:?} == {}", n_series, n_series.iter().sum::<BigUint>());
 }
