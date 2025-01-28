@@ -4,3 +4,10 @@ macro_rules! big_u_vec {
         vec![$(BigUint::from($x)),+]
     };
 }
+
+#[macro_export]
+macro_rules! big_u {
+    ($x:expr) => {
+        BigUint::from($x)
+    };
+}
