@@ -33,3 +33,4 @@ For examples of how to use this library, refer to the documentation at [docs.rs]
 - Primes:
     - Sieve:
         - Eratosthenes
+        - Sundaram
