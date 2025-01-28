@@ -1,8 +1,18 @@
 use num_bigint::BigUint;
-use numberlab::sequence::lucas::{lucas_sequence, nth_lucas_memoized};
+use numberlab::sequence::lucas::{lucas_sequence, nth_lucas, nth_lucas_memoized};
 
 #[test]
 fn should_generate_nth_lucas() {
+    assert_eq!(nth_lucas(0), BigUint::from(2u128));
+    assert_eq!(nth_lucas(1), BigUint::from(1u128));
+    assert_eq!(nth_lucas(7), BigUint::from(29u128));
+    assert_eq!(nth_lucas(8), BigUint::from(47u128));
+    assert_eq!(nth_lucas(9), BigUint::from(76u128));
+    assert_eq!(nth_lucas(10), BigUint::from(123u128));
+}
+
+#[test]
+fn should_generate_nth_lucas_with_memoization() {
     assert_eq!(nth_lucas_memoized(0), BigUint::from(2u128));
     assert_eq!(nth_lucas_memoized(1), BigUint::from(1u128));
     assert_eq!(nth_lucas_memoized(2), BigUint::from(3u128));
