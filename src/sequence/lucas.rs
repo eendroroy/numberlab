@@ -94,5 +94,5 @@ fn nth_lucas_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint {
 pub fn lucas_sequence(n: usize) -> Vec<BigUint> {
     let mut sequence = vec![BigUint::from(2u128), BigUint::from(1u128)];
     (2..n).for_each(|i| sequence.push(&sequence[i - 1] + &sequence[i - 2]));
-    sequence
+    sequence[..n].to_vec()
 }
