@@ -1,9 +1,9 @@
-use numberlab::prime::sieve::sieve_prime_sequence;
+use numberlab::prime::sieve::eratosthenes::eratosthenes_sequence;
 
 #[test]
-fn should_generate_sieve_prime_sequence() {
+fn should_generate_eratosthenes_sieve_prime_sequence() {
     let n = 1000;
-    let primes = sieve_prime_sequence(n);
+    let primes = eratosthenes_sequence(n);
     assert_eq!(primes.len(), 168);
     assert_eq!(primes[0], 2);
     assert_eq!(primes[1], 3);

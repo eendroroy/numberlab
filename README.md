@@ -31,4 +31,5 @@ For examples of how to use this library, refer to the documentation at [docs.rs]
         - Hexagonal Numbers ([OEIS A000384](https://oeis.org/A000384))
         - Lazy Caterer's Sequence ([OEIS A000124](https://oeis.org/A000124))
 - Primes:
-    - Sieve of Eratosthenes
+    - Sieve:
+        - Eratosthenes
