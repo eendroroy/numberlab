@@ -1,3 +1,4 @@
+use crate::big_u_vec;
 use num_bigint::BigUint;
 
 /// Calculates the nth Lucas number.
@@ -47,7 +48,7 @@ pub fn nth_lucas(n: usize) -> BigUint {
 /// assert_eq!(result, BigUint::from(123u128));
 /// ```
 pub fn nth_lucas_memoized(n: usize) -> BigUint {
-    let mut memoizer = vec![BigUint::from(2u128), BigUint::from(1u128)];
+    let mut memoizer = big_u_vec![2u128, 1u128];
     nth_lucas_with_memoizer(n, &mut memoizer)
 }
 
@@ -92,7 +93,7 @@ fn nth_lucas_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint {
 /// );
 /// ```
 pub fn lucas_sequence(n: usize) -> Vec<BigUint> {
-    let mut sequence = vec![BigUint::from(2u128), BigUint::from(1u128)];
+    let mut sequence = big_u_vec![2u128, 1u128];
     (2..n).for_each(|i| sequence.push(&sequence[i - 1] + &sequence[i - 2]));
     sequence[..n].to_vec()
 }

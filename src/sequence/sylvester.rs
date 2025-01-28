@@ -1,3 +1,4 @@
+use crate::big_u_vec;
 use num_bigint::BigUint;
 
 /// Calculates the nth Sylvester number.
@@ -48,7 +49,7 @@ pub fn nth_sylvester(n: usize) -> BigUint {
 /// assert_eq!(result, BigUint::from(18014398509481984u128));
 /// ```
 pub fn nth_sylvester_memoized(n: usize) -> BigUint {
-    let mut sequence = vec![BigUint::from(2u128)];
+    let mut sequence = big_u_vec![2u128];
     nth_sylvester_with_memoizer(n, &mut sequence)
 }
 
@@ -91,7 +92,7 @@ fn nth_sylvester_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint
 /// ]);
 /// ```
 pub fn sylvester_sequence(n: usize) -> Vec<BigUint> {
-    let mut sequence = vec![BigUint::from(2u128)];
+    let mut sequence = big_u_vec![2u128];
     nth_sylvester_with_memoizer(n, &mut sequence);
     sequence[..n].to_vec()
 }
