@@ -1,11 +1,10 @@
+use num_bigint::BigUint;
 use numberlab::sequence::recaman::{nth_recaman_memoized, recaman_sequence};
 
 fn main() {
-    let mut memoizer = vec![];
-    println!("11th Recaman: {}", nth_recaman_memoized(&mut memoizer, 10));
+    let series = recaman_sequence(10);
+    println!("{:?} == {}", series, series.iter().sum::<BigUint>());
 
-    let n = 100;
-    recaman_sequence(n).iter().for_each(
-        |recaman| println!("{}", recaman)
-    );
+    let n_series: Vec<u128> = (0..10).map(|n| nth_recaman_memoized(n)).collect();
+    println!("{:?} == {}", n_series, n_series.iter().sum::<BigUint>());
 }
