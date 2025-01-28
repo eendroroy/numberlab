@@ -3,6 +3,7 @@ use numberlab::sequence::figurate::triangular::{nth_triangular, triangular_seque
 
 #[test]
 fn should_generate_nth_triangular() {
+    assert_eq!(nth_triangular(0), BigUint::from(0u128));
     assert_eq!(nth_triangular(1), BigUint::from(1u128));
     assert_eq!(nth_triangular(2), BigUint::from(3u128));
     assert_eq!(nth_triangular(3), BigUint::from(6u128));
@@ -17,7 +18,7 @@ fn should_generate_nth_triangular() {
 
 #[test]
 fn should_generate_series_of_1_items() {
-    assert_eq!(triangular_sequence(1), vec![BigUint::from(1u128)]);
+    assert_eq!(triangular_sequence(1), vec![BigUint::from(0u128)]);
 }
 
 #[test]
@@ -25,6 +26,7 @@ fn should_generate_series_of_20_items() {
     assert_eq!(
         triangular_sequence(20),
         vec![
+            BigUint::from(0u128),
             BigUint::from(1u128),
             BigUint::from(3u128),
             BigUint::from(6u128),
@@ -43,8 +45,7 @@ fn should_generate_series_of_20_items() {
             BigUint::from(136u128),
             BigUint::from(153u128),
             BigUint::from(171u128),
-            BigUint::from(190u128),
-            BigUint::from(210u128)
+            BigUint::from(190u128)
         ]
     );
 }
