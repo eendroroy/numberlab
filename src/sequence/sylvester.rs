@@ -18,7 +18,7 @@ use num_bigint::BigUint;
 /// use numberlab::sequence::sylvester::nth_sylvester;
 ///
 /// let result = nth_sylvester(5);
-/// assert_eq!(result, BigUint::from(18014398509481984u128));
+/// assert_eq!(result, BigUint::from(3263443u128));
 /// ```
 pub fn nth_sylvester(n: usize) -> BigUint {
     if n == 0 {
@@ -46,7 +46,7 @@ pub fn nth_sylvester(n: usize) -> BigUint {
 /// use numberlab::sequence::sylvester::nth_sylvester_memoized;
 ///
 /// let result = nth_sylvester_memoized(5);
-/// assert_eq!(result, BigUint::from(18014398509481984u128));
+/// assert_eq!(result, BigUint::from(3263443u128));
 /// ```
 pub fn nth_sylvester_memoized(n: usize) -> BigUint {
     let mut sequence = big_u_vec![2u128];

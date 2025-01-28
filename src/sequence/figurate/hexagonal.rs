@@ -19,7 +19,7 @@ use std::ops::{Div, Mul, Sub};
 /// use numberlab::sequence::figurate::hexagonal::nth_hexagonal;
 ///
 /// let result = nth_hexagonal(10);
-/// assert_eq!(result, BigUint::from(145u128));
+/// assert_eq!(result, BigUint::from(190u128));
 /// ```
 pub fn nth_hexagonal(n: u128) -> BigUint {
     big_u!(n)

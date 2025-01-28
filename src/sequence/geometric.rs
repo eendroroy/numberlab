@@ -73,7 +73,7 @@ pub fn geometric_sequence(a: f64, r: f64, n: u64) -> Vec<f64> {
 /// ```
 /// use numberlab::sequence::geometric::geometric_series;
 /// let sum = geometric_series(1.12, 2.23, 3);
-/// assert_eq!(sum, 1.12 * (1.0 + 2.23 + 2.23 * 2.23));
+/// assert_eq!(sum, 9.187248000000002);
 /// ```
 pub fn geometric_series(a: f64, r: f64, n: u64) -> f64 {
     match (n, r) {

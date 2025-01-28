@@ -14,7 +14,7 @@
 /// use numberlab::sequence::recaman::nth_recaman_memoized;
 ///
 /// let result = nth_recaman_memoized(10);
-/// assert_eq!(result, 5);
+/// assert_eq!(result, 11);
 /// ```
 pub fn nth_recaman_memoized(n: usize) -> u128 {
     let mut memoizer = vec![0];
