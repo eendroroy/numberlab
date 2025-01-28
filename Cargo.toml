@@ -9,8 +9,9 @@ readme = "README.md"
 homepage = "https://eendroroy.github.io/numberlab"
 repository = "https://github.com/eendroroy/numberlab"
 license = "AGPL-3.0"
-keywords = []
+keywords = ["math", "algorithms"]
 categories = ["algorithms"]
+rust-version = "1.60.0"
 
 [lib]
 name = "numberlab"
