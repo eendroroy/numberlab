@@ -3,7 +3,7 @@ name = "numberlab"
 version = "0.1.0"
 edition = "2021"
 authors = ["indrajit"]
-description = "A collection of number theory algorithms"
+description = "A collection of numerical algorithms"
 documentation = "https://docs.rs/numberlab"
 readme = "README.md"
 homepage = "https://eendroroy.github.io/numberlab"
@@ -16,7 +16,7 @@ categories = ["algorithms"]
 name = "numberlab"
 path = "src/lib.rs"
 edition = "2021"
-crate-type = ["staticlib", "lib", "cdylib"]
+#crate-type = ["staticlib", "lib", "cdylib"]
 
 [dependencies]
 num-bigint = "=0.4.6"
