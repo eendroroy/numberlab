@@ -1,8 +1,8 @@
-name: Build and run tests on Ubuntu, Macos and Windows
+name: Tests
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "development" ]
   pull_request:
     branches: [ "master" ]
 
@@ -10,21 +10,21 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  test-unbuntu:
+  test-on-unbuntu-latest:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Run tests
-      run: cargo test --verbose
+      - uses: actions/checkout@v4
+      - name: Run tests
+        run: cargo test --verbose
 
-  test-windows:
+  test-on-windows-latest:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - name: Run tests
         run: cargo test --verbose
 
-  test-macos:
+  test-on-macos-latest:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
