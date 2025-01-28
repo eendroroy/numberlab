@@ -1,6 +1,6 @@
 mod macros;
 
-/// Prime algorithms
+/// Collection of Prime algorithms
 pub mod prime;
-/// Popular number sequence algorithms
+/// Collection of various number sequence algorithms
 pub mod sequence;

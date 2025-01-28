@@ -6,7 +6,7 @@ pub mod factorial;
 /// Fibonacci sequence
 /// [OEIS A000045](https://oeis.org/A000045)
 pub mod fibonacci;
-/// Figurate sequence
+/// Collection of Figurate sequence
 pub mod figurate;
 /// Geometric sequence
 pub mod geometric;
