@@ -8,7 +8,7 @@ To use the `numberlab` library in your Rust project, add the following to your `
 
 ```toml
 [dependencies]
-numberlab = "0.1.0"
+numberlab = "0.1.1"
 ```
 
 For examples of how to use this library, refer to the documentation at [docs.rs](https://docs.rs/numberlab).
