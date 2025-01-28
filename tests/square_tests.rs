@@ -1,17 +1,17 @@
-use numberlab::sequence::figurate::square::{nth_squire, square_sequence};
+use numberlab::sequence::figurate::square::{nth_square, square_sequence};
 
 #[test]
 fn should_generate_nth_square() {
-    assert_eq!(nth_squire(1), 1u128.into());
-    assert_eq!(nth_squire(2), 4u128.into());
-    assert_eq!(nth_squire(3), 9u128.into());
-    assert_eq!(nth_squire(4), 16u128.into());
-    assert_eq!(nth_squire(5), 25u128.into());
-    assert_eq!(nth_squire(6), 36u128.into());
-    assert_eq!(nth_squire(7), 49u128.into());
-    assert_eq!(nth_squire(8), 64u128.into());
-    assert_eq!(nth_squire(9), 81u128.into());
-    assert_eq!(nth_squire(10), 100u128.into());
+    assert_eq!(nth_square(1), 1u128.into());
+    assert_eq!(nth_square(2), 4u128.into());
+    assert_eq!(nth_square(3), 9u128.into());
+    assert_eq!(nth_square(4), 16u128.into());
+    assert_eq!(nth_square(5), 25u128.into());
+    assert_eq!(nth_square(6), 36u128.into());
+    assert_eq!(nth_square(7), 49u128.into());
+    assert_eq!(nth_square(8), 64u128.into());
+    assert_eq!(nth_square(9), 81u128.into());
+    assert_eq!(nth_square(10), 100u128.into());
 }
 
 #[test]
