@@ -8,28 +8,28 @@ fn main() {
     println!("{}", arithmetic_series(1.5, 1.5, 10));
 
     println!("ODD SEQUENCE");
-    let odd_sequence = arithmetic_sequence::<u32>(1, 2, 10);
-    println!("{:?} == {}", odd_sequence, odd_sequence.iter().sum::<u32>());
-    let n_odd_sequence: Vec<u32> = (1..=10).map(|n| nth_arithmetic(1, 2, n)).collect();
+    let odd_sequence = arithmetic_sequence::<i32>(1, 2, 10);
+    println!("{:?} == {}", odd_sequence, odd_sequence.iter().sum::<i32>());
+    let n_odd_sequence: Vec<i32> = (1..=10).map(|n| nth_arithmetic(1, 2, n)).collect();
     println!(
         "{:?} == {}",
         n_odd_sequence,
-        n_odd_sequence.iter().sum::<u32>()
+        n_odd_sequence.iter().sum::<i32>()
     );
-    println!("{}", arithmetic_series::<u32>(1, 2, 10));
+    println!("{}", arithmetic_series::<i32>(1, 2, 10));
 
     println!("EVEN SEQUENCE");
-    let even_sequence = arithmetic_sequence::<u32>(2, 2, 10);
+    let even_sequence = arithmetic_sequence::<i32>(2, 2, 10);
     println!(
         "{:?} == {}",
         even_sequence,
-        even_sequence.iter().sum::<u32>()
+        even_sequence.iter().sum::<i32>()
     );
-    let n_even_sequence: Vec<u32> = (1..=10).map(|n| nth_arithmetic::<u32>(2, 2, n)).collect();
+    let n_even_sequence: Vec<i32> = (1..=10).map(|n| nth_arithmetic::<i32>(2, 2, n)).collect();
     println!(
         "{:?} == {}",
         n_even_sequence,
-        n_even_sequence.iter().sum::<u32>()
+        n_even_sequence.iter().sum::<i32>()
     );
-    println!("{}", arithmetic_series::<u32>(2, 2, 10));
+    println!("{}", arithmetic_series::<i32>(2, 2, 10));
 }
