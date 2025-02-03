@@ -22,16 +22,16 @@ use std::ops::{Add, Div, Mul, Sub};
 ///
 /// ```
 /// use numberlab::sequence::arithmetic::nth_arithmetic;
-/// let term = nth_arithmetic::<u32>(2, 3, 4);
+/// let term = nth_arithmetic::<i32>(2, 3, 4);
 /// assert_eq!(term, 11);
 /// ```
 pub fn nth_arithmetic<T>(a: T, d: T, n: u32) -> T
 where
-    T: Add<Output=T> + Sub<Output=T> + Mul<Output=T> + Div<Output=T> + From<u32> + Copy,
+    T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + From<i32> + Copy,
 {
     match n {
         0 => panic!("'n' must be greater than 0"),
-        _ => a + (d * T::from(n - 1)),
+        _ => a + (d * T::from(n as i32 - 1)),
     }
 }
 
@@ -57,12 +57,12 @@ where
 ///
 /// ```
 /// use numberlab::sequence::arithmetic::arithmetic_sequence;
-/// let sequence = arithmetic_sequence::<u32>(2, 3, 4);
+/// let sequence = arithmetic_sequence::<i32>(2, 3, 4);
 /// assert_eq!(sequence, vec![2, 5, 8, 11]);
 /// ```
 pub fn arithmetic_sequence<T>(a: T, d: T, n: u32) -> Vec<T>
 where
-    T: Add<Output=T> + Sub<Output=T> + Mul<Output=T> + Div<Output=T> + From<u32> + Copy,
+    T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + From<i32> + Copy,
 {
     match n {
         0 => panic!("'n' must be greater than 0"),
@@ -82,10 +82,6 @@ where
 ///
 /// The sum of the first `n` terms of the arithmetic sequence.
 ///
-/// # Panics
-///
-/// Panics if `n` is 0.
-///
 /// # Examples
 ///
 /// ```
@@ -96,15 +92,15 @@ where
 ///
 /// ```
 /// use numberlab::sequence::arithmetic::arithmetic_series;
-/// let sum = arithmetic_series::<u32>(2, 3, 4);
+/// let sum = arithmetic_series::<i32>(2, 3, 4);
 /// assert_eq!(sum, 26);
 /// ```
 pub fn arithmetic_series<T>(a: T, d: T, n: u32) -> T
 where
-    T: Add<Output=T> + Sub<Output=T> + Mul<Output=T> + Div<Output=T> + From<u32> + Copy,
+    T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + From<i32> + Copy,
 {
     match n {
         0 => T::from(0),
-        _ => ((T::from(2) * a + T::from(n - 1) * d) * T::from(n)) / T::from(2),
+        _ => ((T::from(2) * a + T::from(n as i32 - 1) * d) * T::from(n as i32)) / T::from(2),
     }
 }
