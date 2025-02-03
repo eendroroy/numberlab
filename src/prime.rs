@@ -1,2 +1,2 @@
-/// Prime number using sieve algorithm
+/// Prime number using sieve algorithms
 pub mod sieve;

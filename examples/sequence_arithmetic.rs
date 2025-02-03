@@ -7,7 +7,6 @@ fn main() {
     println!("{:?} == {}", n_sequence, n_sequence.iter().sum::<f64>());
     println!("{}", arithmetic_series(1.5, 1.5, 10));
 
-
     println!("ODD SEQUENCE");
     let odd_sequence = arithmetic_sequence::<u32>(1, 2, 10);
     println!("{:?} == {}", odd_sequence, odd_sequence.iter().sum::<u32>());
