@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use numberlab::sequence::tribonacci::{
     nth_tribonacci, nth_tribonacci_memoized, tribonacci_sequence,
 };

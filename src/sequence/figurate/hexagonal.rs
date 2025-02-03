@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use std::ops::{Div, Mul, Sub};
 
 /// Calculates the nth hexagonal number.
@@ -14,7 +14,7 @@ use std::ops::{Div, Mul, Sub};
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::figurate::hexagonal::nth_hexagonal;
 ///
 /// let result = nth_hexagonal(10);
@@ -40,7 +40,7 @@ pub fn nth_hexagonal(n: u128) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::figurate::hexagonal::hexagonal_sequence;
 ///
 /// let sequence = hexagonal_sequence(5);

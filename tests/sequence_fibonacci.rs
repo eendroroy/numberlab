@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use numberlab::sequence::fibonacci::{
     fibonacci_sequence, fibonacci_series, nth_fibonacci, nth_fibonacci_memoized,
 };

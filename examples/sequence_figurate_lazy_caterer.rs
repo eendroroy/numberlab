@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use numberlab::sequence::figurate::lazy_caterer::{lazy_caterer_sequence, nth_lazy_caterer};
 
 fn main() {

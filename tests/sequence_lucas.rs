@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use numberlab::sequence::lucas::{lucas_sequence, nth_lucas, nth_lucas_memoized};
 
 #[test]

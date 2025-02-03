@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 
 /// Calculates the nth Tribonacci number.
 ///
@@ -13,7 +13,7 @@ use num_bigint::BigUint;
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::tribonacci::nth_tribonacci;
 ///
 /// let result = nth_tribonacci(10);
@@ -41,7 +41,7 @@ pub fn nth_tribonacci(n: usize) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::tribonacci::nth_tribonacci_memoized;
 ///
 /// let result = nth_tribonacci_memoized(10);
@@ -82,7 +82,7 @@ fn nth_tribonacci_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUin
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::tribonacci::tribonacci_sequence;
 ///
 /// let sequence = tribonacci_sequence(5);

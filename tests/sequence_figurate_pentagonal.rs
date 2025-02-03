@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use numberlab::sequence::figurate::pentagonal::{nth_pentagonal, pentagonal_sequence};
 
 #[test]

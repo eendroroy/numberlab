@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use std::ops::{Add, Div};
 
 /// Calculates the nth lazy caterer number.
@@ -14,7 +14,7 @@ use std::ops::{Add, Div};
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::figurate::lazy_caterer::nth_lazy_caterer;
 ///
 /// let result = nth_lazy_caterer(10);
@@ -41,7 +41,7 @@ pub fn nth_lazy_caterer(n: u128) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::figurate::lazy_caterer::lazy_caterer_sequence;
 ///
 /// let sequence = lazy_caterer_sequence(5);

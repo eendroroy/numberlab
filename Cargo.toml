@@ -20,4 +20,4 @@ edition = "2021"
 #crate-type = ["staticlib", "lib", "cdylib"]
 
 [dependencies]
-num-bigint = "=0.4.6"
+num = "=0.4.3"

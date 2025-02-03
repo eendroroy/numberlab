@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use numberlab::sequence::figurate::hexagonal::{hexagonal_sequence, nth_hexagonal};
 
 fn main() {

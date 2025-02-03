@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use numberlab::sequence::factorial::{
     factorial_sequence, factorial_series, nth_factorial, nth_factorial_memoized,
 };

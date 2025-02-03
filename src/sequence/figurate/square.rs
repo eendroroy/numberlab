@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 
 /// Calculates the nth square number.
 ///
@@ -13,7 +13,7 @@ use num_bigint::BigUint;
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::figurate::square::nth_square;
 ///
 /// let result = nth_square(10);
@@ -36,7 +36,7 @@ pub fn nth_square(n: u128) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::figurate::square::square_sequence;
 ///
 /// let sequence = square_sequence(5);

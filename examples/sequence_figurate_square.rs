@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use numberlab::sequence::figurate::square::{nth_square, square_sequence};
 
 fn main() {

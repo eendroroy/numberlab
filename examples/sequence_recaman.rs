@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use numberlab::sequence::recaman::{nth_recaman_memoized, recaman_sequence};
 
 fn main() {

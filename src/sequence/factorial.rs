@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use std::ops::Mul;
 
 /// Calculates the factorial of a given number `n`.
@@ -14,7 +14,7 @@ use std::ops::Mul;
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::factorial::nth_factorial;
 ///
 /// let result = nth_factorial(5);
@@ -42,7 +42,7 @@ pub fn nth_factorial(n: usize) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::factorial::nth_factorial_memoized;
 ///
 /// let result = nth_factorial_memoized(5);
@@ -80,7 +80,7 @@ fn nth_factorial_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::factorial::factorial_sequence;
 ///
 /// let sequence = factorial_sequence(5);
@@ -121,7 +121,7 @@ pub fn factorial_sequence(n: usize) -> Vec<BigUint> {
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::factorial::factorial_series;
 ///
 /// let result = factorial_series(5);

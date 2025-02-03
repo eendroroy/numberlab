@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 
 /// Calculates the nth Fibonacci number.
 ///
@@ -13,7 +13,7 @@ use num_bigint::BigUint;
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::fibonacci::nth_fibonacci;
 ///
 /// let result = nth_fibonacci(10);
@@ -42,7 +42,7 @@ pub fn nth_fibonacci(n: usize) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::fibonacci::nth_fibonacci_memoized;
 ///
 /// let result = nth_fibonacci_memoized(10);
@@ -78,7 +78,7 @@ fn nth_fibonacci_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::fibonacci::fibonacci_sequence;
 ///
 /// let sequence = fibonacci_sequence(5);
@@ -120,7 +120,7 @@ pub fn fibonacci_sequence(n: usize) -> Vec<BigUint> {
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::fibonacci::fibonacci_series;
 ///
 /// let result = fibonacci_series(10);

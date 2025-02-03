@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 
 /// Calculates the nth Sylvester number.
 ///
@@ -13,7 +13,7 @@ use num_bigint::BigUint;
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::sylvester::nth_sylvester;
 ///
 /// let result = nth_sylvester(5);
@@ -41,7 +41,7 @@ pub fn nth_sylvester(n: usize) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::sylvester::nth_sylvester_memoized;
 ///
 /// let result = nth_sylvester_memoized(5);
@@ -76,7 +76,7 @@ fn nth_sylvester_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::sylvester::sylvester_sequence;
 ///
 /// let sequence = sylvester_sequence(7);

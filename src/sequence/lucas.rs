@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 
 /// Calculates the nth Lucas number.
 ///
@@ -13,7 +13,7 @@ use num_bigint::BigUint;
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::lucas::nth_lucas;
 ///
 /// let result = nth_lucas(10);
@@ -40,7 +40,7 @@ pub fn nth_lucas(n: usize) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::lucas::nth_lucas_memoized;
 ///
 /// let result = nth_lucas_memoized(10);
@@ -76,7 +76,7 @@ fn nth_lucas_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::lucas::lucas_sequence;
 ///
 /// let sequence = lucas_sequence(5);

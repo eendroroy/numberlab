@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use numberlab::sequence::figurate::triangular::{nth_triangular, triangular_sequence};
 
 #[test]

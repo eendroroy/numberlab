@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use std::ops::{Div, Mul, Sub};
 
 /// Calculates the nth pentagonal number.
@@ -14,7 +14,7 @@ use std::ops::{Div, Mul, Sub};
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::figurate::pentagonal::nth_pentagonal;
 ///
 /// let result = nth_pentagonal(10);
@@ -39,7 +39,7 @@ pub fn nth_pentagonal(n: u128) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num_bigint::BigUint;
+/// use num::BigUint;
 /// use numberlab::sequence::figurate::pentagonal::pentagonal_sequence;
 ///
 /// let sequence = pentagonal_sequence(5);

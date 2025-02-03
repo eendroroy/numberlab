@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use numberlab::sequence::sylvester::{nth_sylvester, nth_sylvester_memoized, sylvester_sequence};
 
 #[test]

@@ -1,4 +1,4 @@
-use num_bigint::BigUint;
+use num::BigUint;
 use std::ops::{Div, Mul};
 
 pub fn nth_triangular(n: u128) -> BigUint {
