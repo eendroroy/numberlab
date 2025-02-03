@@ -1,4 +1,14 @@
-use numberlab::pattern::pascal::pascal_triangle;
+use numberlab::pattern::pascal::{pascal_row, pascal_triangle, pascal_triangle_binomial};
+
+#[test]
+fn should_generate_pascal_row() {
+    assert_eq!(pascal_row(0), vec![]);
+    assert_eq!(pascal_row(1), vec![1]);
+    assert_eq!(pascal_row(2), vec![1, 1]);
+    assert_eq!(pascal_row(3), vec![1, 2, 1]);
+    assert_eq!(pascal_row(4), vec![1, 3, 3, 1]);
+    assert_eq!(pascal_row(5), vec![1, 4, 6, 4, 1]);
+}
 
 #[test]
 fn should_generate_pascal_triangle() {
@@ -22,5 +32,13 @@ fn should_generate_pascal_triangle() {
             vec![1, 14, 91, 364, 1001, 2002, 3003, 3432, 3003, 2002, 1001, 364, 91, 14, 1],
             vec![1, 15, 105, 455, 1365, 3003, 5005, 6435, 6435, 5005, 3003, 1365, 455, 105, 15, 1],
         ]
+    );
+}
+
+#[test]
+fn should_generate_pascal_triangle_binomial() {
+    assert_eq!(
+        pascal_triangle_binomial(5),
+        vec![1, 1, 1, 1, 2, 1, 1, 3, 3, 1, 1, 4, 6, 4, 1,]
     );
 }

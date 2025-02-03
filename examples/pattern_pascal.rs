@@ -1,9 +1,11 @@
-use numberlab::pattern::pascal::pascal_triangle;
+use numberlab::pattern::pascal::{pascal_triangle, pascal_triangle_binomial};
 
 fn main() {
-    let pascal = pascal_triangle(20);
+    let n = 5;
 
-    pascal.iter().for_each(|row| {
+    pascal_triangle(n).iter().for_each(|row| {
         println!("{:?}", row);
     });
+
+    println!("{:?}", pascal_triangle_binomial(10));
 }
