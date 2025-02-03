@@ -31,6 +31,7 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
         - Pentagonal Numbers ([OEIS A000326](https://oeis.org/A000326))
         - Hexagonal Numbers ([OEIS A000384](https://oeis.org/A000384))
         - Lazy Caterer's Sequence ([OEIS A000124](https://oeis.org/A000124))
+        - Star Numbers ([OEIS A003154](https://oeis.org/A003154))
 - Partitions:
     - Pascal's Triangle ([OEIS A007318](https://oeis.org/A007318))
 - Primes:

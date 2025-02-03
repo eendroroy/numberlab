@@ -6,5 +6,7 @@ pub mod lazy_caterer;
 pub mod pentagonal;
 /// Square sequence [OEIS A000290](https://oeis.org/A000290)
 pub mod square;
+/// Star sequence [OEIS A003154](https://oeis.org/A003154)
+pub mod star;
 /// Triangular sequence [OEIS A000217](https://oeis.org/A000217)
 pub mod triangular;
