@@ -1,4 +1,3 @@
-use crate::big_u_vec;
 use num_bigint::BigUint;
 
 /// Calculates the nth Tribonacci number.
@@ -49,7 +48,11 @@ pub fn nth_tribonacci(n: usize) -> BigUint {
 /// assert_eq!(result, BigUint::from(149u128));
 /// ```
 pub fn nth_tribonacci_memoized(n: usize) -> BigUint {
-    let mut memoizer = big_u_vec![0u128, 1u128, 1u128,];
+    let mut memoizer = vec![
+        BigUint::from(0u128),
+        BigUint::from(1u128),
+        BigUint::from(1u128),
+    ];
     nth_tribonacci_with_memoizer(n, &mut memoizer)
 }
 
@@ -97,11 +100,19 @@ fn nth_tribonacci_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUin
 pub fn tribonacci_sequence(n: usize) -> Vec<BigUint> {
     match n {
         0 => vec![],
-        1 => big_u_vec![0u128],
-        2 => big_u_vec![0u128, 1u128],
-        3 => big_u_vec![0u128, 1u128, 1u128],
+        1 => vec![BigUint::from(0u128)],
+        2 => vec![BigUint::from(0u128), BigUint::from(1u128)],
+        3 => vec![
+            BigUint::from(0u128),
+            BigUint::from(1u128),
+            BigUint::from(1u128),
+        ],
         _ => {
-            let mut sequence = big_u_vec![0u128, 1u128, 1u128];
+            let mut sequence = vec![
+                BigUint::from(0u128),
+                BigUint::from(1u128),
+                BigUint::from(1u128),
+            ];
             (3..n).for_each(|i| {
                 sequence.push(&sequence[i - 1] + &sequence[i - 2] + &sequence[i - 3])
             });

@@ -1,4 +1,3 @@
-use crate::big_u;
 use num_bigint::BigUint;
 
 /// Calculates the nth square number.
@@ -21,7 +20,7 @@ use num_bigint::BigUint;
 /// assert_eq!(result, BigUint::from(100u128));
 /// ```
 pub fn nth_square(n: u128) -> BigUint {
-    big_u!(n).pow(2)
+    BigUint::from(n).pow(2)
 }
 
 /// Generates a sequence of square numbers up to the given number `n`.

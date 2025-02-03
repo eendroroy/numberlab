@@ -1,4 +1,3 @@
-use crate::big_u;
 use num_bigint::BigUint;
 use std::ops::{Add, Div};
 
@@ -22,11 +21,11 @@ use std::ops::{Add, Div};
 /// assert_eq!(result, BigUint::from(56u128));
 /// ```
 pub fn nth_lazy_caterer(n: u128) -> BigUint {
-    big_u!(n)
+    BigUint::from(n)
         .pow(2)
-        .add(big_u!(n))
-        .add(big_u!(2u128))
-        .div(big_u!(2u128))
+        .add(BigUint::from(n))
+        .add(BigUint::from(2u128))
+        .div(BigUint::from(2u128))
 }
 
 /// Generates a sequence of lazy caterer numbers up to the given number `n`.

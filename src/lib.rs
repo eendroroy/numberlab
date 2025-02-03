@@ -1,5 +1,3 @@
-mod macros;
-
 /// Collection of Prime algorithms
 pub mod prime;
 /// Collection of various number sequence algorithms

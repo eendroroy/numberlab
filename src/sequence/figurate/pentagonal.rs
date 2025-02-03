@@ -1,4 +1,3 @@
-use crate::big_u;
 use num_bigint::BigUint;
 use std::ops::{Div, Mul, Sub};
 
@@ -22,9 +21,9 @@ use std::ops::{Div, Mul, Sub};
 /// assert_eq!(result, BigUint::from(145u128));
 /// ```
 pub fn nth_pentagonal(n: u128) -> BigUint {
-    big_u!(n)
-        .mul(big_u!(n).mul(big_u!(3u128)).sub(big_u!(1u128)))
-        .div(big_u!(2u128))
+    BigUint::from(n)
+        .mul(BigUint::from(n).mul(BigUint::from(3u128)).sub(BigUint::from(1u128)))
+        .div(BigUint::from(2u128))
 }
 
 /// Generates a sequence of pentagonal numbers up to the given number `n`.

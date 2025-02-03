@@ -1,4 +1,3 @@
-use crate::big_u_vec;
 use num_bigint::BigUint;
 use std::ops::Mul;
 
@@ -53,7 +52,7 @@ pub fn nth_factorial_memoized(n: usize) -> BigUint {
     if n < 1 {
         panic!("'n' must be greater than 0");
     }
-    let mut memoizer = big_u_vec![1u128];
+    let mut memoizer = vec![BigUint::from(1u128)];
     nth_factorial_with_memoizer(n, &mut memoizer)
 }
 
@@ -101,9 +100,9 @@ pub fn factorial_sequence(n: usize) -> Vec<BigUint> {
         panic!("'n' must be greater than 0");
     }
     if n == 1 {
-        big_u_vec![1u128]
+        vec![BigUint::from(1u128)]
     } else {
-        let mut sequence = big_u_vec![1u128];
+        let mut sequence = vec![BigUint::from(1u128)];
         (1..n).for_each(|i| sequence.push(&sequence[i - 1] * BigUint::from(i + 1)));
         sequence
     }

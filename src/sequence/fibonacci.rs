@@ -1,4 +1,3 @@
-use crate::big_u_vec;
 use num_bigint::BigUint;
 
 /// Calculates the nth Fibonacci number.
@@ -98,11 +97,11 @@ pub fn fibonacci_sequence(n: usize) -> Vec<BigUint> {
     if n == 0 {
         vec![]
     } else if n == 1 {
-        big_u_vec![0u128]
+        vec![BigUint::from(0u128)]
     } else if n == 2 {
-        big_u_vec![0u128, 1u128]
+        vec![BigUint::from(0u128), BigUint::from(1u128)]
     } else {
-        let mut sequence = big_u_vec![0u128, 1u128];
+        let mut sequence = vec![BigUint::from(0u128), BigUint::from(1u128)];
         (2..n).for_each(|i| sequence.push(&sequence[i - 1] + &sequence[i - 2]));
         sequence
     }
