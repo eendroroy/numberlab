@@ -50,7 +50,7 @@ pub fn nth_geometric(a: f64, r: f64, n: u64) -> f64 {
 /// ```
 pub fn geometric_sequence(a: f64, r: f64, n: u64) -> Vec<f64> {
     match n {
-        0 => panic!("'n' must be greater than 0"),
+        0 => vec![],
         1 => vec![a],
         _ => (1..=n).map(|i| nth_geometric(a, r, i)).collect(),
     }

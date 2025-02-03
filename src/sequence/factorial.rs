@@ -6,10 +6,6 @@ use std::ops::Mul;
 ///
 /// * `n` - A positive integer representing the number to calculate the factorial of.
 ///
-/// # Panics
-///
-/// This function will panic if `n` is less than 1.
-///
 /// # Examples
 ///
 /// ```
@@ -30,10 +26,6 @@ pub fn nth_factorial(n: u128) -> u128 {
 /// # Arguments
 ///
 /// * `n` - A positive integer representing the number to calculate the factorial of.
-///
-/// # Panics
-///
-/// This function will panic if `n` is less than 1.
 ///
 /// # Examples
 ///
@@ -64,10 +56,6 @@ fn nth_factorial_with_memoizer(n: usize, memoizer: &mut Vec<u128>) -> u128 {
 /// # Arguments
 ///
 /// * `n` - A positive integer representing the number of terms in the factorial sequence.
-///
-/// # Panics
-///
-/// This function will panic if `n` is less than 1.
 ///
 /// # Examples
 ///

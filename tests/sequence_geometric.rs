@@ -11,12 +11,6 @@ fn nth_geometric_should_panic_when_n_is_less_than_1() {
 }
 
 #[test]
-#[should_panic(expected = "'n' must be greater than 0")]
-fn geometric_sequence_should_panic_when_n_is_less_than_1() {
-    geometric_sequence(1.0, 1.0, 0);
-}
-
-#[test]
 fn should_calculate_nth_geometric() {
     assert_eq!(round_to_precision(nth_geometric(1.0, 1.2, 1), 5), 1.0);
     assert_eq!(round_to_precision(nth_geometric(1.0, 1.2, 2), 5), 1.2);
@@ -28,7 +22,7 @@ fn should_calculate_nth_geometric() {
 #[test]
 fn should_generate_geometric_sequence() {
     let sequence = geometric_sequence(1.0, 1.2, 1);
-    assert_eq!(sequence, vec![1.0, ]);
+    assert_eq!(sequence, vec![1.0,]);
 
     let sequence = geometric_sequence(1.0, 1.2, 5)
         .iter()

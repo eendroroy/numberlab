@@ -11,12 +11,6 @@ fn nth_arithmetic_should_panic_when_n_is_less_than_1() {
 }
 
 #[test]
-#[should_panic(expected = "'n' must be greater than 0")]
-fn arithmetic_sequence_should_panic_when_n_is_less_than_1() {
-    arithmetic_sequence(1.0, 1.0, 0);
-}
-
-#[test]
 fn should_calculate_nth_arithmetic() {
     assert_eq!(nth_arithmetic(0.0, 1.0, 1), 0.0);
     assert_eq!(nth_arithmetic(0.0, 1.0, 2), 1.0);

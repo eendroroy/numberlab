@@ -43,10 +43,6 @@ where
 /// * `d` - The common difference between terms.
 /// * `n` - The number of terms to generate (must be greater than 0).
 ///
-/// # Panics
-///
-/// Panics if `n` is 0.
-///
 /// # Examples
 ///
 /// ```
@@ -65,7 +61,7 @@ where
     T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + From<i32> + Copy,
 {
     match n {
-        0 => panic!("'n' must be greater than 0"),
+        0 => vec![],
         _ => (1..=n).map(|i| nth_arithmetic(a, d, i)).collect(),
     }
 }
