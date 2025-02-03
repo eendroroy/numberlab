@@ -8,7 +8,7 @@ use num::BigUint;
 ///
 /// # Returns
 ///
-/// The nth square number as a `BigUint`.
+/// The nth square number .
 ///
 /// # Examples
 ///

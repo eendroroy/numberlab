@@ -8,7 +8,7 @@ use num::BigUint;
 ///
 /// # Returns
 ///
-/// The nth Lucas number as a `BigUint`.
+/// The nth Lucas number .
 ///
 /// # Examples
 ///
@@ -35,7 +35,7 @@ pub fn nth_lucas(n: usize) -> BigUint {
 ///
 /// # Returns
 ///
-/// The nth Lucas number as a `BigUint`.
+/// The nth Lucas number .
 ///
 /// # Examples
 ///

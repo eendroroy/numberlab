@@ -9,7 +9,7 @@ use std::ops::{Add, Div};
 ///
 /// # Returns
 ///
-/// The nth lazy caterer number as a `BigUint`.
+/// The nth lazy caterer number .
 ///
 /// # Examples
 ///

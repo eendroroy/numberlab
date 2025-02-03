@@ -8,7 +8,7 @@ use num::BigUint;
 ///
 /// # Returns
 ///
-/// The nth Sylvester number as a `BigUint`.
+/// The nth Sylvester number .
 ///
 /// # Examples
 ///
@@ -36,7 +36,7 @@ pub fn nth_sylvester(n: usize) -> BigUint {
 ///
 /// # Returns
 ///
-/// The nth Sylvester number as a `BigUint`.
+/// The nth Sylvester number .
 ///
 /// # Examples
 ///

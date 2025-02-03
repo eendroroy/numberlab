@@ -9,7 +9,7 @@ use std::ops::{Div, Mul, Sub};
 ///
 /// # Returns
 ///
-/// The nth hexagonal number as a `BigUint`.
+/// The nth hexagonal number .
 ///
 /// # Examples
 ///

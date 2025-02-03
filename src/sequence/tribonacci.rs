@@ -8,7 +8,7 @@ use num::BigUint;
 ///
 /// # Returns
 ///
-/// The nth Tribonacci number as a `BigUint`.
+/// The nth Tribonacci number .
 ///
 /// # Examples
 ///
@@ -36,7 +36,7 @@ pub fn nth_tribonacci(n: usize) -> BigUint {
 ///
 /// # Returns
 ///
-/// The nth Tribonacci number as a `BigUint`.
+/// The nth Tribonacci number .
 ///
 /// # Examples
 ///

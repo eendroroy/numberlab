@@ -9,7 +9,7 @@ use std::ops::{Div, Mul, Sub};
 ///
 /// # Returns
 ///
-/// The nth pentagonal number as a `BigUint`.
+/// The nth pentagonal number .
 ///
 /// # Examples
 ///

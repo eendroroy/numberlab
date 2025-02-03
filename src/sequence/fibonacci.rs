@@ -8,7 +8,7 @@ use num::BigUint;
 ///
 /// # Returns
 ///
-/// The nth Fibonacci number as a `BigUint`.
+/// The nth Fibonacci number .
 ///
 /// # Examples
 ///
@@ -37,7 +37,7 @@ pub fn nth_fibonacci(n: usize) -> BigUint {
 ///
 /// # Returns
 ///
-/// The nth Fibonacci number as a `BigUint`.
+/// The nth Fibonacci number .
 ///
 /// # Examples
 ///
@@ -115,7 +115,7 @@ pub fn fibonacci_sequence(n: usize) -> Vec<BigUint> {
 ///
 /// # Returns
 ///
-/// The sum of the first `n` Fibonacci numbers as a `BigUint`.
+/// The sum of the first `n` Fibonacci numbers .
 ///
 /// # Examples
 ///
