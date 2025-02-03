@@ -21,8 +21,8 @@ fn should_calculate_nth_geometric() {
 
 #[test]
 fn should_generate_geometric_sequence() {
-    let sequence = geometric_sequence(1.0, 1.2, 1);
-    assert_eq!(sequence, vec![1.0,]);
+    assert_eq!(geometric_sequence(1.0, 1.2, 0), vec![]);
+    assert_eq!(geometric_sequence(1.0, 1.2, 1), vec![1.0]);
 
     let sequence = geometric_sequence(1.0, 1.2, 5)
         .iter()

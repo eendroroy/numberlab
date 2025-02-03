@@ -25,8 +25,11 @@ fn should_calculate_nth_arithmetic() {
 
 #[test]
 fn should_generate_arithmetic_sequence() {
-    let sequence = arithmetic_sequence(0.0, 1.0, 5);
-    assert_eq!(sequence, vec![0.0, 1.0, 2.0, 3.0, 4.0]);
+    assert_eq!(arithmetic_sequence(0.0, 1.0, 0), vec![]);
+    assert_eq!(
+        arithmetic_sequence(0.0, 1.0, 5),
+        vec![0.0, 1.0, 2.0, 3.0, 4.0]
+    );
     let sequence = arithmetic_sequence(5.4, -2.92, 5)
         .iter()
         .map(|n| round_to_precision(*n, 2))
