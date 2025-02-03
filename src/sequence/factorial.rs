@@ -1,4 +1,3 @@
-use num::BigUint;
 use std::ops::Mul;
 
 /// Calculates the factorial of a given number `n`.
@@ -14,19 +13,16 @@ use std::ops::Mul;
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::factorial::nth_factorial;
 ///
 /// let result = nth_factorial(5);
-/// assert_eq!(result, BigUint::from(120_u128));
+/// assert_eq!(result, 120);
 /// ```
-pub fn nth_factorial(n: usize) -> BigUint {
-    if n < 1 {
-        panic!("'n' must be greater than 0");
+pub fn nth_factorial(n: u128) -> u128 {
+    match n {
+        0 => 1,
+        _ => (1..=n).product(),
     }
-    (1..=n)
-        .map(|i| BigUint::from(i))
-        .fold(BigUint::from(1u128), |acc, x| acc.mul(x))
 }
 
 /// Calculates the factorial of a given number `n` using memoization.
@@ -42,26 +38,22 @@ pub fn nth_factorial(n: usize) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::factorial::nth_factorial_memoized;
 ///
 /// let result = nth_factorial_memoized(5);
-/// assert_eq!(result, BigUint::from(120_u128));
+/// assert_eq!(result, u128::from(120_u128));
 /// ```
-pub fn nth_factorial_memoized(n: usize) -> BigUint {
-    if n < 1 {
-        panic!("'n' must be greater than 0");
-    }
-    let mut memoizer = vec![BigUint::from(1u128)];
+pub fn nth_factorial_memoized(n: usize) -> u128 {
+    let mut memoizer = vec![1u128];
     nth_factorial_with_memoizer(n, &mut memoizer)
 }
 
-fn nth_factorial_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint {
+fn nth_factorial_with_memoizer(n: usize, memoizer: &mut Vec<u128>) -> u128 {
     if n < memoizer.len() {
         memoizer[n].clone()
     } else {
         let mth_factorial = nth_factorial_with_memoizer(n - 1, memoizer);
-        let nth_factorial = mth_factorial.mul(n);
+        let nth_factorial = mth_factorial.mul(n as u128);
         memoizer.push(nth_factorial);
         memoizer[n].clone()
     }
@@ -80,56 +72,19 @@ fn nth_factorial_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::factorial::factorial_sequence;
 ///
-/// let sequence = factorial_sequence(5);
-/// assert_eq!(
-///     sequence,
-///     vec![
-///         BigUint::from(1_u128),
-///         BigUint::from(2_u128),
-///         BigUint::from(6_u128),
-///         BigUint::from(24_u128),
-///         BigUint::from(120_u128)
-///     ]
-/// );
+/// let sequence = factorial_sequence(6);
+/// assert_eq!(sequence, vec![1, 1, 2, 6, 24, 120]);
 /// ```
-pub fn factorial_sequence(n: usize) -> Vec<BigUint> {
-    if n < 1 {
-        panic!("'n' must be greater than 0");
+pub fn factorial_sequence(n: usize) -> Vec<u128> {
+    match n {
+        0 => vec![],
+        1 => vec![1],
+        _ => {
+            let mut sequence = vec![1u128];
+            (1..n).for_each(|i| sequence.push(sequence[i - 1] * i as u128));
+            sequence
+        }
     }
-    if n == 1 {
-        vec![BigUint::from(1u128)]
-    } else {
-        let mut sequence = vec![BigUint::from(1u128)];
-        (1..n).for_each(|i| sequence.push(&sequence[i - 1] * BigUint::from(i + 1)));
-        sequence
-    }
-}
-
-/// Calculates the sum of the factorials up to the given number `n`.
-///
-/// # Arguments
-///
-/// * `n` - A positive integer representing the number of terms in the factorial sequence.
-///
-/// # Returns
-///
-/// The sum of the factorials up to the given number `n`.
-///
-/// # Examples
-///
-/// ```
-/// use num::BigUint;
-/// use numberlab::sequence::factorial::factorial_series;
-///
-/// let result = factorial_series(5);
-/// assert_eq!(result, BigUint::from(153_u128)); // 1! + 2! + 3! + 4! + 5! = 153
-/// ```
-pub fn factorial_series(n: usize) -> BigUint {
-    if n < 1 {
-        return BigUint::from(0u128);
-    }
-    factorial_sequence(n).iter().sum()
 }

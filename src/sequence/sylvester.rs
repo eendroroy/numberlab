@@ -1,5 +1,3 @@
-use num::BigUint;
-
 /// Calculates the nth Sylvester number.
 ///
 /// # Arguments
@@ -13,18 +11,17 @@ use num::BigUint;
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::sylvester::nth_sylvester;
 ///
 /// let result = nth_sylvester(5);
-/// assert_eq!(result, BigUint::from(3263443u128));
+/// assert_eq!(result, 3263443);
 /// ```
-pub fn nth_sylvester(n: usize) -> BigUint {
+pub fn nth_sylvester(n: usize) -> u128 {
     if n == 0 {
-        BigUint::from(2u128)
+        2u128
     } else {
         let mth_sylvester = nth_sylvester(n - 1);
-        mth_sylvester.pow(2u32) - mth_sylvester + BigUint::from(1u128)
+        mth_sylvester.pow(2u32) - mth_sylvester + (1u128)
     }
 }
 
@@ -41,23 +38,22 @@ pub fn nth_sylvester(n: usize) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::sylvester::nth_sylvester_memoized;
 ///
 /// let result = nth_sylvester_memoized(5);
-/// assert_eq!(result, BigUint::from(3263443u128));
+/// assert_eq!(result, 3263443);
 /// ```
-pub fn nth_sylvester_memoized(n: usize) -> BigUint {
-    let mut sequence = vec![BigUint::from(2u128)];
+pub fn nth_sylvester_memoized(n: usize) -> u128 {
+    let mut sequence = vec![2];
     nth_sylvester_with_memoizer(n, &mut sequence)
 }
 
-fn nth_sylvester_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint {
+fn nth_sylvester_with_memoizer(n: usize, memoizer: &mut Vec<u128>) -> u128 {
     if n < memoizer.len() {
         memoizer[n].clone()
     } else {
         let mth_sylvester = nth_sylvester_with_memoizer(n - 1, memoizer);
-        let nth_sylvester = mth_sylvester.pow(2u32) - mth_sylvester + BigUint::from(1u128);
+        let nth_sylvester = mth_sylvester.pow(2u32) - mth_sylvester + (1u128);
         memoizer.push(nth_sylvester);
         memoizer[n].clone()
     }
@@ -76,22 +72,17 @@ fn nth_sylvester_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::sylvester::sylvester_sequence;
 ///
 /// let sequence = sylvester_sequence(7);
-/// assert_eq!(sequence, vec![
-///     BigUint::from(2u128),
-///     BigUint::from(3u128),
-///     BigUint::from(7u128),
-///     BigUint::from(43u128),
-///     BigUint::from(1807u128),
-///     BigUint::from(3263443u128),
-///     BigUint::from(10650056950807u128)
-/// ]);
+/// assert_eq!(sequence, vec![2, 3, 7, 43, 1807, 3263443, 10650056950807]);
 /// ```
-pub fn sylvester_sequence(n: usize) -> Vec<BigUint> {
-    let mut sequence = vec![BigUint::from(2u128)];
-    nth_sylvester_with_memoizer(n, &mut sequence);
-    sequence[..n].to_vec()
+pub fn sylvester_sequence(n: usize) -> Vec<u128> {
+    if n == 0 {
+        return vec![];
+    }
+
+    let mut sequence = vec![2];
+    nth_sylvester_with_memoizer(n - 1, &mut sequence);
+    sequence
 }

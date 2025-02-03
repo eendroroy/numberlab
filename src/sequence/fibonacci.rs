@@ -1,5 +1,3 @@
-use num::BigUint;
-
 /// Calculates the nth Fibonacci number.
 ///
 /// # Arguments
@@ -13,19 +11,16 @@ use num::BigUint;
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::fibonacci::nth_fibonacci;
 ///
 /// let result = nth_fibonacci(10);
-/// assert_eq!(result, BigUint::from(55u128));
+/// assert_eq!(result, 55);
 /// ```
-pub fn nth_fibonacci(n: usize) -> BigUint {
-    if n == 0 {
-        BigUint::from(0u128)
-    } else if n == 1 {
-        BigUint::from(1u128)
-    } else {
-        nth_fibonacci(n - 1) + nth_fibonacci(n - 2)
+pub fn nth_fibonacci(n: usize) -> u128 {
+    match n {
+        0 => 0,
+        1 => 1,
+        _ => nth_fibonacci(n - 1) + nth_fibonacci(n - 2),
     }
 }
 
@@ -42,18 +37,17 @@ pub fn nth_fibonacci(n: usize) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::fibonacci::nth_fibonacci_memoized;
 ///
 /// let result = nth_fibonacci_memoized(10);
-/// assert_eq!(result, BigUint::from(55u128));
+/// assert_eq!(result, 55);
 /// ```
-pub fn nth_fibonacci_memoized(n: usize) -> BigUint {
-    let mut memoizer = vec![BigUint::from(0u128), BigUint::from(1u128)];
+pub fn nth_fibonacci_memoized(n: usize) -> u128 {
+    let mut memoizer = vec![0u128, 1u128];
     nth_fibonacci_with_memoizer(n, &mut memoizer)
 }
 
-fn nth_fibonacci_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint {
+fn nth_fibonacci_with_memoizer(n: usize, memoizer: &mut Vec<u128>) -> u128 {
     if memoizer.len() > n {
         memoizer[n].clone()
     } else {
@@ -78,54 +72,21 @@ fn nth_fibonacci_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::fibonacci::fibonacci_sequence;
 ///
 /// let sequence = fibonacci_sequence(5);
-/// assert_eq!(
-///     sequence,
-///     vec![
-///         BigUint::from(0_u128),
-///         BigUint::from(1_u128),
-///         BigUint::from(1_u128),
-///         BigUint::from(2_u128),
-///         BigUint::from(3_u128)
-///     ]
-/// );
+/// assert_eq!(sequence, vec![ 0, 1, 1, 2, 3]);
 /// ```
-pub fn fibonacci_sequence(n: usize) -> Vec<BigUint> {
+pub fn fibonacci_sequence(n: usize) -> Vec<u128> {
     if n == 0 {
         vec![]
     } else if n == 1 {
-        vec![BigUint::from(0u128)]
+        vec![0]
     } else if n == 2 {
-        vec![BigUint::from(0u128), BigUint::from(1u128)]
+        vec![0, 1]
     } else {
-        let mut sequence = vec![BigUint::from(0u128), BigUint::from(1u128)];
+        let mut sequence = vec![0, 1];
         (2..n).for_each(|i| sequence.push(&sequence[i - 1] + &sequence[i - 2]));
         sequence
     }
-}
-
-/// Calculates the sum of the first `n` Fibonacci numbers.
-///
-/// # Arguments
-///
-/// * `n` - A non-negative integer representing the number of terms in the Fibonacci sequence.
-///
-/// # Returns
-///
-/// The sum of the first `n` Fibonacci numbers .
-///
-/// # Examples
-///
-/// ```
-/// use num::BigUint;
-/// use numberlab::sequence::fibonacci::fibonacci_series;
-///
-/// let result = fibonacci_series(10);
-/// assert_eq!(result, BigUint::from(88u128));
-/// ```
-pub fn fibonacci_series(n: usize) -> BigUint {
-    fibonacci_sequence(n).iter().sum()
 }

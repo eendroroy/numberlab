@@ -18,6 +18,3 @@ name = "numberlab"
 path = "src/lib.rs"
 edition = "2021"
 #crate-type = ["staticlib", "lib", "cdylib"]
-
-[dependencies]
-num = "=0.4.3"

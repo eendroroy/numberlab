@@ -1,4 +1,3 @@
-use num::BigUint;
 use std::ops::{Div, Mul, Sub};
 
 /// Calculates the nth pentagonal number.
@@ -14,20 +13,16 @@ use std::ops::{Div, Mul, Sub};
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::figurate::pentagonal::nth_pentagonal;
 ///
 /// let result = nth_pentagonal(10);
-/// assert_eq!(result, BigUint::from(145u128));
+/// assert_eq!(result, 145);
 /// ```
-pub fn nth_pentagonal(n: u128) -> BigUint {
-    BigUint::from(n)
-        .mul(
-            BigUint::from(n)
-                .mul(BigUint::from(3u128))
-                .sub(BigUint::from(1u128)),
-        )
-        .div(BigUint::from(2u128))
+pub fn nth_pentagonal(n: u128) -> u128 {
+    match n {
+        0 => 0,
+        _ => n.mul(n.mul(3).sub(1)).div(2),
+    }
 }
 
 /// Generates a sequence of pentagonal numbers up to the given number `n`.
@@ -43,23 +38,11 @@ pub fn nth_pentagonal(n: u128) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::figurate::pentagonal::pentagonal_sequence;
 ///
-/// let sequence = pentagonal_sequence(5);
-/// assert_eq!(
-///     sequence,
-///     vec![
-///         BigUint::from(1_u128),
-///         BigUint::from(5_u128),
-///         BigUint::from(12_u128),
-///         BigUint::from(22_u128),
-///         BigUint::from(35_u128)
-///     ]
-/// );
+/// let sequence = pentagonal_sequence(6);
+/// assert_eq!(sequence, vec![0, 1, 5, 12, 22, 35]);
 /// ```
-pub fn pentagonal_sequence(n: u128) -> Vec<BigUint> {
-    let mut sequence = vec![];
-    (1..=n).for_each(|i| sequence.push(nth_pentagonal(i)));
-    sequence
+pub fn pentagonal_sequence(n: usize) -> Vec<u128> {
+    (0..n as u128).map(nth_pentagonal).collect()
 }

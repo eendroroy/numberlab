@@ -36,6 +36,5 @@ fn should_generate_nth_recaman() {
 
 #[test]
 fn should_generate_recaman_sequence() {
-    let sequence = recaman_sequence(10);
-    assert_eq!(sequence, vec![0, 1, 3, 6, 2, 7, 13, 20, 12, 21]);
+    assert_eq!(recaman_sequence(10), vec![0, 1, 3, 6, 2, 7, 13, 20, 12, 21]);
 }

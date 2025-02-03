@@ -1,5 +1,3 @@
-use num::BigUint;
-
 /// Calculates the nth square number.
 ///
 /// # Arguments
@@ -13,14 +11,13 @@ use num::BigUint;
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::figurate::square::nth_square;
 ///
 /// let result = nth_square(10);
-/// assert_eq!(result, BigUint::from(100u128));
+/// assert_eq!(result, 100);
 /// ```
-pub fn nth_square(n: u128) -> BigUint {
-    BigUint::from(n).pow(2)
+pub fn nth_square(n: u128) -> u128 {
+    n.pow(2)
 }
 
 /// Generates a sequence of square numbers up to the given number `n`.
@@ -36,23 +33,11 @@ pub fn nth_square(n: u128) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::figurate::square::square_sequence;
 ///
-/// let sequence = square_sequence(5);
-/// assert_eq!(
-///     sequence,
-///     vec![
-///         BigUint::from(1_u128),
-///         BigUint::from(4_u128),
-///         BigUint::from(9_u128),
-///         BigUint::from(16_u128),
-///         BigUint::from(25_u128)
-///     ]
-/// );
+/// let sequence = square_sequence(6);
+/// assert_eq!(sequence, vec![0, 1, 4, 9, 16, 25]);
 /// ```
-pub fn square_sequence(n: u128) -> Vec<BigUint> {
-    let mut sequence = vec![];
-    (1..=n).for_each(|i| sequence.push(nth_square(i)));
-    sequence
+pub fn square_sequence(n: usize) -> Vec<u128> {
+    (0..n as u128).map(nth_square).collect()
 }

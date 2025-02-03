@@ -1,14 +1,9 @@
-use num::BigUint;
 use std::ops::{Div, Mul};
 
-pub fn nth_triangular(n: u128) -> BigUint {
-    BigUint::from(n)
-        .mul(&BigUint::from(n + 1u128))
-        .div(&BigUint::from(2u128))
+pub fn nth_triangular(n: u128) -> u128 {
+    n.mul(n + 1).div(2)
 }
 
-pub fn triangular_sequence(n: u128) -> Vec<BigUint> {
-    let mut sequence = vec![];
-    (0..n).for_each(|i| sequence.push(nth_triangular(i)));
-    sequence
+pub fn triangular_sequence(n: usize) -> Vec<u128> {
+    (0..n as u128).map(nth_triangular).collect()
 }

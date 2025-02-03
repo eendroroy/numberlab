@@ -2,48 +2,25 @@ use numberlab::sequence::figurate::square::{nth_square, square_sequence};
 
 #[test]
 fn should_generate_nth_square() {
-    assert_eq!(nth_square(1), 1u128.into());
-    assert_eq!(nth_square(2), 4u128.into());
-    assert_eq!(nth_square(3), 9u128.into());
-    assert_eq!(nth_square(4), 16u128.into());
-    assert_eq!(nth_square(5), 25u128.into());
-    assert_eq!(nth_square(6), 36u128.into());
-    assert_eq!(nth_square(7), 49u128.into());
-    assert_eq!(nth_square(8), 64u128.into());
-    assert_eq!(nth_square(9), 81u128.into());
-    assert_eq!(nth_square(10), 100u128.into());
+    assert_eq!(nth_square(0), 0);
+    assert_eq!(nth_square(1), 1);
+    assert_eq!(nth_square(2), 4);
+    assert_eq!(nth_square(3), 9);
+    assert_eq!(nth_square(4), 16);
+    assert_eq!(nth_square(5), 25);
+    assert_eq!(nth_square(6), 36);
+    assert_eq!(nth_square(7), 49);
+    assert_eq!(nth_square(8), 64);
+    assert_eq!(nth_square(9), 81);
+    assert_eq!(nth_square(10), 100);
 }
 
 #[test]
-fn should_generate_series_of_1_items() {
-    assert_eq!(square_sequence(1), vec![1u128.into()]);
-}
-
-#[test]
-fn should_generate_series_of_20_items() {
+fn should_generate_sequence() {
+    assert_eq!(square_sequence(0), vec![]);
+    assert_eq!(square_sequence(1), vec![0]);
     assert_eq!(
         square_sequence(20),
-        vec![
-            1u128.into(),
-            4u128.into(),
-            9u128.into(),
-            16u128.into(),
-            25u128.into(),
-            36u128.into(),
-            49u128.into(),
-            64u128.into(),
-            81u128.into(),
-            100u128.into(),
-            121u128.into(),
-            144u128.into(),
-            169u128.into(),
-            196u128.into(),
-            225u128.into(),
-            256u128.into(),
-            289u128.into(),
-            324u128.into(),
-            361u128.into(),
-            400u128.into()
-        ]
+        (0..20).map(|n| nth_square(n)).collect::<Vec<_>>()
     );
 }

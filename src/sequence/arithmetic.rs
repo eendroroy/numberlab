@@ -27,7 +27,7 @@ use std::ops::{Add, Div, Mul, Sub};
 /// ```
 pub fn nth_arithmetic<T>(a: T, d: T, n: u32) -> T
 where
-    T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + From<u32> + Copy,
+    T: Add<Output=T> + Sub<Output=T> + Mul<Output=T> + Div<Output=T> + From<u32> + Copy,
 {
     match n {
         0 => panic!("'n' must be greater than 0"),
@@ -62,7 +62,7 @@ where
 /// ```
 pub fn arithmetic_sequence<T>(a: T, d: T, n: u32) -> Vec<T>
 where
-    T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + From<u32> + Copy,
+    T: Add<Output=T> + Sub<Output=T> + Mul<Output=T> + Div<Output=T> + From<u32> + Copy,
 {
     match n {
         0 => panic!("'n' must be greater than 0"),
@@ -101,7 +101,7 @@ where
 /// ```
 pub fn arithmetic_series<T>(a: T, d: T, n: u32) -> T
 where
-    T: Add<Output = T> + Sub<Output = T> + Mul<Output = T> + Div<Output = T> + From<u32> + Copy,
+    T: Add<Output=T> + Sub<Output=T> + Mul<Output=T> + Div<Output=T> + From<u32> + Copy,
 {
     match n {
         0 => T::from(0),

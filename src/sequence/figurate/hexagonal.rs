@@ -1,4 +1,3 @@
-use num::BigUint;
 use std::ops::{Div, Mul, Sub};
 
 /// Calculates the nth hexagonal number.
@@ -14,21 +13,16 @@ use std::ops::{Div, Mul, Sub};
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::figurate::hexagonal::nth_hexagonal;
 ///
 /// let result = nth_hexagonal(10);
-/// assert_eq!(result, BigUint::from(190u128));
+/// assert_eq!(result, 190);
 /// ```
-pub fn nth_hexagonal(n: u128) -> BigUint {
-    BigUint::from(n)
-        .mul(BigUint::from(2u128))
-        .mul(
-            BigUint::from(n)
-                .mul(BigUint::from(2u128))
-                .sub(BigUint::from(1u128)),
-        )
-        .div(BigUint::from(2u128))
+pub fn nth_hexagonal(n: u128) -> u128 {
+    match n {
+        0 => 0,
+        _ => n.mul(2).mul(n.mul(2).sub(1)).div(2),
+    }
 }
 
 /// Generates a sequence of hexagonal numbers up to the given number `n`.
@@ -44,23 +38,11 @@ pub fn nth_hexagonal(n: u128) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::figurate::hexagonal::hexagonal_sequence;
 ///
 /// let sequence = hexagonal_sequence(5);
-/// assert_eq!(
-///     sequence,
-///     vec![
-///         BigUint::from(1_u128),
-///         BigUint::from(6_u128),
-///         BigUint::from(15_u128),
-///         BigUint::from(28_u128),
-///         BigUint::from(45_u128)
-///     ]
-/// );
+/// assert_eq!(sequence, vec![0, 1, 6, 15, 28]);
 /// ```
-pub fn hexagonal_sequence(n: u128) -> Vec<BigUint> {
-    let mut sequence = vec![];
-    (1..=n).for_each(|i| sequence.push(nth_hexagonal(i)));
-    sequence
+pub fn hexagonal_sequence(n: usize) -> Vec<u128> {
+    (0..n as u128).map(nth_hexagonal).collect()
 }

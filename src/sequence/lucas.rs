@@ -1,5 +1,3 @@
-use num::BigUint;
-
 /// Calculates the nth Lucas number.
 ///
 /// # Arguments
@@ -13,16 +11,15 @@ use num::BigUint;
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::lucas::nth_lucas;
 ///
 /// let result = nth_lucas(10);
-/// assert_eq!(result, BigUint::from(123u128));
+/// assert_eq!(result, (123u128));
 /// ```
-pub fn nth_lucas(n: usize) -> BigUint {
+pub fn nth_lucas(n: usize) -> u128 {
     match n {
-        0 => BigUint::from(2u128),
-        1 => BigUint::from(1u128),
+        0 => 2u128,
+        1 => 1u128,
         _ => nth_lucas(n - 1) + nth_lucas(n - 2),
     }
 }
@@ -40,18 +37,17 @@ pub fn nth_lucas(n: usize) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::lucas::nth_lucas_memoized;
 ///
 /// let result = nth_lucas_memoized(10);
-/// assert_eq!(result, BigUint::from(123u128));
+/// assert_eq!(result, (123u128));
 /// ```
-pub fn nth_lucas_memoized(n: usize) -> BigUint {
-    let mut memoizer = vec![BigUint::from(2u128), BigUint::from(1u128)];
+pub fn nth_lucas_memoized(n: usize) -> u128 {
+    let mut memoizer = vec![2, 1];
     nth_lucas_with_memoizer(n, &mut memoizer)
 }
 
-fn nth_lucas_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint {
+fn nth_lucas_with_memoizer(n: usize, memoizer: &mut Vec<u128>) -> u128 {
     if n < memoizer.len() {
         memoizer[n].clone()
     } else {
@@ -76,23 +72,21 @@ fn nth_lucas_with_memoizer(n: usize, memoizer: &mut Vec<BigUint>) -> BigUint {
 /// # Examples
 ///
 /// ```
-/// use num::BigUint;
 /// use numberlab::sequence::lucas::lucas_sequence;
 ///
 /// let sequence = lucas_sequence(5);
-/// assert_eq!(
-///     sequence,
-///     vec![
-///         BigUint::from(2_u128),
-///         BigUint::from(1_u128),
-///         BigUint::from(3_u128),
-///         BigUint::from(4_u128),
-///         BigUint::from(7_u128)
-///     ]
-/// );
+/// assert_eq!(sequence, vec![2, 1, 3, 4, 7]);
 /// ```
-pub fn lucas_sequence(n: usize) -> Vec<BigUint> {
-    let mut sequence = vec![BigUint::from(2u128), BigUint::from(1u128)];
-    (2..n).for_each(|i| sequence.push(&sequence[i - 1] + &sequence[i - 2]));
-    sequence[..n].to_vec()
+pub fn lucas_sequence(n: usize) -> Vec<u128> {
+    if n == 0 {
+        vec![]
+    } else if n == 1 {
+        vec![2]
+    } else if n == 2 {
+        vec![2, 1]
+    } else {
+        let mut sequence = vec![2, 1];
+        (2..n).for_each(|i| sequence.push(sequence[i - 1] + sequence[i - 2]));
+        sequence
+    }
 }

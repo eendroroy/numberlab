@@ -1,12 +1,9 @@
-use num::BigUint;
-use numberlab::sequence::factorial::{factorial_sequence, factorial_series, nth_factorial};
+use numberlab::sequence::factorial::{factorial_sequence, nth_factorial};
 
 fn main() {
     let series = factorial_sequence(10);
-    println!("{:?} == {}", series, series.iter().sum::<BigUint>());
+    println!("{:?} == {}", series, series.iter().sum::<u128>());
 
-    let n_series: Vec<BigUint> = (1..=10).map(|n| nth_factorial(n)).collect();
-    println!("{:?} == {}", n_series, n_series.iter().sum::<BigUint>());
-
-    println!("{}", factorial_series(10));
+    let n_series: Vec<u128> = (0..10).map(|n| nth_factorial(n)).collect();
+    println!("{:?} == {}", n_series, n_series.iter().sum::<u128>());
 }
