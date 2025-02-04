@@ -1,4 +1,4 @@
-use crate::formula::factorial;
+use crate::formula::arithmetic::factorial;
 
 /// Calculates the number of permutations (`nPr`) of `n` items taken `r` at a time.
 ///
@@ -14,7 +14,7 @@ use crate::formula::factorial;
 /// # Examples
 ///
 /// ```
-/// use numberlab::formula::permutation;
+/// use numberlab::formula::arithmetic::permutation;
 ///
 /// assert_eq!(permutation(10, 2), 90);
 /// assert_eq!(permutation(5, 3), 60);

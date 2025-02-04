@@ -1,4 +1,4 @@
-use numberlab::formula::factorial;
+use numberlab::formula::arithmetic::factorial;
 use numberlab::sequence::factorial::factorial_sequence;
 
 fn main() {

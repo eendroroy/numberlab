@@ -1,4 +1,4 @@
-use crate::formula::factorial;
+use crate::formula::arithmetic::factorial;
 
 /// Calculates the number of combinations (`nCr`) of `n` items taken `r` at a time.
 ///
@@ -18,7 +18,7 @@ use crate::formula::factorial;
 /// # Examples
 ///
 /// ```
-/// use numberlab::formula::combination;
+/// use numberlab::formula::arithmetic::combination;
 ///
 /// let result = combination(5, 3);
 /// assert_eq!(result, 10);

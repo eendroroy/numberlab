@@ -12,7 +12,7 @@
 /// # Examples
 ///
 /// ```
-/// use numberlab::formula::gcd;
+/// use numberlab::formula::arithmetic::gcd;
 ///
 /// let result = gcd(28, 35);
 /// assert_eq!(result, 7);

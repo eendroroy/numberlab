@@ -27,11 +27,12 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
     - Stella Octangula Numbers ([OEIS A007588](https://oeis.org/A007588))
     - Triangular Numbers ([OEIS A000217](https://oeis.org/A000217))
 - Formula
-    - Combination
-    - Factorial
-    - GCD
-    - LCM
-    - Permutation
+    - Arithmetic
+        - Combination
+        - Factorial
+        - GCD
+        - LCM
+        - Permutation
 - Partitions:
     - Pascal's Triangle ([OEIS A007318](https://oeis.org/A007318))
 - Primes:

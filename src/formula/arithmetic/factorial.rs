@@ -7,7 +7,7 @@
 /// # Examples
 ///
 /// ```
-/// use numberlab::formula::factorial;
+/// use numberlab::formula::arithmetic::factorial;
 ///
 /// let result = factorial(5);
 /// assert_eq!(result, 120);

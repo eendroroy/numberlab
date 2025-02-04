@@ -1,4 +1,4 @@
-use numberlab::formula::gcd;
+use numberlab::formula::arithmetic::gcd;
 
 fn main() {
     println!("GCD of 12 and 15 is {}", gcd(12, 15));

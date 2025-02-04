@@ -1,4 +1,4 @@
-use numberlab::formula::lcm;
+use numberlab::formula::arithmetic::lcm;
 
 fn main() {
     println!("LCM of 12 and 15 is {}", lcm(12, 15));

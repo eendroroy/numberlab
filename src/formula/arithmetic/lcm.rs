@@ -1,4 +1,4 @@
-use crate::formula::gcd::gcd;
+use crate::formula::arithmetic::gcd;
 
 /// Computes the least common multiple (`LCM`) of two numbers `a` and `b`.
 ///
@@ -14,7 +14,7 @@ use crate::formula::gcd::gcd;
 /// # Examples
 ///
 /// ```
-/// use numberlab::formula::lcm;
+/// use numberlab::formula::arithmetic::lcm;
 ///
 /// let result = lcm(28, 35);
 /// assert_eq!(result, 140);

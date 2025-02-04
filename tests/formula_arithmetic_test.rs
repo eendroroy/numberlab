@@ -1,4 +1,4 @@
-use numberlab::formula::{combination, factorial, gcd, lcm, permutation};
+use numberlab::formula::arithmetic::{combination, factorial, gcd, lcm, permutation};
 
 #[test]
 #[should_panic(expected = "n must be greater than or equal to r")]
