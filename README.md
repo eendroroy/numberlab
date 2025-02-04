@@ -24,6 +24,8 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
     - Star Numbers ([OEIS A003154](https://oeis.org/A003154))
     - Stella Octangula Numbers ([OEIS A007588](https://oeis.org/A007588))
     - Triangular Numbers ([OEIS A000217](https://oeis.org/A000217))
+- Formula
+    - Combination
 - Partitions:
     - Pascal's Triangle ([OEIS A007318](https://oeis.org/A007318))
 - Primes:
