@@ -1,4 +1,4 @@
-/// Calculates the factorial of a given number `n`.
+/// Calculates the factorial (`n!`) of a given number `n`.
 ///
 /// # Arguments
 ///

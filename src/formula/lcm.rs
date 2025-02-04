@@ -1,6 +1,6 @@
 use crate::formula::gcd::gcd;
 
-/// Computes the least common multiple (LCM) of two numbers `a` and `b`.
+/// Computes the least common multiple (`LCM`) of two numbers `a` and `b`.
 ///
 /// # Arguments
 ///

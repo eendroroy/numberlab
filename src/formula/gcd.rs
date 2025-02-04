@@ -1,4 +1,4 @@
-/// Computes the greatest common divisor (GCD) of two numbers `a` and `b`.
+/// Computes the greatest common divisor (`GCD`) of two numbers `a` and `b`.
 ///
 /// # Arguments
 ///

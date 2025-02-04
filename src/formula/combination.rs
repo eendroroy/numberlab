@@ -1,6 +1,6 @@
 use crate::formula::factorial;
 
-/// Calculates the number of combinations (n choose r).
+/// Calculates the number of combinations (`nCr`) of `n` items taken `r` at a time.
 ///
 /// # Arguments
 ///
