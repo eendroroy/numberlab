@@ -1,4 +1,4 @@
-use numberlab::algorithm::factorize::{factor_pairs, factors, prime_factors};
+use numberlab::algorithm::factorize::{factor_pairs, factors, gcd, lcm, prime_factors};
 
 #[test]
 fn should_generate_factor_pairs() {
@@ -34,4 +34,47 @@ fn should_generate_prime_factors() {
     assert_eq!(prime_factors(100), vec![2, 2, 5, 5]);
     assert_eq!(prime_factors(101), vec![101]);
     assert_eq!(prime_factors(102), vec![2, 3, 17]);
+}
+
+#[test]
+fn should_calculate_gcd() {
+    assert_eq!(gcd(0, 0), 0);
+    assert_eq!(gcd(0, 1), 1);
+    assert_eq!(gcd(1, 0), 1);
+    assert_eq!(gcd(1, 1), 1);
+    assert_eq!(gcd(2, 1), 1);
+    assert_eq!(gcd(1, 2), 1);
+    assert_eq!(gcd(2, 2), 2);
+    assert_eq!(gcd(2, 4), 2);
+    assert_eq!(gcd(4, 2), 2);
+    assert_eq!(gcd(4, 6), 2);
+    assert_eq!(gcd(6, 4), 2);
+    assert_eq!(gcd(3, 5), 1);
+    assert_eq!(gcd(31, 57), 1);
+    assert_eq!(gcd(2_u128.pow(2), 2_u128.pow(4)), 2_u128.pow(2));
+    assert_eq!(gcd(2_u128.pow(5), 2_u128.pow(4)), 2_u128.pow(4));
+    assert_eq!(gcd(2_u128.pow(5), 3_u128.pow(4)), 1);
+}
+
+#[test]
+fn should_calculate_lcm() {
+    assert_eq!(lcm(0, 0), 0);
+    assert_eq!(lcm(0, 1), 0);
+    assert_eq!(lcm(1, 0), 0);
+    assert_eq!(lcm(1, 1), 1);
+    assert_eq!(lcm(2, 1), 2);
+    assert_eq!(lcm(1, 2), 2);
+    assert_eq!(lcm(2, 2), 2);
+    assert_eq!(lcm(2, 4), 4);
+    assert_eq!(lcm(4, 2), 4);
+    assert_eq!(lcm(4, 6), 12);
+    assert_eq!(lcm(6, 4), 12);
+    assert_eq!(lcm(3, 5), 15);
+    assert_eq!(lcm(31, 57), 1767);
+    assert_eq!(lcm(2_u128.pow(2), 2_u128.pow(4)), 2_u128.pow(4));
+    assert_eq!(lcm(2_u128.pow(5), 2_u128.pow(4)), 2_u128.pow(5));
+    assert_eq!(
+        lcm(2_u128.pow(5), 3_u128.pow(4)),
+        2_u128.pow(5) * 3_u128.pow(4)
+    );
 }
