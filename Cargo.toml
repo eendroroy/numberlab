@@ -17,4 +17,12 @@ rust-version = "1.60.0"
 name = "numberlab"
 path = "src/lib.rs"
 edition = "2021"
+crate-type = ["lib"]
 #crate-type = ["staticlib", "lib", "cdylib"]
+
+[dev-dependencies]
+criterion = { version = "0.5.1", features = ["html_reports"] }
+
+[[bench]]
+name = "factorization"
+harness = false
