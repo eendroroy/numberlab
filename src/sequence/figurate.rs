@@ -8,5 +8,7 @@ pub mod pentagonal;
 pub mod square;
 /// Star sequence [OEIS A003154](https://oeis.org/A003154)
 pub mod star;
+/// Stella octangula sequence [OEIS A007588](https://oeis.org/A007588)
+pub mod stella_octangula;
 /// Triangular sequence [OEIS A000217](https://oeis.org/A000217)
 pub mod triangular;

@@ -16,7 +16,21 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
 
 ## List of algorithms
 
+- Partitions:
+    - Pascal's Triangle ([OEIS A007318](https://oeis.org/A007318))
+- Primes:
+    - Sieve:
+        - Eratosthenes
+        - Sundaram
 - Sequences:
+    - Figurate Sequences:
+        - Hexagonal Numbers ([OEIS A000384](https://oeis.org/A000384))
+        - Lazy Caterer's Sequence ([OEIS A000124](https://oeis.org/A000124))
+        - Pentagonal Numbers ([OEIS A000326](https://oeis.org/A000326))
+        - Square Numbers ([OEIS A000290](https://oeis.org/A000290))
+        - Star Numbers ([OEIS A003154](https://oeis.org/A003154))
+        - Stella Octangula Numbers ([OEIS A007588](https://oeis.org/A007588))
+        - Triangular Numbers ([OEIS A000217](https://oeis.org/A000217))
     - Arithmetic Sequence
     - Factorial Sequence ([OEIS A000142](https://oeis.org/A000142))
     - Fibonacci Sequence ([OEIS A000045](https://oeis.org/A000045))
@@ -25,16 +39,3 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
     - Recaman Sequence ([OEIS A005132](https://oeis.org/A005132))
     - Sylvester's Sequence ([OEIS A000058](https://oeis.org/A000058))
     - Tribonacci Sequence ([OEIS A000073](https://oeis.org/A000073))
-    - Figurate Sequences:
-        - Square Numbers ([OEIS A000290](https://oeis.org/A000290))
-        - Triangular Numbers ([OEIS A000217](https://oeis.org/A000217))
-        - Pentagonal Numbers ([OEIS A000326](https://oeis.org/A000326))
-        - Hexagonal Numbers ([OEIS A000384](https://oeis.org/A000384))
-        - Lazy Caterer's Sequence ([OEIS A000124](https://oeis.org/A000124))
-        - Star Numbers ([OEIS A003154](https://oeis.org/A003154))
-- Partitions:
-    - Pascal's Triangle ([OEIS A007318](https://oeis.org/A007318))
-- Primes:
-    - Sieve:
-        - Eratosthenes
-        - Sundaram
