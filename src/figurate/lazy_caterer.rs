@@ -13,7 +13,7 @@ use std::ops::{Add, Div};
 /// # Examples
 ///
 /// ```
-/// use numberlab::sequence::figurate::lazy_caterer::nth_lazy_caterer;
+/// use numberlab::figurate::lazy_caterer::nth_lazy_caterer;
 ///
 /// let result = nth_lazy_caterer(10);
 /// assert_eq!(result, 56);
@@ -35,7 +35,7 @@ pub fn nth_lazy_caterer(n: u128) -> u128 {
 /// # Examples
 ///
 /// ```
-/// use numberlab::sequence::figurate::lazy_caterer::lazy_caterer_sequence;
+/// use numberlab::figurate::lazy_caterer::lazy_caterer_sequence;
 ///
 /// let sequence = lazy_caterer_sequence(5);
 /// assert_eq!(sequence, vec![1, 2, 4, 7, 11]);

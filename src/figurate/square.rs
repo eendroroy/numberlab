@@ -11,7 +11,7 @@
 /// # Examples
 ///
 /// ```
-/// use numberlab::sequence::figurate::square::nth_square;
+/// use numberlab::figurate::square::nth_square;
 ///
 /// let result = nth_square(10);
 /// assert_eq!(result, 100);
@@ -33,7 +33,7 @@ pub fn nth_square(n: u128) -> u128 {
 /// # Examples
 ///
 /// ```
-/// use numberlab::sequence::figurate::square::square_sequence;
+/// use numberlab::figurate::square::square_sequence;
 ///
 /// let sequence = square_sequence(6);
 /// assert_eq!(sequence, vec![0, 1, 4, 9, 16, 25]);

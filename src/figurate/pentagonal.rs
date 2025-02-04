@@ -13,7 +13,7 @@ use std::ops::{Div, Mul, Sub};
 /// # Examples
 ///
 /// ```
-/// use numberlab::sequence::figurate::pentagonal::nth_pentagonal;
+/// use numberlab::figurate::pentagonal::nth_pentagonal;
 ///
 /// let result = nth_pentagonal(10);
 /// assert_eq!(result, 145);
@@ -38,7 +38,7 @@ pub fn nth_pentagonal(n: u128) -> u128 {
 /// # Examples
 ///
 /// ```
-/// use numberlab::sequence::figurate::pentagonal::pentagonal_sequence;
+/// use numberlab::figurate::pentagonal::pentagonal_sequence;
 ///
 /// let sequence = pentagonal_sequence(6);
 /// assert_eq!(sequence, vec![0, 1, 5, 12, 22, 35]);

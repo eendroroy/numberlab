@@ -13,7 +13,7 @@ use std::ops::{Div, Mul, Sub};
 /// # Examples
 ///
 /// ```
-/// use numberlab::sequence::figurate::hexagonal::nth_hexagonal;
+/// use numberlab::figurate::hexagonal::nth_hexagonal;
 ///
 /// let result = nth_hexagonal(10);
 /// assert_eq!(result, 190);
@@ -38,7 +38,7 @@ pub fn nth_hexagonal(n: u128) -> u128 {
 /// # Examples
 ///
 /// ```
-/// use numberlab::sequence::figurate::hexagonal::hexagonal_sequence;
+/// use numberlab::figurate::hexagonal::hexagonal_sequence;
 ///
 /// let sequence = hexagonal_sequence(5);
 /// assert_eq!(sequence, vec![0, 1, 6, 15, 28]);
