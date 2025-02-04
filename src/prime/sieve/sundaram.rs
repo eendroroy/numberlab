@@ -11,7 +11,7 @@
 /// # Examples
 ///
 /// ```
-/// use numberlab::prime::sieve::sundaram::sundaram_sequence;
+/// use numberlab::prime::sieve::sundaram_sequence;
 ///
 /// let primes = sundaram_sequence(30);
 /// assert_eq!(primes, vec![2, 3, 5, 7, 11, 13, 17, 19, 23, 29]);

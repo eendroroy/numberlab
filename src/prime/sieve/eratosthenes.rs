@@ -11,7 +11,7 @@
 /// # Examples
 ///
 /// ```
-/// use numberlab::prime::sieve::eratosthenes::eratosthenes_sequence;
+/// use numberlab::prime::sieve::eratosthenes_sequence;
 ///
 /// let primes = eratosthenes_sequence(30);
 /// assert_eq!(primes, vec![2, 3, 5, 7, 11, 13, 17, 19, 23, 29]);

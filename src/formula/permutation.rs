@@ -1,4 +1,4 @@
-use crate::sequence::factorial::nth_factorial;
+use crate::formula::factorial;
 
 /// Calculates the number of permutations (nPr) of `n` items taken `r` at a time.
 ///
@@ -14,7 +14,7 @@ use crate::sequence::factorial::nth_factorial;
 /// # Examples
 ///
 /// ```
-/// use numberlab::formula::permutation::permutation;
+/// use numberlab::formula::permutation;
 ///
 /// assert_eq!(permutation(10, 2), 90);
 /// assert_eq!(permutation(5, 3), 60);
@@ -34,5 +34,5 @@ pub fn permutation(n: u128, r: u128) -> u128 {
     if n < r {
         panic!("n must be greater than or equal to r");
     }
-    nth_factorial(n) / nth_factorial(n - r)
+    factorial(n) / factorial(n - r)
 }

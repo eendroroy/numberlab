@@ -1,4 +1,4 @@
-use numberlab::prime::sieve::sundaram::sundaram_sequence;
+use numberlab::prime::sieve::sundaram_sequence;
 
 fn main() {
     sundaram_sequence(100)

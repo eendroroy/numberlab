@@ -1,4 +1,4 @@
-use crate::sequence::factorial::nth_factorial;
+use crate::formula::factorial;
 
 /// Calculates the number of combinations (n choose r).
 ///
@@ -18,7 +18,7 @@ use crate::sequence::factorial::nth_factorial;
 /// # Examples
 ///
 /// ```
-/// use numberlab::formula::combination::combination;
+/// use numberlab::formula::combination;
 ///
 /// let result = combination(5, 3);
 /// assert_eq!(result, 10);
@@ -27,5 +27,5 @@ pub fn combination(n: u128, r: u128) -> u128 {
     if n < r {
         panic!("n must be greater than or equal to r");
     }
-    nth_factorial(n) / (nth_factorial(r) * nth_factorial(n - r))
+    factorial(n) / (factorial(r) * factorial(n - r))
 }

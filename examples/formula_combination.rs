@@ -1,4 +1,4 @@
-use numberlab::formula::combination::combination;
+use numberlab::formula::combination;
 
 fn main() {
     println!(" 0 C 0  = {:?}", combination(0, 0));

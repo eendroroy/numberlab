@@ -1,4 +1,4 @@
-use numberlab::prime::sieve::eratosthenes::eratosthenes_sequence;
+use numberlab::prime::sieve::eratosthenes_sequence;
 
 fn main() {
     eratosthenes_sequence(10000)

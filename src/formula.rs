@@ -1,4 +1,11 @@
-/// Combination formula
-pub mod combination;
-/// Permutation formula
-pub mod permutation;
+mod combination;
+mod factorial;
+mod gcd;
+mod lcm;
+mod permutation;
+
+pub use combination::combination;
+pub use factorial::factorial;
+pub use gcd::gcd;
+pub use lcm::lcm;
+pub use permutation::permutation;

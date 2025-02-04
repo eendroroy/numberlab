@@ -1,4 +1,5 @@
-/// Prime number using sieve of Eratosthenes algorithm
-pub mod eratosthenes;
-/// Prime number using sieve of Sundaram algorithm
-pub mod sundaram;
+mod eratosthenes;
+mod sundaram;
+
+pub use eratosthenes::eratosthenes_sequence;
+pub use sundaram::sundaram_sequence;

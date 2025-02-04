@@ -1,4 +1,4 @@
-use numberlab::formula::permutation::permutation;
+use numberlab::formula::permutation;
 
 fn main() {
     println!(" 0 P 0  = {:?}", permutation(0, 0));

@@ -1,7 +1,7 @@
+pub mod factorial;
+
 /// Arithmetic sequence
 pub mod arithmetic;
-/// Factorial sequence [OEIS A000142](https://oeis.org/A000142)
-pub mod factorial;
 /// Fibonacci sequence [OEIS A000045](https://oeis.org/A000045)
 pub mod fibonacci;
 /// Geometric sequence
@@ -14,3 +14,5 @@ pub mod recaman;
 pub mod sylvester;
 /// Tribonacci sequence [OEIS A000073](https://oeis.org/A000073)
 pub mod tribonacci;
+
+pub use factorial::factorial_sequence;

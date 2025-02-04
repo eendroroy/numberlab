@@ -1,4 +1,4 @@
-use crate::prime::sieve::eratosthenes::eratosthenes_sequence;
+use crate::prime::sieve::eratosthenes_sequence;
 use std::collections::BTreeMap;
 
 /// Returns a vector of factor pairs of the given number `n`.
@@ -124,56 +124,4 @@ pub fn prime_factors_exponent(n: usize) -> BTreeMap<usize, usize> {
         *map.entry(factor).or_insert(0) += 1;
     }
     map
-}
-
-/// Computes the greatest common divisor (GCD) of two numbers `a` and `b`.
-///
-/// # Arguments
-///
-/// * `a` - A u128 integer.
-/// * `b` - A u128 integer.
-///
-/// # Returns
-///
-/// The GCD of `a` and `b`.
-///
-/// # Examples
-///
-/// ```
-/// use numberlab::algorithm::factorize::gcd;
-///
-/// let result = gcd(28, 35);
-/// assert_eq!(result, 7);
-/// ```
-pub fn gcd(a: u128, b: u128) -> u128 {
-    match b {
-        0 => a,
-        _ => gcd(b, a % b),
-    }
-}
-
-/// Computes the least common multiple (LCM) of two numbers `a` and `b`.
-///
-/// # Arguments
-///
-/// * `a` - A u128 integer.
-/// * `b` - A u128 integer.
-///
-/// # Returns
-///
-/// The LCM of `a` and `b`.
-///
-/// # Examples
-///
-/// ```
-/// use numberlab::algorithm::factorize::lcm;
-///
-/// let result = lcm(28, 35);
-/// assert_eq!(result, 140);
-/// ```
-pub fn lcm(a: u128, b: u128) -> u128 {
-    match (a, b) {
-        (0, 0) => 0,
-        _ => a * b / gcd(a, b),
-    }
 }
