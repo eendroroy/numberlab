@@ -16,7 +16,7 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
 
 ## List of algorithms
 
-- Arithmetic:
+- Algorithms:
     - Factorization
 - Figurate Sequences:
     - Hexagonal Numbers ([OEIS A000384](https://oeis.org/A000384))
