@@ -1,3 +1,5 @@
+/// Collection of various numerical algorithms
+pub mod algorithm;
 /// Collection of Figurate sequence
 pub mod figurate;
 /// Collection of various number formula algorithms

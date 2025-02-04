@@ -16,6 +16,8 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
 
 ## List of algorithms
 
+- Arithmetic:
+    - Factorization
 - Figurate Sequences:
     - Hexagonal Numbers ([OEIS A000384](https://oeis.org/A000384))
     - Lazy Caterer's Sequence ([OEIS A000124](https://oeis.org/A000124))
