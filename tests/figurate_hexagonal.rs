@@ -1,4 +1,4 @@
-use numberlab::sequence::figurate::hexagonal::{hexagonal_sequence, nth_hexagonal};
+use numberlab::figurate::hexagonal::{hexagonal_sequence, nth_hexagonal};
 
 #[test]
 fn should_generate_nth_hexagonal() {

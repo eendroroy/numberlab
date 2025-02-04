@@ -1,4 +1,4 @@
-use numberlab::sequence::figurate::hexagonal::{hexagonal_sequence, nth_hexagonal};
+use numberlab::figurate::hexagonal::{hexagonal_sequence, nth_hexagonal};
 
 fn main() {
     let sequence = hexagonal_sequence(10);

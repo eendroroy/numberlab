@@ -1,4 +1,4 @@
-use numberlab::sequence::figurate::stella_octangula::{nth_stella_octangula, stella_octangula_sequence};
+use numberlab::figurate::stella_octangula::{nth_stella_octangula, stella_octangula_sequence};
 
 fn main() {
     let sequence = stella_octangula_sequence(10);

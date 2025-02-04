@@ -1,3 +1,5 @@
+/// Collection of Figurate sequence
+pub mod figurate;
 /// Collection of various number pattern algorithms
 pub mod pattern;
 /// Collection of Prime algorithms

@@ -1,4 +1,4 @@
-use numberlab::sequence::figurate::square::{nth_square, square_sequence};
+use numberlab::figurate::square::{nth_square, square_sequence};
 
 fn main() {
     let series = square_sequence(10);

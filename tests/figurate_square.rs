@@ -1,4 +1,4 @@
-use numberlab::sequence::figurate::square::{nth_square, square_sequence};
+use numberlab::figurate::square::{nth_square, square_sequence};
 
 #[test]
 fn should_generate_nth_square() {

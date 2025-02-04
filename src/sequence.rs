@@ -4,8 +4,6 @@ pub mod arithmetic;
 pub mod factorial;
 /// Fibonacci sequence [OEIS A000045](https://oeis.org/A000045)
 pub mod fibonacci;
-/// Collection of Figurate sequence
-pub mod figurate;
 /// Geometric sequence
 pub mod geometric;
 /// Lucas sequence [OEIS A000032](https://oeis.org/A000032)

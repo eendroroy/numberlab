@@ -1,4 +1,4 @@
-use numberlab::sequence::figurate::star::{nth_star, star_sequence};
+use numberlab::figurate::star::{nth_star, star_sequence};
 
 #[test]
 fn should_generate_nth_star() {

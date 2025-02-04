@@ -1,4 +1,4 @@
-use numberlab::sequence::figurate::stella_octangula::{
+use numberlab::figurate::stella_octangula::{
     nth_stella_octangula, stella_octangula_sequence,
 };
 
