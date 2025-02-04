@@ -39,6 +39,6 @@ fn should_generate_pascal_triangle() {
 fn should_generate_pascal_triangle_binomial() {
     assert_eq!(
         pascal_triangle_binomial(5),
-        vec![1, 1, 1, 1, 2, 1, 1, 3, 3, 1, 1, 4, 6, 4, 1,]
+        vec![1, 1, 1, 1, 2, 1, 1, 3, 3, 1, 1, 4, 6, 4, 1, ]
     );
 }
