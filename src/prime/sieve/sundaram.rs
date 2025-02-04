@@ -16,7 +16,7 @@
 /// let primes = sundaram_sequence(30);
 /// assert_eq!(primes, vec![2, 3, 5, 7, 11, 13, 17, 19, 23, 29]);
 /// ```
-pub fn sundaram_sequence(n: usize) -> Vec<u128> {
+pub fn sundaram_sequence(n: usize) -> Vec<usize> {
     let k = (n - 2) / 2;
     let mut sieve = vec![true; k + 1];
     for i in 1..k + 1 {
@@ -29,7 +29,7 @@ pub fn sundaram_sequence(n: usize) -> Vec<u128> {
     let mut primes = vec![2];
     for i in 1..k + 1 {
         if sieve[i] {
-            primes.push(2 * i as u128 + 1);
+            primes.push(2 * i + 1);
         }
     }
     primes
