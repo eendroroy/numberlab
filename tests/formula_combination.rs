@@ -1,6 +1,12 @@
 use numberlab::formula::combination::combination;
 
 #[test]
+#[should_panic(expected = "n must be greater than or equal to r")]
+fn should_panic() {
+    combination(100, 101);
+}
+
+#[test]
 fn should_generate_combination() {
     assert_eq!(combination(1, 1), 1);
     assert_eq!(combination(2, 1), 2);

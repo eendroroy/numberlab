@@ -1,6 +1,12 @@
 use numberlab::formula::permutation::permutation;
 
 #[test]
+#[should_panic(expected = "n must be greater than or equal to r")]
+fn should_panic() {
+    permutation(100, 101);
+}
+
+#[test]
 fn should_generate_combination() {
     assert_eq!(permutation(1, 1), 1);
     assert_eq!(permutation(2, 1), 2);

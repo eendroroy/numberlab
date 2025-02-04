@@ -1,4 +1,7 @@
-use numberlab::algorithm::factorize::{factor_pairs, factors, gcd, lcm, prime_factors};
+use numberlab::algorithm::factorize::{
+    factor_pairs, factors, gcd, lcm, prime_factors, prime_factors_exponent,
+};
+use std::collections::BTreeMap;
 
 #[test]
 fn should_generate_factor_pairs() {
@@ -34,6 +37,32 @@ fn should_generate_prime_factors() {
     assert_eq!(prime_factors(100), vec![2, 2, 5, 5]);
     assert_eq!(prime_factors(101), vec![101]);
     assert_eq!(prime_factors(102), vec![2, 3, 17]);
+}
+
+#[test]
+fn should_generate_prime_factors_exponent() {
+    assert_eq!(prime_factors_exponent(0), BTreeMap::new());
+    assert_eq!(prime_factors_exponent(1), BTreeMap::new());
+    assert_eq!(
+        prime_factors_exponent(25),
+        [(5, 2)].iter().cloned().collect()
+    );
+    assert_eq!(
+        prime_factors_exponent(28),
+        [(2, 2), (7, 1)].iter().cloned().collect()
+    );
+    assert_eq!(
+        prime_factors_exponent(100),
+        [(2, 2), (5, 2)].iter().cloned().collect()
+    );
+    assert_eq!(
+        prime_factors_exponent(101),
+        [(101, 1)].iter().cloned().collect()
+    );
+    assert_eq!(
+        prime_factors_exponent(102),
+        [(2, 1), (3, 1), (17, 1)].iter().cloned().collect()
+    );
 }
 
 #[test]
