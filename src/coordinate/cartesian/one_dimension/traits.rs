@@ -1,5 +1,4 @@
-/// A trait representing a one-dimensional point with methods to calculate distance,
-/// find the midpoint, and determine the position based on velocity and time.
+/// A trait representing a one-dimensional point with various geometric operations.
 pub trait Point1DTrait {
     /// Calculates the distance between two points.
     ///
@@ -25,7 +24,7 @@ pub trait Point1DTrait {
     fn position(&self, velocity: f64, time: f64) -> Self;
 }
 
-/// A trait representing a one-dimensional line with methods to calculate the length and midpoint.
+/// A trait representing a one-dimensional line with various geometric operations.
 pub trait Line1DTrait<PointType: Point1DTrait> {
     /// Calculates the length of the line.
     ///
