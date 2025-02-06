@@ -18,6 +18,10 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
 
 - Algorithms:
     - Factorization
+- Coordinates:
+    - Cartesian Coordinates
+        - One Dimensional Point
+        - One Dimensional Line
 - Figurate Sequences:
     - Hexagonal Numbers ([OEIS A000384](https://oeis.org/A000384))
     - Lazy Caterer's Sequence ([OEIS A000124](https://oeis.org/A000124))
