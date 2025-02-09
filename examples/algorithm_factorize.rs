@@ -3,7 +3,7 @@ use numberlab::algorithm::factorize::{
 };
 
 fn main() {
-    let n = 28;
+    let n = 13531;
     println!(
         "factors                {} => {}",
         n,

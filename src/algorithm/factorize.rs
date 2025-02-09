@@ -24,10 +24,8 @@ pub fn factor_pairs(n: usize) -> Vec<(usize, usize)> {
         return vec![];
     }
     let mut pairs = vec![(1, n)];
-    for start in 2.. {
-        if start * start > n {
-            break;
-        }
+    let sqrt_n = (n as f64).sqrt() as usize;
+    for start in 2..=sqrt_n {
         if n % start == 0 {
             pairs.push((start, n / start));
         }
@@ -84,15 +82,18 @@ pub fn prime_factors(n: usize) -> Vec<usize> {
     if n == 0 {
         return vec![];
     }
-    let mut primes = eratosthenes_sequence(n).into_iter();
+    let mut primes = eratosthenes_sequence((n as f64).sqrt() as usize).into_iter();
     let mut factors = vec![];
     let mut current = n;
-    while current > 1 {
+    while current > 1 && primes.len() > 0 {
         let prime = primes.next().unwrap();
         while current % prime == 0 {
             factors.push(prime);
             current /= prime;
         }
+    }
+    if current > 1 {
+        factors.push(current);
     }
     factors
 }
