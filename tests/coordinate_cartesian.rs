@@ -1,4 +1,4 @@
-use numberlab::coordinate::cartesian::{CPoint, CPointTrait};
+use numberlab::coordinate::{CPoint, CPointTrait};
 
 #[test]
 fn should_display_point() {

@@ -1,5 +1,4 @@
-use crate::coordinate::cartesian::{CPoint, CPointTrait};
-use crate::coordinate::polar::PPointTrait;
+use crate::coordinate::{CPoint, CPointTrait, PPointTrait};
 use std::fmt::Display;
 
 #[repr(C)]

@@ -1,4 +1,4 @@
-use numberlab::coordinate::polar::{PPoint, PPointTrait};
+use numberlab::coordinate::{PPoint, PPointTrait};
 
 fn main() {
     let p1 = PPoint { r: 1.75, theta: 2.75 };

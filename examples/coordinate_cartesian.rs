@@ -1,4 +1,4 @@
-use numberlab::coordinate::cartesian::{CPoint, CPointTrait};
+use numberlab::coordinate::{CPoint, CPointTrait};
 
 fn main() {
     let p1 = CPoint { x: 1.75, y: 2.75 };

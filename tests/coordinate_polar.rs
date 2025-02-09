@@ -1,4 +1,4 @@
-use numberlab::coordinate::polar::{PPoint, PPointTrait};
+use numberlab::coordinate::{PPoint, PPointTrait};
 
 #[test]
 fn should_display_point() {

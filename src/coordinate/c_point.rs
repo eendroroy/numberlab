@@ -1,5 +1,4 @@
-use crate::coordinate::cartesian::CPointTrait;
-use crate::coordinate::polar::PPoint;
+use crate::coordinate::{CPointTrait, PPoint};
 use std::fmt::Display;
 
 /// A structure representing a point in tow-dimensional space.
