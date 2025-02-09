@@ -1,5 +1,13 @@
-/// A trait representing a 2D point with various geometric operations.
-pub trait Point2DTrait {
+use crate::coordinate::cartesian::CPoint;
+
+pub trait PPointTrait {
+    /// Converts the polar point to a cartesian point.
+    ///
+    /// # Returns
+    ///
+    /// A cartesian point representation of the polar point.
+    fn to_cartesian(&self) -> CPoint;
+
     /// Calculates the distance between two points.
     ///
     /// # Arguments
@@ -64,15 +72,4 @@ pub trait Point2DTrait {
     ///
     /// The slope between the two points.
     fn slope(&self, other: &Self) -> f64;
-
-    /// Calculates the slope and y-intercept of the line passing through two points.
-    ///
-    /// # Arguments
-    ///
-    /// * `other` - Another point to calculate the slope and intercept with.
-    ///
-    /// # Returns
-    ///
-    /// A tuple containing the slope and y-intercept of the line.
-    fn slope_intercept(&self, other: &Self) -> (f64, f64);
 }

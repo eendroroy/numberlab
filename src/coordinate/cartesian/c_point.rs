@@ -1,4 +1,5 @@
-use crate::coordinate::cartesian::two_dimension::Point2DTrait;
+use crate::coordinate::cartesian::CPointTrait;
+use crate::coordinate::polar::PPoint;
 use std::fmt::Display;
 
 /// A structure representing a point in tow-dimensional space.
@@ -9,12 +10,18 @@ use std::fmt::Display;
 /// * `y` - The y-coordinate of the point.
 #[repr(C)]
 #[derive(Debug, Copy, Clone, PartialEq)]
-pub struct Point2D {
+pub struct CPoint {
     pub x: f64,
     pub y: f64,
 }
 
-impl Point2DTrait for Point2D {
+impl CPointTrait for CPoint {
+    fn to_polar(&self) -> PPoint {
+        let r = self.distance(&CPoint { x: 0.0, y: 0.0 });
+        let t = self.y.atan2(self.x);
+        PPoint { r, theta: t }
+    }
+
     fn distance(&self, other: &Self) -> f64 {
         self.distance_squared(other).sqrt()
     }
@@ -24,7 +31,7 @@ impl Point2DTrait for Point2D {
     }
 
     fn midpoint(&self, other: &Self) -> Self {
-        Point2D {
+        CPoint {
             x: (self.x + other.x) / 2.0,
             y: (self.y + other.y) / 2.0,
         }
@@ -53,7 +60,7 @@ impl Point2DTrait for Point2D {
     }
 }
 
-impl Display for Point2D {
+impl Display for CPoint {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         write!(f, "{{ x: {}, y: {} }}", self.x, self.y)
     }

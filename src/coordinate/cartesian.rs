@@ -1,5 +1,5 @@
-mod one_dimension;
-mod two_dimension;
+mod c_point;
+mod traits;
 
-pub use one_dimension::*;
-pub use two_dimension::*;
+pub use c_point::CPoint;
+pub use traits::CPointTrait;

@@ -1,16 +1,25 @@
-use numberlab::coordinate::cartesian::{Point2D, Point2DTrait};
+use numberlab::coordinate::cartesian::{CPoint, CPointTrait};
 
 #[test]
 fn should_display_point() {
-    let p = Point2D { x: 1.0, y: 2.0 };
+    let p = CPoint { x: 1.0, y: 2.0 };
 
     assert_eq!(format!("{}", p), "{ x: 1, y: 2 }");
 }
 
 #[test]
+fn should_convert_to_polar() {
+    let p = CPoint { x: 1.0, y: 2.0 };
+    let p_polar = p.to_polar();
+
+    assert_eq!(p_polar.r, 2.23606797749979);
+    assert_eq!(p_polar.theta, 1.1071487177940904);
+}
+
+#[test]
 fn should_calculate_distance() {
-    let p1 = Point2D { x: 1.0, y: 2.0 };
-    let p2 = Point2D { x: 3.0, y: 4.0 };
+    let p1 = CPoint { x: 1.0, y: 2.0 };
+    let p2 = CPoint { x: 3.0, y: 4.0 };
 
     assert_eq!(p1.distance(&p1), 0.0);
     assert_eq!(p1.distance(&p2), 2.8284271247461903);
@@ -20,8 +29,8 @@ fn should_calculate_distance() {
 
 #[test]
 fn should_calculate_distance_squared() {
-    let p1 = Point2D { x: 1.0, y: 2.0 };
-    let p2 = Point2D { x: 3.0, y: 4.0 };
+    let p1 = CPoint { x: 1.0, y: 2.0 };
+    let p2 = CPoint { x: 3.0, y: 4.0 };
 
     assert_eq!(p1.distance_squared(&p1), 0.0);
     assert_eq!(p1.distance_squared(&p2), 8.0);
@@ -31,8 +40,8 @@ fn should_calculate_distance_squared() {
 
 #[test]
 fn should_calculate_midpoint() {
-    let p1 = Point2D { x: 1.0, y: 2.0 };
-    let p2 = Point2D { x: 3.0, y: 4.0 };
+    let p1 = CPoint { x: 1.0, y: 2.0 };
+    let p2 = CPoint { x: 3.0, y: 4.0 };
 
     assert_eq!(p1.midpoint(&p1).x, 1.0);
     assert_eq!(p1.midpoint(&p1).y, 2.0);
@@ -46,8 +55,8 @@ fn should_calculate_midpoint() {
 
 #[test]
 fn should_calculate_is_origin() {
-    let p1 = Point2D { x: 0.0, y: 0.0 };
-    let p2 = Point2D { x: 1.0, y: 2.0 };
+    let p1 = CPoint { x: 0.0, y: 0.0 };
+    let p2 = CPoint { x: 1.0, y: 2.0 };
 
     assert_eq!(p1.is_origin(), true);
     assert_eq!(p2.is_origin(), false);
@@ -55,8 +64,8 @@ fn should_calculate_is_origin() {
 
 #[test]
 fn should_calculate_is_on_x_axis() {
-    let p1 = Point2D { x: 0.0, y: 0.0 };
-    let p2 = Point2D { x: 1.0, y: 2.0 };
+    let p1 = CPoint { x: 0.0, y: 0.0 };
+    let p2 = CPoint { x: 1.0, y: 2.0 };
 
     assert_eq!(p1.is_on_x_axis(), true);
     assert_eq!(p2.is_on_x_axis(), false);
@@ -64,8 +73,8 @@ fn should_calculate_is_on_x_axis() {
 
 #[test]
 fn should_calculate_is_on_y_axis() {
-    let p1 = Point2D { x: 0.0, y: 0.0 };
-    let p2 = Point2D { x: 1.0, y: 2.0 };
+    let p1 = CPoint { x: 0.0, y: 0.0 };
+    let p2 = CPoint { x: 1.0, y: 2.0 };
 
     assert_eq!(p1.is_on_y_axis(), true);
     assert_eq!(p2.is_on_y_axis(), false);
@@ -73,8 +82,8 @@ fn should_calculate_is_on_y_axis() {
 
 #[test]
 fn should_calculate_slope() {
-    let p1 = Point2D { x: 1.0, y: 2.0 };
-    let p2 = Point2D { x: 3.0, y: 4.0 };
+    let p1 = CPoint { x: 1.0, y: 2.0 };
+    let p2 = CPoint { x: 3.0, y: 4.0 };
 
     assert_eq!(p1.slope(&p1).is_nan(), true);
     assert_eq!(p1.slope(&p2), 1.0);
@@ -84,8 +93,8 @@ fn should_calculate_slope() {
 
 #[test]
 fn should_calculate_slope_intercept() {
-    let p1 = Point2D { x: 1.0, y: 2.0 };
-    let p2 = Point2D { x: 3.0, y: 4.0 };
+    let p1 = CPoint { x: 1.0, y: 2.0 };
+    let p2 = CPoint { x: 3.0, y: 4.0 };
 
     assert_eq!(p1.slope_intercept(&p2), (1.0, 1.0));
     assert_eq!(p2.slope_intercept(&p1), (1.0, 1.0));
