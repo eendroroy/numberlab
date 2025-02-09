@@ -21,7 +21,7 @@ use crate::formula::arithmetic::factorial;
 /// ```
 pub fn permutation(n: u128, r: u128) -> u128 {
     if n < r {
-        panic!("n must be greater than or equal to r");
+        panic!("'n' ({}) must be greater than or equal to 'r' ({})", n, r);
     }
     factorial(n) / factorial(n - r)
 }

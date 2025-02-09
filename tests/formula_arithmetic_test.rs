@@ -1,7 +1,7 @@
 use numberlab::formula::arithmetic::{combination, factorial, gcd, lcm, permutation};
 
 #[test]
-#[should_panic(expected = "n must be greater than or equal to r")]
+#[should_panic(expected = "'n' (100) must be greater than or equal to 'r' (101)")]
 fn should_panic_if_n_less_than_r_for_combination() {
     combination(100, 101);
 }
@@ -87,7 +87,7 @@ fn should_calculate_lcm() {
 }
 
 #[test]
-#[should_panic(expected = "n must be greater than or equal to r")]
+#[should_panic(expected = "'n' (100) must be greater than or equal to 'r' (101)")]
 fn should_panic_if_n_less_than_r_for_permutation() {
     permutation(100, 101);
 }

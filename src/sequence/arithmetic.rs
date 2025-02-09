@@ -30,7 +30,7 @@ where
     T: Add<Output=T> + Sub<Output=T> + Mul<Output=T> + Div<Output=T> + From<i32> + Copy,
 {
     match n {
-        0 => panic!("'n' must be greater than 0"),
+        0 => panic!("'n' ({}) must be greater than 0", n),
         _ => a + (d * T::from(n as i32 - 1)),
     }
 }

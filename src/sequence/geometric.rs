@@ -23,7 +23,7 @@
 /// ```
 pub fn nth_geometric(a: f64, r: f64, n: u64) -> f64 {
     match n {
-        0 => panic!("'n' must be greater than 0"),
+        0 => panic!("'n' ({}) must be greater than 0", n),
         1 => a,
         _ => a * r.powf(n as f64 - 1.0),
     }
