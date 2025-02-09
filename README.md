@@ -36,7 +36,7 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
         - GCD
         - LCM
         - Permutation
-- Partitions:
+- Patterns:
     - Pascal's Triangle ([OEIS A007318](https://oeis.org/A007318))
 - Primes:
     - Sieve:
