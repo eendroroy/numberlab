@@ -98,5 +98,4 @@ fn should_return_index() {
 
     assert_eq!(matrix[(2, 1)], 4);
     assert_eq!(matrix[(2, 2)], 1);
-
 }

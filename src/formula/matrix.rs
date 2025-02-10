@@ -2,21 +2,41 @@ use std::collections::HashMap;
 use std::fmt::{Display, Formatter, Result};
 use std::ops::{Add, Div, Index, IndexMut, Mul, Sub};
 
+/// A generic Matrix struct that holds a 2D array of elements.
+///
+/// # Type Parameters
+///
+/// * `T` - The type of the elements in the matrix.
+/// * `ROWS` - The number of rows in the matrix.
+/// * `COLS` - The number of columns in the matrix.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Matrix<T, const ROWS: usize, const COLS: usize> {
     data: [[T; COLS]; ROWS],
 }
-
 impl<T, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, COLS>
 where
     T: Default + Copy,
 {
+    /// Creates a new matrix with default values.
+    ///
+    /// # Returns
+    ///
+    /// A new `Matrix` instance with all elements set to their default values.
     pub fn new() -> Self {
         Self {
             data: [[T::default(); COLS]; ROWS],
         }
     }
 
+    /// Creates a new matrix from a given 2D array.
+    ///
+    /// # Parameters
+    ///
+    /// * `data` - A 2D array containing the elements to initialize the matrix with.
+    ///
+    /// # Returns
+    ///
+    /// A new `Matrix` instance initialized with the provided data.
     pub fn from_array(data: [[T; COLS]; ROWS]) -> Self {
         Self { data }
     }
@@ -38,7 +58,7 @@ impl<T, const ROWS: usize, const COLS: usize> IndexMut<(usize, usize)> for Matri
 
 impl<T, const ROWS: usize, const COLS: usize> Add for Matrix<T, ROWS, COLS>
 where
-    T: Add<Output = T> + Default + Copy,
+    T: Add<Output=T> + Default + Copy,
 {
     type Output = Self;
 
@@ -55,7 +75,7 @@ where
 
 impl<T, const ROWS: usize, const COLS: usize> Sub for Matrix<T, ROWS, COLS>
 where
-    T: Sub<Output = T> + Default + Copy,
+    T: Sub<Output=T> + Default + Copy,
 {
     type Output = Self;
 
@@ -72,7 +92,7 @@ where
 
 impl<T, const R: usize, const C: usize, const K: usize> Mul<Matrix<T, C, K>> for Matrix<T, R, C>
 where
-    T: Mul<Output = T> + Add<Output = T> + Default + Copy,
+    T: Mul<Output=T> + Add<Output=T> + Default + Copy,
 {
     type Output = Matrix<T, R, K>;
 
@@ -91,7 +111,7 @@ where
 
 impl<T, const ROWS: usize, const COLS: usize> Div for Matrix<T, ROWS, COLS>
 where
-    T: Div<Output = T> + Default + Copy,
+    T: Div<Output=T> + Default + Copy,
 {
     type Output = Self;
 
