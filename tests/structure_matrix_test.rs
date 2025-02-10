@@ -1,21 +1,22 @@
-use numberlab::formula::matrix::Matrix;
+use numberlab::mat;
+use numberlab::structure::Matrix;
 
 #[test]
 fn should_print_matrix() {
     assert_eq!(
-        format!("{}", Matrix::from_array([[10, 2, 3], [3, 40, 1]])),
+        format!("{}", mat![[10, 2, 3], [3, 40, 1]]),
         "\n 10  2 3\n  3 40 1\n"
     );
     assert_eq!(
-        format!("{}", Matrix::from_array([[1, 2, 3], [3, 4, 1]])),
+        format!("{}", mat![[1, 2, 3], [3, 4, 1]]),
         "\n 1 2 3\n 3 4 1\n"
     );
 }
 
 #[test]
 fn should_add_matrix() {
-    let matrix1 = Matrix::from_array([[10, 2, 3], [3, 40, 1]]);
-    let matrix2 = Matrix::from_array([[1, 2, 3], [3, 4, 5]]);
+    let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
+    let matrix2 = mat![[1, 2, 3], [3, 4, 5]];
 
     assert_eq!(
         format!("{}", matrix1.clone() + matrix2.clone()),
@@ -25,8 +26,8 @@ fn should_add_matrix() {
 
 #[test]
 fn should_subtract_matrix() {
-    let matrix1 = Matrix::from_array([[10, 2, 3], [3, 40, 1]]);
-    let matrix2 = Matrix::from_array([[1, 2, 3], [3, 4, 5]]);
+    let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
+    let matrix2 = mat![[1, 2, 3], [3, 4, 5]];
 
     assert_eq!(
         format!("{}", matrix1.clone() - matrix2.clone()),
@@ -36,8 +37,8 @@ fn should_subtract_matrix() {
 
 #[test]
 fn should_multiply_matrix() {
-    let matrix1 = Matrix::from_array([[10, 2, 3], [3, 40, 1]]);
-    let matrix2 = Matrix::from_array([[1, 2], [3, 4], [5, 6]]);
+    let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
+    let matrix2 = mat![[1, 2], [3, 4], [5, 6]];
 
     assert_eq!(
         format!("{}", matrix1.clone() * matrix2.clone()),
@@ -47,8 +48,8 @@ fn should_multiply_matrix() {
 
 #[test]
 fn should_divide_matrix() {
-    let matrix1 = Matrix::from_array([[10, 2, 3], [3, 40, 1]]);
-    let matrix2 = Matrix::from_array([[1, 2, 3], [3, 4, 5]]);
+    let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
+    let matrix2 = mat![[1, 2, 3], [3, 4, 5]];
 
     assert_eq!(
         format!("{}", matrix1.clone() / matrix2.clone()),
@@ -58,7 +59,7 @@ fn should_divide_matrix() {
 
 #[test]
 fn should_return_index() {
-    let matrix = Matrix::from_array([[10.0, 2.0, 3.0], [3.0, 40.0, 1.0]]);
+    let matrix = mat![[10.0, 2.0, 3.0], [3.0, 40.0, 1.0]];
 
     assert_eq!(matrix[(0, 0)], 10.0);
     assert_eq!(matrix[(0, 1)], 2.0);
@@ -67,14 +68,7 @@ fn should_return_index() {
     assert_eq!(matrix[(1, 1)], 40.0);
     assert_eq!(matrix[(1, 2)], 1.0);
 
-    let matrix = &mut Matrix::from_array(
-        [
-            [10, 2, 3, 3],
-            [3, 40, 1, 6],
-            [31, 40, 10, 5],
-            [3, 4, 1, 6],
-        ]
-    );
+    let matrix = &mut mat![[10, 2, 3, 3], [3, 40, 1, 6], [31, 40, 10, 5], [3, 4, 1, 6],];
 
     assert_eq!(matrix[(0, 0)], 10);
     assert_eq!(matrix[(0, 1)], 2);

@@ -12,3 +12,5 @@ pub mod pattern;
 pub mod prime;
 /// Collection of various number sequence algorithms
 pub mod sequence;
+/// Collection of various Data Structure
+pub mod structure;

@@ -1,9 +1,10 @@
-use numberlab::formula::matrix::Matrix;
+use numberlab::mat;
+use numberlab::structure::Matrix;
 
 fn main() {
-    let matrix1 = Matrix::from_array([[10, 2, 3], [3, 40, 1]]);
-    let matrix2 = Matrix::from_array([[1, 2, 3], [3, 4, 5]]);
-    let matrix3 = Matrix::from_array([[1, 2], [3, 4], [5, 6]]);
+    let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
+    let matrix2 = mat![[1, 2, 3], [3, 4, 5]];
+    let matrix3 = mat![[1, 2], [3, 4], [5, 6]];
 
     println!("M1 : {}", matrix1);
     println!("M2 : {}", matrix2);

@@ -41,7 +41,6 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
         - GCD
         - LCM
         - Permutation
-    - Matrix
 - Patterns:
     - Pascal's Triangle ([OEIS A007318](https://oeis.org/A007318))
 - Primes:
@@ -57,6 +56,8 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
     - Recaman Sequence ([OEIS A005132](https://oeis.org/A005132))
     - Sylvester's Sequence ([OEIS A000058](https://oeis.org/A000058))
     - Tribonacci Sequence ([OEIS A000073](https://oeis.org/A000073))
+- Structures:
+    - Matrix
 
 ## License
 

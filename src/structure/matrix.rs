@@ -2,6 +2,33 @@ use std::collections::HashMap;
 use std::fmt::{Display, Formatter, Result};
 use std::ops::{Add, Div, Index, IndexMut, Mul, Sub};
 
+/// Macro to create a `Matrix` from a nested array.
+///
+/// # Example
+///
+/// ```
+/// use numberlab::mat;
+/// use numberlab::structure::Matrix;
+///
+/// let matrix = mat![
+///     [1, 2, 3],
+///     [4, 5, 6],
+///     [7, 8, 9]
+/// ];
+///
+/// assert_eq!(matrix, mat![[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+/// assert_eq!(format!("{}", matrix), "\n 1 2 3\n 4 5 6\n 7 8 9\n");
+/// ```
+#[macro_export]
+macro_rules! mat {
+    ($([$($elem:expr),* $(,)?]),* $(,)?) => {
+        {
+            let data = [$( [ $($elem),* ] ),*];
+            Matrix::from_array(data)
+        }
+    };
+}
+
 /// A generic Matrix struct that holds a 2D array of elements.
 ///
 /// # Type Parameters
@@ -58,7 +85,7 @@ impl<T, const ROWS: usize, const COLS: usize> IndexMut<(usize, usize)> for Matri
 
 impl<T, const ROWS: usize, const COLS: usize> Add for Matrix<T, ROWS, COLS>
 where
-    T: Add<Output=T> + Default + Copy,
+    T: Add<Output = T> + Default + Copy,
 {
     type Output = Self;
 
@@ -66,7 +93,7 @@ where
         let mut result = Self::new();
         for i in 0..ROWS {
             for j in 0..COLS {
-                result.data[i][j] = self.data[i][j] + other.data[i][j];
+                result[(i, j)] = self[(i, j)] + other[(i, j)];
             }
         }
         result
@@ -75,7 +102,7 @@ where
 
 impl<T, const ROWS: usize, const COLS: usize> Sub for Matrix<T, ROWS, COLS>
 where
-    T: Sub<Output=T> + Default + Copy,
+    T: Sub<Output = T> + Default + Copy,
 {
     type Output = Self;
 
@@ -83,7 +110,7 @@ where
         let mut result = Self::new();
         for i in 0..ROWS {
             for j in 0..COLS {
-                result.data[i][j] = self.data[i][j] - other.data[i][j];
+                result[(i, j)] = self[(i, j)] - other[(i, j)];
             }
         }
         result
@@ -92,7 +119,7 @@ where
 
 impl<T, const R: usize, const C: usize, const K: usize> Mul<Matrix<T, C, K>> for Matrix<T, R, C>
 where
-    T: Mul<Output=T> + Add<Output=T> + Default + Copy,
+    T: Mul<Output = T> + Add<Output = T> + Default + Copy,
 {
     type Output = Matrix<T, R, K>;
 
@@ -101,7 +128,7 @@ where
         for i in 0..R {
             for j in 0..K {
                 for k in 0..C {
-                    result.data[i][j] = result.data[i][j] + (self.data[i][k] * other.data[k][j]);
+                    result[(i, j)] = result[(i, j)] + (self.data[i][k] * other.data[k][j]);
                 }
             }
         }
@@ -111,7 +138,7 @@ where
 
 impl<T, const ROWS: usize, const COLS: usize> Div for Matrix<T, ROWS, COLS>
 where
-    T: Div<Output=T> + Default + Copy,
+    T: Div<Output = T> + Default + Copy,
 {
     type Output = Self;
 
@@ -119,7 +146,7 @@ where
         let mut result = Self::new();
         for i in 0..ROWS {
             for j in 0..COLS {
-                result.data[i][j] = self.data[i][j] / other.data[i][j];
+                result[(i, j)] = self[(i, j)] / other[(i, j)];
             }
         }
         result
@@ -134,7 +161,7 @@ where
         let mut lengths = HashMap::<usize, usize>::new();
         for j in 0..COLS {
             for i in 0..ROWS {
-                let length = self.data[i][j].to_string().len();
+                let length = self[(i, j)].to_string().len();
                 lengths
                     .entry(j)
                     .and_modify(|e| *e = (*e).max(length))
@@ -145,7 +172,7 @@ where
         writeln!(f)?;
         for i in 0..ROWS {
             for j in 0..COLS {
-                write!(f, "{:width$}", self.data[i][j], width = lengths[&j] + 1)?;
+                write!(f, "{:width$}", self[(i, j)], width = lengths[&j] + 1)?;
             }
             writeln!(f)?;
         }
