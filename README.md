@@ -2,6 +2,11 @@
 
 A collection of numerical algorithms
 
+## Overview
+
+`numberlab` is a Rust library that provides a variety of numerical algorithms, including matrix operations, prime number
+sieves, and various sequences. It is designed to be easy to use and efficient.
+
 ## Installation
 
 To use the `numberlab` library in your Rust project, add the following to your `Cargo.toml`:
@@ -36,6 +41,7 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
         - GCD
         - LCM
         - Permutation
+    - Matrix
 - Patterns:
     - Pascal's Triangle ([OEIS A007318](https://oeis.org/A007318))
 - Primes:
@@ -51,3 +57,7 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
     - Recaman Sequence ([OEIS A005132](https://oeis.org/A005132))
     - Sylvester's Sequence ([OEIS A000058](https://oeis.org/A000058))
     - Tribonacci Sequence ([OEIS A000073](https://oeis.org/A000073))
+
+## License
+
+This project is licensed under the [GNU AGPL-3.0 License](https://www.gnu.org/licenses/agpl-3.0.html). See the [LICENSE](./LICENSE) file for more details.
