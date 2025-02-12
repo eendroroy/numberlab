@@ -202,30 +202,6 @@ where
     }
 }
 
-impl<T, const ROWS: usize, const COLS: usize> Div for Matrix<T, ROWS, COLS>
-where
-    T: Default
-    + One
-    + Copy
-    + Add<Output=T>
-    + Sub<Output=T>
-    + Mul<Output=T>
-    + Div<Output=T>
-    + Display,
-{
-    type Output = Self;
-
-    fn div(self, other: Self) -> Self::Output {
-        let mut result = Self::new();
-        for i in 0..ROWS {
-            for j in 0..COLS {
-                result[(i, j)] = self[(i, j)] / other[(i, j)];
-            }
-        }
-        result
-    }
-}
-
 impl<T, const ROWS: usize, const COLS: usize> Display for Matrix<T, ROWS, COLS>
 where
     T: Default

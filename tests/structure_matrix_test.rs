@@ -48,17 +48,6 @@ fn should_multiply_matrix() {
 }
 
 #[test]
-fn should_divide_matrix() {
-    let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
-    let matrix2 = mat![[1, 2, 3], [3, 4, 5]];
-
-    assert_eq!(
-        format!("{}", matrix1.clone() / matrix2.clone()),
-        "\n 10  1 1\n  1 10 0\n"
-    );
-}
-
-#[test]
 fn should_return_index() {
     let matrix = mat![[10.0, 2.0, 3.0], [3.0, 40.0, 1.0]];
 

@@ -14,7 +14,6 @@ fn main() {
     println!("M1 + M2 : {}", matrix1.clone() + matrix2.clone());
     println!("M1 - M2 : {}", matrix1.clone() - matrix2.clone());
     println!("M1 * M3 : {}", matrix1.clone() * matrix3.clone());
-    println!("M1 / M3 : {}", matrix1.clone() / matrix2.clone());
 
     println!();
 
