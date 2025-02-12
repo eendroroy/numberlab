@@ -6,6 +6,7 @@ fn main() {
     let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
     let matrix2 = mat![[1, 2, 3], [3, 4, 5]];
     let matrix3 = mat![[1, 2], [3, 4], [5, 6]];
+    let matrix4 = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
 
     println!("M1 : {}", matrix1);
     println!("M2 : {}", matrix2);
@@ -24,7 +25,12 @@ fn main() {
     println!();
 
 
-    println!("I1  : {}", Matrix::<i32, 1, 1>::identity());
-    println!("I2  : {}", Matrix::<i32, 2, 2>::identity());
-    println!("I10 : {}", Matrix::<i32, 10, 10>::identity());
+    println!("I1  : {}", Matrix::<i32, 1>::identity());
+    println!("I2  : {}", Matrix::<i32, 2>::identity());
+    println!("I10 : {}", Matrix::<i32, 10>::identity());
+
+    println!();
+
+    println!("Upper Triangular of {} : {}", matrix4, matrix4.upper_triangular());
+    println!("Lower Triangular of {} : {}", matrix4, matrix4.lower_triangular());
 }

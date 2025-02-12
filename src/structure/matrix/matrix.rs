@@ -40,20 +40,20 @@ macro_rules! mat {
 /// * `ROWS` - The number of rows in the matrix.
 /// * `COLS` - The number of columns in the matrix.
 #[derive(Debug, Clone, PartialEq)]
-pub struct Matrix<T, const ROWS: usize, const COLS: usize> {
+pub struct Matrix<T, const ROWS: usize, const COLS: usize = ROWS> {
     data: [[T; COLS]; ROWS],
 }
 
 impl<T, const ROWS: usize, const COLS: usize> MatrixTrait<T, ROWS, COLS> for Matrix<T, ROWS, COLS>
 where
     T: Default
-        + One
-        + Copy
-        + Add<Output = T>
-        + Sub<Output = T>
-        + Mul<Output = T>
-        + Div<Output = T>
-        + Display,
+    + One
+    + Copy
+    + Add<Output=T>
+    + Sub<Output=T>
+    + Mul<Output=T>
+    + Div<Output=T>
+    + Display,
 {
     type Transpose = Matrix<T, COLS, ROWS>;
 
@@ -70,9 +70,33 @@ where
     fn identity() -> Self {
         let mut result = Self::new();
         for i in 0..ROWS {
-            for j in 0..COLS {
+            for j in 0..ROWS {
                 if i == j {
                     result[(i, j)] = T::one();
+                }
+            }
+        }
+        result
+    }
+
+    fn upper_triangular(&self) -> Self {
+        let mut result = Self::new();
+        for i in 0..ROWS {
+            for j in 0..ROWS {
+                if i <= j {
+                    result[(i, j)] = self[(i, j)];
+                }
+            }
+        }
+        result
+    }
+
+    fn lower_triangular(&self) -> Self {
+        let mut result = Self::new();
+        for i in 0..ROWS {
+            for j in 0..COLS {
+                if i >= j {
+                    result[(i, j)] = self[(i, j)];
                 }
             }
         }
@@ -107,13 +131,13 @@ impl<T, const ROWS: usize, const COLS: usize> IndexMut<(usize, usize)> for Matri
 impl<T, const ROWS: usize, const COLS: usize> Add for Matrix<T, ROWS, COLS>
 where
     T: Default
-        + One
-        + Copy
-        + Add<Output = T>
-        + Sub<Output = T>
-        + Mul<Output = T>
-        + Div<Output = T>
-        + Display,
+    + One
+    + Copy
+    + Add<Output=T>
+    + Sub<Output=T>
+    + Mul<Output=T>
+    + Div<Output=T>
+    + Display,
 {
     type Output = Self;
 
@@ -131,13 +155,13 @@ where
 impl<T, const ROWS: usize, const COLS: usize> Sub for Matrix<T, ROWS, COLS>
 where
     T: Default
-        + One
-        + Copy
-        + Add<Output = T>
-        + Sub<Output = T>
-        + Mul<Output = T>
-        + Div<Output = T>
-        + Display,
+    + One
+    + Copy
+    + Add<Output=T>
+    + Sub<Output=T>
+    + Mul<Output=T>
+    + Div<Output=T>
+    + Display,
 {
     type Output = Self;
 
@@ -155,13 +179,13 @@ where
 impl<T, const R: usize, const C: usize, const K: usize> Mul<Matrix<T, C, K>> for Matrix<T, R, C>
 where
     T: Default
-        + One
-        + Copy
-        + Add<Output = T>
-        + Sub<Output = T>
-        + Mul<Output = T>
-        + Div<Output = T>
-        + Display,
+    + One
+    + Copy
+    + Add<Output=T>
+    + Sub<Output=T>
+    + Mul<Output=T>
+    + Div<Output=T>
+    + Display,
 {
     type Output = Matrix<T, R, K>;
 
@@ -181,13 +205,13 @@ where
 impl<T, const ROWS: usize, const COLS: usize> Div for Matrix<T, ROWS, COLS>
 where
     T: Default
-        + One
-        + Copy
-        + Add<Output = T>
-        + Sub<Output = T>
-        + Mul<Output = T>
-        + Div<Output = T>
-        + Display,
+    + One
+    + Copy
+    + Add<Output=T>
+    + Sub<Output=T>
+    + Mul<Output=T>
+    + Div<Output=T>
+    + Display,
 {
     type Output = Self;
 
@@ -205,13 +229,13 @@ where
 impl<T, const ROWS: usize, const COLS: usize> Display for Matrix<T, ROWS, COLS>
 where
     T: Default
-        + One
-        + Copy
-        + Add<Output = T>
-        + Sub<Output = T>
-        + Mul<Output = T>
-        + Div<Output = T>
-        + Display,
+    + One
+    + Copy
+    + Add<Output=T>
+    + Sub<Output=T>
+    + Mul<Output=T>
+    + Div<Output=T>
+    + Display,
 {
     fn fmt(&self, f: &mut Formatter) -> core::fmt::Result {
         let mut lengths = HashMap::<usize, usize>::new();
