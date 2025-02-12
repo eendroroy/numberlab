@@ -1,5 +1,6 @@
 use numberlab::mat;
-use numberlab::structure::Matrix;
+use numberlab::structure::matrix::Matrix;
+use numberlab::structure::matrix::MatrixTrait;
 
 #[test]
 fn should_print_matrix() {
@@ -92,4 +93,36 @@ fn should_return_index() {
 
     assert_eq!(matrix[(2, 1)], 4);
     assert_eq!(matrix[(2, 2)], 1);
+}
+
+#[test]
+fn should_generate_identity_matrix() {
+    assert_eq!(Matrix::<i32, 1, 1>::identity(), mat![[1]]);
+    assert_eq!(Matrix::<i32, 2, 2>::identity(), mat![[1, 0], [0, 1]]);
+    assert_eq!(
+        Matrix::<i32, 10, 10>::identity(),
+        mat![
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        ]
+    );
+}
+
+#[test]
+fn should_transpose_matrix() {
+    let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
+    let matrix2 = mat![[1, 2, 3], [3, 4, 5]];
+    let matrix3 = mat![[1, 2], [3, 4], [5, 6]];
+
+    assert_eq!(matrix1.transpose(), mat![[10, 3], [2, 40], [3, 1]]);
+    assert_eq!(matrix2.transpose(), mat![[1, 3], [2, 4], [3, 5]]);
+    assert_eq!(matrix3.transpose(), mat![[1, 3, 5], [2, 4, 6]]);
 }

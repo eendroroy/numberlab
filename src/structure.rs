@@ -1,4 +1,2 @@
-mod matrix;
-
 /// 2d Matrix
-pub use matrix::*;
+pub mod matrix;
