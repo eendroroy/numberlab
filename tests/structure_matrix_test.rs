@@ -126,3 +126,23 @@ fn should_transpose_matrix() {
     assert_eq!(matrix2.transpose(), mat![[1, 3], [2, 4], [3, 5]]);
     assert_eq!(matrix3.transpose(), mat![[1, 3, 5], [2, 4, 6]]);
 }
+
+#[test]
+fn should_return_upper_triangular_matrix() {
+    let matrix = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+
+    assert_eq!(
+        matrix.upper_triangular(),
+        mat![[1, 2, 3], [0, 4, 5], [0, 0, 7]]
+    );
+}
+
+#[test]
+fn should_return_lower_triangular_matrix() {
+    let matrix = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+
+    assert_eq!(
+        matrix.lower_triangular(),
+        mat![[1, 0, 0], [3, 4, 0], [5, 6, 7]]
+    );
+}
