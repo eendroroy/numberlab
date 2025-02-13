@@ -1,6 +1,6 @@
 use numberlab::mat;
-use numberlab::structure::matrix::Matrix;
-use numberlab::structure::matrix::MatrixTrait;
+use numberlab::structure::matrix::{identity, lower_triangular, Matrix};
+use numberlab::structure::matrix::{upper_triangular, MatrixTrait};
 
 #[test]
 fn should_print_matrix() {
@@ -86,10 +86,10 @@ fn should_return_index() {
 
 #[test]
 fn should_generate_identity_matrix() {
-    assert_eq!(Matrix::<i32, 1, 1>::identity(), mat![[1]]);
-    assert_eq!(Matrix::<i32, 2, 2>::identity(), mat![[1, 0], [0, 1]]);
+    assert_eq!(identity::<i32, 1>(), mat![[1]]);
+    assert_eq!(identity::<i32, 2>(), mat![[1, 0], [0, 1]]);
     assert_eq!(
-        Matrix::<i32, 10, 10>::identity(),
+        identity::<i32, 10>(),
         mat![
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -118,20 +118,19 @@ fn should_transpose_matrix() {
 
 #[test]
 fn should_return_upper_triangular_matrix() {
-    let matrix = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+    let mut matrix = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+    upper_triangular(&mut matrix);
 
     assert_eq!(
-        matrix.upper_triangular(),
+        matrix,
         mat![[1, 2, 3], [0, 4, 5], [0, 0, 7]]
     );
 }
 
 #[test]
 fn should_return_lower_triangular_matrix() {
-    let matrix = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+    let mut matrix = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+    lower_triangular(&mut matrix);
 
-    assert_eq!(
-        matrix.lower_triangular(),
-        mat![[1, 0, 0], [3, 4, 0], [5, 6, 7]]
-    );
+    assert_eq!(matrix, mat![[1, 0, 0], [3, 4, 0], [5, 6, 7]]);
 }

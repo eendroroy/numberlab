@@ -1,6 +1,7 @@
 use numberlab::mat;
-use numberlab::structure::matrix::Matrix;
-use numberlab::structure::matrix::MatrixTrait;
+use numberlab::structure::matrix::{
+    identity, lower_triangular, upper_triangular, Matrix, MatrixTrait,
+};
 
 fn main() {
     let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
@@ -23,13 +24,21 @@ fn main() {
 
     println!();
 
-
-    println!("I1  : {}", Matrix::<i32, 1>::identity());
-    println!("I2  : {}", Matrix::<i32, 2>::identity());
-    println!("I10 : {}", Matrix::<i32, 10>::identity());
+    println!("I1  : {}", identity::<i8, 1>());
+    println!("I2  : {}", identity::<i8, 2>());
+    println!("I5  : {}", identity::<i8, 5>());
+    println!("I10 : {}", identity::<i8, 10>());
 
     println!();
 
-    println!("Upper Triangular of {} : {}", matrix4, matrix4.upper_triangular());
-    println!("Lower Triangular of {} : {}", matrix4, matrix4.lower_triangular());
+    println!(
+        "UM of {} is : {}",
+        matrix4,
+        upper_triangular(&mut (matrix4.clone()))
+    );
+    println!(
+        "LM of {} is : {}",
+        matrix4,
+        lower_triangular(&mut (matrix4.clone()))
+    );
 }

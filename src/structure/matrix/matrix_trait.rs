@@ -6,13 +6,13 @@ use std::ops::{Add, Div, Mul, Sub};
 pub trait MatrixTrait<T, const ROWS: usize, const COLS: usize>
 where
     T: Default
-        + One
-        + Copy
-        + Add<Output = T>
-        + Sub<Output = T>
-        + Mul<Output = T>
-        + Div<Output = T>
-        + Display,
+    + One
+    + Copy
+    + Add<Output=T>
+    + Sub<Output=T>
+    + Mul<Output=T>
+    + Div<Output=T>
+    + Display,
 {
     type Transpose;
 
@@ -25,33 +25,6 @@ where
     ///
     /// * `data` - A 2D array containing the matrix elements.
     fn from_array(data: [[T; COLS]; ROWS]) -> Self;
-
-    /// Creates an identity matrix.
-    ///
-    /// # Returns
-    ///
-    /// A new matrix which is the identity matrix.
-    fn identity() -> Self
-    where
-        [(); ROWS]: PartialEq<[(); COLS]>;
-
-    /// Returns the upper triangular matrix of the original matrix.
-    ///
-    /// # Returns
-    ///
-    /// A new matrix which is the upper triangular matrix.
-    fn upper_triangular(&self) -> Self
-    where
-        [(); ROWS]: PartialEq<[(); COLS]>;
-
-    /// Returns the lower triangular matrix of the original matrix.
-    ///
-    /// # Returns
-    ///
-    /// A new matrix which is the lower triangular matrix.
-    fn lower_triangular(&self) -> Self
-    where
-        [(); ROWS]: PartialEq<[(); COLS]>;
 
     /// Returns the transpose of the matrix.
     ///

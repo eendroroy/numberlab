@@ -4,34 +4,6 @@ use std::collections::HashMap;
 use std::fmt::{Display, Formatter};
 use std::ops::{Add, Div, Index, IndexMut, Mul, Sub};
 
-/// Macro to create a `Matrix` from a nested array.
-///
-/// # Example
-///
-/// ```
-/// use numberlab::mat;
-/// use numberlab::structure::matrix::Matrix;
-/// use numberlab::structure::matrix::MatrixTrait;
-///
-/// let matrix = mat![
-///     [1, 2, 3],
-///     [4, 5, 6],
-///     [7, 8, 9]
-/// ];
-///
-/// assert_eq!(matrix, mat![[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
-/// assert_eq!(format!("{}", matrix), "\n 1 2 3\n 4 5 6\n 7 8 9\n");
-/// ```
-#[macro_export]
-macro_rules! mat {
-    ($([$($elem:expr),* $(,)?]),* $(,)?) => {
-        {
-            let data = [$( [ $($elem),* ] ),*];
-            Matrix::from_array(data)
-        }
-    };
-}
-
 /// A generic Matrix struct that holds a 2D array of elements.
 ///
 /// # Type Parameters
@@ -65,42 +37,6 @@ where
 
     fn from_array(data: [[T; COLS]; ROWS]) -> Self {
         Self { data }
-    }
-
-    fn identity() -> Self {
-        let mut result = Self::new();
-        for i in 0..ROWS {
-            for j in 0..ROWS {
-                if i == j {
-                    result[(i, j)] = T::one();
-                }
-            }
-        }
-        result
-    }
-
-    fn upper_triangular(&self) -> Self {
-        let mut result = Self::new();
-        for i in 0..ROWS {
-            for j in 0..ROWS {
-                if i <= j {
-                    result[(i, j)] = self[(i, j)];
-                }
-            }
-        }
-        result
-    }
-
-    fn lower_triangular(&self) -> Self {
-        let mut result = Self::new();
-        for i in 0..ROWS {
-            for j in 0..COLS {
-                if i >= j {
-                    result[(i, j)] = self[(i, j)];
-                }
-            }
-        }
-        result
     }
 
     fn transpose(&self) -> Matrix<T, COLS, ROWS> {
