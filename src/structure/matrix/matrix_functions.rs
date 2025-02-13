@@ -1,7 +1,8 @@
+use crate::structure::matrix::matrix_trait::MatrixDataTrait;
+use crate::structure::matrix::one::One;
 use crate::structure::matrix::{Matrix, MatrixTrait};
 use std::fmt::Display;
 use std::ops::{Add, Div, Mul, Sub};
-use crate::structure::matrix::one::One;
 
 /// Creates an identity matrix of the given size.
 ///
@@ -36,13 +37,13 @@ use crate::structure::matrix::one::One;
 pub fn identity<T, const SIZE: usize>() -> Matrix<T, SIZE, SIZE>
 where
     T: Default
-    + One
-    + Copy
-    + Add<Output=T>
-    + Sub<Output=T>
-    + Mul<Output=T>
-    + Div<Output=T>
-    + Display,
+        + One
+        + Copy
+        + Add<Output = T>
+        + Sub<Output = T>
+        + Mul<Output = T>
+        + Div<Output = T>
+        + Display,
 {
     let mut result = Matrix::<T, SIZE, SIZE>::new();
     for i in 0..SIZE {
@@ -95,19 +96,9 @@ where
 /// assert_eq!(upper[(2, 0)], 0);
 /// assert_eq!(upper[(2, 1)], 0);
 /// ```
-pub fn upper_triangular<T, const SIZE: usize>(
+pub fn upper_triangular<T: MatrixDataTrait, const SIZE: usize>(
     matrix: &mut Matrix<T, SIZE, SIZE>,
-) -> &mut Matrix<T, SIZE, SIZE>
-where
-    T: Default
-    + One
-    + Copy
-    + Add<Output=T>
-    + Sub<Output=T>
-    + Mul<Output=T>
-    + Div<Output=T>
-    + Display,
-{
+) -> &mut Matrix<T, SIZE, SIZE> {
     for j in 0..SIZE {
         for i in (j + 1)..SIZE {
             matrix[(i, j)] = T::default();
@@ -156,19 +147,9 @@ where
 /// assert_eq!(lower[(0, 2)], 0);
 /// assert_eq!(lower[(1, 2)], 0);
 /// ```
-pub fn lower_triangular<T, const SIZE: usize>(
+pub fn lower_triangular<T: MatrixDataTrait, const SIZE: usize>(
     matrix: &mut Matrix<T, SIZE, SIZE>,
-) -> &mut Matrix<T, SIZE, SIZE>
-where
-    T: Default
-    + One
-    + Copy
-    + Add<Output=T>
-    + Sub<Output=T>
-    + Mul<Output=T>
-    + Div<Output=T>
-    + Display,
-{
+) -> &mut Matrix<T, SIZE, SIZE> {
     for j in 0..SIZE {
         for i in 0..j {
             matrix[(i, j)] = T::default();

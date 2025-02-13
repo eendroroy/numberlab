@@ -3,6 +3,18 @@ use numberlab::structure::matrix::{identity, lower_triangular, Matrix};
 use numberlab::structure::matrix::{upper_triangular, MatrixTrait};
 
 #[test]
+fn should_create_matrix_of_different_data_type() {
+    assert_eq!(format!("{}", mat![[1i8, 2]]), "\n 1 2\n");
+    assert_eq!(format!("{}", mat![[1i16, 2]]), "\n 1 2\n");
+    assert_eq!(format!("{}", mat![[1i32, 2]]), "\n 1 2\n");
+    assert_eq!(format!("{}", mat![[1i64, 2]]), "\n 1 2\n");
+    assert_eq!(format!("{}", mat![[1i128, 2]]), "\n 1 2\n");
+    assert_eq!(format!("{}", mat![[1isize, 2]]), "\n 1 2\n");
+    assert_eq!(format!("{}", mat![[1.0f32, 2.0]]), "\n 1 2\n");
+    assert_eq!(format!("{}", mat![[1.0f64, 2.0]]), "\n 1 2\n");
+}
+
+#[test]
 fn should_print_matrix() {
     assert_eq!(
         format!("{}", mat![[10, 2, 3], [3, 40, 1]]),
@@ -121,10 +133,7 @@ fn should_return_upper_triangular_matrix() {
     let mut matrix = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
     upper_triangular(&mut matrix);
 
-    assert_eq!(
-        matrix,
-        mat![[1, 2, 3], [0, 4, 5], [0, 0, 7]]
-    );
+    assert_eq!(matrix, mat![[1, 2, 3], [0, 4, 5], [0, 0, 7]]);
 }
 
 #[test]
