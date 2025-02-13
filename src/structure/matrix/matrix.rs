@@ -114,12 +114,13 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Display for Matri
             }
         }
 
-        writeln!(f)?;
+        writeln!(f).expect("Failed to write to formatter");
         for i in 0..ROWS {
             for j in 0..COLS {
-                write!(f, "{:width$}", self[(i, j)], width = lengths[&j] + 1)?;
+                write!(f, "{:width$}", self[(i, j)], width = lengths[&j] + 1)
+                    .expect("Failed to write to formatter");
             }
-            writeln!(f)?;
+            writeln!(f).expect("Failed to write to formatter");
         }
         Ok(())
     }
