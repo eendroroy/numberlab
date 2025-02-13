@@ -26,6 +26,10 @@ impl<T> MatrixDataTrait for T where
 {
 }
 
+pub trait MatrixDataTraitFraction: MatrixDataTrait + From<f32> + Into<f64> {}
+
+impl<T> MatrixDataTraitFraction for T where T: MatrixDataTrait + From<f32> + Into<f64> {}
+
 /// A trait representing a matrix with generic element type `T` and fixed dimensions `ROWS` x `COLS`.
 pub trait MatrixTrait<T, const ROWS: usize, const COLS: usize>
 where

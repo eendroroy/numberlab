@@ -7,13 +7,13 @@ fn main() {
     let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
     let matrix2 = mat![[1, 2, 3], [3, 4, 5]];
     let matrix3 = mat![[1, 2], [3, 4], [5, 6]];
-    let matrix4 = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+    let matrix4 = mat![[1.0, 2.0, 3.0], [3.0, 4.0, 5.0], [5.0, 6.0, 7.0]];
 
-    println!("ROW0 of M1 : {:?}", matrix1.row(0));
-    println!("ROW1 of M1 : {:?}", matrix1.row(1));
-    println!("COL0 of M1 : {:?}", matrix1.col(0));
-    println!("COL1 of M1 : {:?}", matrix1.col(1));
-    println!("COL2 of M1 : {:?}", matrix1.col(2));
+    println!("ROW 0 of M1 : {:?}", matrix1.row(0));
+    println!("ROW 1 of M1 : {:?}", matrix1.row(1));
+    println!("COL 0 of M1 : {:?}", matrix1.col(0));
+    println!("COL 1 of M1 : {:?}", matrix1.col(1));
+    println!("COL 2 of M1 : {:?}", matrix1.col(2));
 
     println!();
 
@@ -23,6 +23,13 @@ fn main() {
     println!("M1 + M2 : {}", matrix1.clone() + matrix2.clone());
     println!("M1 - M2 : {}", matrix1.clone() - matrix2.clone());
     println!("M1 * M3 : {}", matrix1.clone() * matrix3.clone());
+
+    println!();
+
+    println!("M2 + 2 : {}", matrix2.clone() + 2);
+    println!("M2 - 2 : {}", matrix2.clone() - 2);
+    println!("M2 * 2 : {}", matrix2.clone() * 2);
+    println!("M4  / 2 : {}", matrix4.clone() / 2.0);
 
     println!();
 

@@ -160,3 +160,47 @@ fn should_return_column() {
     assert_eq!(matrix.col(1), [2, 40]);
     assert_eq!(matrix.col(2), [3, 1]);
 }
+
+#[test]
+fn should_add_scalar_to_matrix() {
+    let matrix = mat![[10, 2, 3], [3, 40, 1]];
+
+    assert_eq!(
+        format!("{}", matrix.clone() + 2),
+        "\n 12  4 5\
+         \n  5 42 3\n"
+    );
+}
+
+#[test]
+fn should_subtract_scalar_from_matrix() {
+    let matrix = mat![[10, 2, 3], [3, 40, 1]];
+
+    assert_eq!(
+        format!("{}", matrix.clone() - 2),
+        "\n 8  0  1\
+         \n 1 38 -1\n"
+    );
+}
+
+#[test]
+fn should_multiply_scalar_to_matrix() {
+    let matrix = mat![[10, 2, 3], [3, 40, 1]];
+
+    assert_eq!(
+        format!("{}", matrix.clone() * 2),
+        "\n 20  4 6\
+         \n  6 80 2\n"
+    );
+}
+
+#[test]
+fn should_divide_matrix_by_scalar() {
+    let matrix = mat![[10.0, 2.0, 3.0], [3.0, 40.0, 1.0]];
+
+    assert_eq!(
+        format!("{}", matrix.clone() / 2.0),
+        "\n   5  1 1.5\
+         \n 1.5 20 0.5\n"
+    );
+}
