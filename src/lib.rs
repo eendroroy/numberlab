@@ -1,5 +1,3 @@
-pub(crate) mod one;
-
 /// Collection of various numerical algorithms
 pub mod algorithm;
 /// Collection of coordinate formulas

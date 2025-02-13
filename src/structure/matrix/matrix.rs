@@ -1,5 +1,5 @@
-use crate::one::One;
 use crate::structure::matrix::matrix_trait::MatrixTrait;
+use crate::structure::matrix::one::One;
 use std::collections::HashMap;
 use std::fmt::{Display, Formatter};
 use std::ops::{Add, Div, Index, IndexMut, Mul, Sub};
@@ -11,7 +11,7 @@ use std::ops::{Add, Div, Index, IndexMut, Mul, Sub};
 /// * `T` - The type of the elements in the matrix.
 /// * `ROWS` - The number of rows in the matrix.
 /// * `COLS` - The number of columns in the matrix.
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Matrix<T, const ROWS: usize, const COLS: usize = ROWS> {
     data: [[T; COLS]; ROWS],
 }
@@ -19,13 +19,13 @@ pub struct Matrix<T, const ROWS: usize, const COLS: usize = ROWS> {
 impl<T, const ROWS: usize, const COLS: usize> MatrixTrait<T, ROWS, COLS> for Matrix<T, ROWS, COLS>
 where
     T: Default
-    + One
-    + Copy
-    + Add<Output=T>
-    + Sub<Output=T>
-    + Mul<Output=T>
-    + Div<Output=T>
-    + Display,
+        + One
+        + Copy
+        + Add<Output = T>
+        + Sub<Output = T>
+        + Mul<Output = T>
+        + Div<Output = T>
+        + Display,
 {
     type Transpose = Matrix<T, COLS, ROWS>;
 
@@ -67,13 +67,13 @@ impl<T, const ROWS: usize, const COLS: usize> IndexMut<(usize, usize)> for Matri
 impl<T, const ROWS: usize, const COLS: usize> Add for Matrix<T, ROWS, COLS>
 where
     T: Default
-    + One
-    + Copy
-    + Add<Output=T>
-    + Sub<Output=T>
-    + Mul<Output=T>
-    + Div<Output=T>
-    + Display,
+        + One
+        + Copy
+        + Add<Output = T>
+        + Sub<Output = T>
+        + Mul<Output = T>
+        + Div<Output = T>
+        + Display,
 {
     type Output = Self;
 
@@ -91,13 +91,13 @@ where
 impl<T, const ROWS: usize, const COLS: usize> Sub for Matrix<T, ROWS, COLS>
 where
     T: Default
-    + One
-    + Copy
-    + Add<Output=T>
-    + Sub<Output=T>
-    + Mul<Output=T>
-    + Div<Output=T>
-    + Display,
+        + One
+        + Copy
+        + Add<Output = T>
+        + Sub<Output = T>
+        + Mul<Output = T>
+        + Div<Output = T>
+        + Display,
 {
     type Output = Self;
 
@@ -115,13 +115,13 @@ where
 impl<T, const R: usize, const C: usize, const K: usize> Mul<Matrix<T, C, K>> for Matrix<T, R, C>
 where
     T: Default
-    + One
-    + Copy
-    + Add<Output=T>
-    + Sub<Output=T>
-    + Mul<Output=T>
-    + Div<Output=T>
-    + Display,
+        + One
+        + Copy
+        + Add<Output = T>
+        + Sub<Output = T>
+        + Mul<Output = T>
+        + Div<Output = T>
+        + Display,
 {
     type Output = Matrix<T, R, K>;
 
@@ -141,13 +141,13 @@ where
 impl<T, const ROWS: usize, const COLS: usize> Display for Matrix<T, ROWS, COLS>
 where
     T: Default
-    + One
-    + Copy
-    + Add<Output=T>
-    + Sub<Output=T>
-    + Mul<Output=T>
-    + Div<Output=T>
-    + Display,
+        + One
+        + Copy
+        + Add<Output = T>
+        + Sub<Output = T>
+        + Mul<Output = T>
+        + Div<Output = T>
+        + Display,
 {
     fn fmt(&self, f: &mut Formatter) -> core::fmt::Result {
         let mut lengths = HashMap::<usize, usize>::new();

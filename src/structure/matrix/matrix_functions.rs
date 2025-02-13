@@ -1,7 +1,7 @@
-use crate::one::One;
 use crate::structure::matrix::{Matrix, MatrixTrait};
 use std::fmt::Display;
 use std::ops::{Add, Div, Mul, Sub};
+use crate::structure::matrix::one::One;
 
 /// Creates an identity matrix of the given size.
 ///

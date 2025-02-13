@@ -1,6 +1,6 @@
-use crate::one::One;
 use std::fmt::Display;
 use std::ops::{Add, Div, Mul, Sub};
+use crate::structure::matrix::one::One;
 
 /// A trait representing a matrix with generic element type `T` and fixed dimensions `ROWS` x `COLS`.
 pub trait MatrixTrait<T, const ROWS: usize, const COLS: usize>
