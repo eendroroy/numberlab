@@ -81,6 +81,56 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> MatrixTrait<T, RO
         }
         result
     }
+
+    /// Returns the elements of the specified row.
+    ///
+    /// # Arguments
+    ///
+    /// * `index` - The index of the row to retrieve.
+    ///
+    /// # Returns
+    ///
+    /// An array containing the elements of the specified row.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    ///
+    /// let matrix = Matrix::from_array([[1, 2], [3, 4]]);
+    /// let row = matrix.row(1);
+    /// assert_eq!(row, [3, 4]);
+    /// ```
+    fn row(&self, index: usize) -> [T; COLS] {
+        self.data[index]
+    }
+
+    /// Returns the elements of the specified column.
+    ///
+    /// # Arguments
+    ///
+    /// * `index` - The index of the column to retrieve.
+    ///
+    /// # Returns
+    ///
+    /// An array containing the elements of the specified column.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    ///
+    /// let matrix = Matrix::from_array([[1, 2], [3, 4]]);
+    /// let col = matrix.col(1);
+    /// assert_eq!(col, [2, 4]);
+    /// ```
+    fn col(&self, index: usize) -> [T; ROWS] {
+        let mut result = [T::default(); ROWS];
+        for i in 0..ROWS {
+            result[i] = self[(i, index)];
+        }
+        result
+    }
 }
 
 impl<T, const ROWS: usize, const COLS: usize> Index<(usize, usize)> for Matrix<T, ROWS, COLS> {

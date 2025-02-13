@@ -143,3 +143,20 @@ fn should_return_lower_triangular_matrix() {
 
     assert_eq!(matrix, mat![[1, 0, 0], [3, 4, 0], [5, 6, 7]]);
 }
+
+#[test]
+fn should_return_row() {
+    let matrix = mat![[10, 2, 3], [3, 40, 1]];
+
+    assert_eq!(matrix.row(0), [10, 2, 3]);
+    assert_eq!(matrix.row(1), [3, 40, 1]);
+}
+
+#[test]
+fn should_return_column() {
+    let matrix = mat![[10, 2, 3], [3, 40, 1]];
+
+    assert_eq!(matrix.col(0), [10, 3]);
+    assert_eq!(matrix.col(1), [2, 40]);
+    assert_eq!(matrix.col(2), [3, 1]);
+}

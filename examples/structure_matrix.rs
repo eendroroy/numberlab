@@ -9,6 +9,14 @@ fn main() {
     let matrix3 = mat![[1, 2], [3, 4], [5, 6]];
     let matrix4 = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
 
+    println!("ROW0 of M1 : {:?}", matrix1.row(0));
+    println!("ROW1 of M1 : {:?}", matrix1.row(1));
+    println!("COL0 of M1 : {:?}", matrix1.col(0));
+    println!("COL1 of M1 : {:?}", matrix1.col(1));
+    println!("COL2 of M1 : {:?}", matrix1.col(2));
+
+    println!();
+
     println!("M1 : {}", matrix1);
     println!("M2 : {}", matrix2);
     println!("M3 : {}", matrix3);

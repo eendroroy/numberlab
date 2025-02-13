@@ -49,4 +49,26 @@ where
     ///
     /// A new matrix which is the transpose of the original matrix.
     fn transpose(&self) -> Self::Transpose;
+
+    /// Returns the elements of the specified row.
+    ///
+    /// # Arguments
+    ///
+    /// * `index` - The index of the row to retrieve.
+    ///
+    /// # Returns
+    ///
+    /// An array containing the elements of the specified row.
+    fn row(&self, index: usize) -> [T; COLS];
+
+    /// Returns the elements of the specified column.
+    ///
+    /// # Arguments
+    ///
+    /// * `index` - The index of the column to retrieve.
+    ///
+    /// # Returns
+    ///
+    /// An array containing the elements of the specified column.
+    fn col(&self, index: usize) -> [T; ROWS];
 }
