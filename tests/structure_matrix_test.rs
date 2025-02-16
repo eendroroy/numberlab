@@ -227,6 +227,21 @@ fn should_check_if_matrix_is_identity() {
 }
 
 #[test]
+fn should_check_if_matrix_is_diagonal() {
+    let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
+    let matrix2 = mat![[1, 0, 0], [0, 4, 0], [0, 0, 7]];
+    let matrix3 = mat![[10, 2, 3], [3, 40, 1], [3, 40, 1]];
+    let matrix4 = mat![[1, 0, 0], [1, 4, 0], [0, 0, 7]];
+    let matrix5 = mat![[1, 0, 0], [0, 0, 0], [0, 0, 7]];
+
+    assert_eq!(matrix1.is_diagonal(), false);
+    assert_eq!(matrix2.is_diagonal(), true);
+    assert_eq!(matrix3.is_diagonal(), false);
+    assert_eq!(matrix4.is_diagonal(), false);
+    assert_eq!(matrix5.is_diagonal(), false);
+}
+
+#[test]
 fn should_check_if_matrix_is_upper_triangular() {
     let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
     let matrix2 = mat![[1, 2, 3], [0, 4, 5], [0, 0, 7]];

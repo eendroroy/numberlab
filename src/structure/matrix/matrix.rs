@@ -177,6 +177,36 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
         true
     }
 
+    /// Checks if the matrix is diagonal.
+    ///
+    /// # Returns
+    ///
+    /// `true` if the matrix is diagonal, `false` otherwise.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use numberlab::structure::matrix::Matrix;
+    ///
+    /// let matrix = Matrix::from_array([[3, 0], [0, 5]]);
+    /// assert!(matrix.is_diagonal());
+    /// ```
+    pub fn is_diagonal(&self) -> bool {
+        if self.is_square() == false {
+            return false;
+        }
+        for i in 0..ROWS {
+            for j in 0..COLS {
+                if i == j && self[(i, j)] == T::default() {
+                    return false;
+                } else if i != j && self[(i, j)] != T::default() {
+                    return false;
+                }
+            }
+        }
+        true
+    }
+
     /// Checks if the matrix is upper triangular.
     ///
     /// # Returns
