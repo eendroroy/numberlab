@@ -111,7 +111,7 @@ pub fn upper_triangular<T: MatrixDataTrait, const SIZE: usize>(
     let mut result = matrix.clone();
     for j in 0..SIZE {
         for i in (j + 1)..SIZE {
-            result[(i, j)] = T::default();
+            result[(i, j)] = T::zero();
         }
     }
     result
@@ -148,7 +148,7 @@ pub fn lower_triangular<T: MatrixDataTrait, const SIZE: usize>(
     let mut result = matrix.clone();
     for i in 0..SIZE {
         for j in i + 1..SIZE {
-            result[(i, j)] = T::default();
+            result[(i, j)] = T::zero();
         }
     }
     result

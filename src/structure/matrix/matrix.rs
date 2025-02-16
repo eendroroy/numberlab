@@ -29,7 +29,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
     /// ```
     pub fn new() -> Self {
         Self {
-            data: [[T::default(); COLS]; ROWS],
+            data: [[T::zero(); COLS]; ROWS],
         }
     }
 
@@ -98,7 +98,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
     /// assert_eq!(col, [2, 4]);
     /// ```
     pub fn col(&self, index: usize) -> [T; ROWS] {
-        let mut result = [T::default(); ROWS];
+        let mut result = [T::zero(); ROWS];
         for i in 0..ROWS {
             result[i] = self[(i, index)];
         }
@@ -146,7 +146,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
             for j in 0..COLS {
                 if i == j && self[(i, j)] != T::one() {
                     return false;
-                } else if i != j && self[(i, j)] != T::default() {
+                } else if i != j && self[(i, j)] != T::zero() {
                     return false;
                 }
             }
@@ -174,9 +174,9 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
         }
         for i in 0..ROWS {
             for j in 0..COLS {
-                if i == j && self[(i, j)] == T::default() {
+                if i == j && self[(i, j)] == T::zero() {
                     return false;
-                } else if i != j && self[(i, j)] != T::default() {
+                } else if i != j && self[(i, j)] != T::zero() {
                     return false;
                 }
             }
@@ -204,7 +204,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
         }
         for i in 0..ROWS {
             for j in 0..i {
-                if self[(i, j)] != T::default() {
+                if self[(i, j)] != T::zero() {
                     return false;
                 }
             }
@@ -232,7 +232,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
         }
         for i in 0..ROWS {
             for j in i + 1..COLS {
-                if self[(i, j)] != T::default() {
+                if self[(i, j)] != T::zero() {
                     return false;
                 }
             }

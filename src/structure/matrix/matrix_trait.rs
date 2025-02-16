@@ -3,8 +3,7 @@ use std::fmt::Display;
 use std::ops::{Add, Div, Mul, Sub};
 
 pub trait MatrixDataTrait:
-    Default
-    + One
+    One
     + Copy
     + Clone
     + Add<Output = Self>
@@ -17,8 +16,7 @@ pub trait MatrixDataTrait:
 }
 
 impl<T> MatrixDataTrait for T where
-    T: Default
-        + One
+    T: One
         + Copy
         + Clone
         + Add<Output = Self>
