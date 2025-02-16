@@ -231,9 +231,11 @@ fn should_check_if_matrix_is_diagonal() {
 fn should_check_if_matrix_is_symmetric() {
     let matrix1 = mat![[1, 2, 3], [2, 4, 5], [3, 5, 6]];
     let matrix2 = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+    let matrix3 = mat![[1, 2, 3], [3, 4, 5]];
 
     assert_eq!(matrix1.is_symmetric(), true);
     assert_eq!(matrix2.is_symmetric(), false);
+    assert_eq!(matrix3.is_symmetric(), false);
 }
 
 #[test]
