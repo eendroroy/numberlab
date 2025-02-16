@@ -203,3 +203,47 @@ fn should_divide_matrix_by_scalar() {
          \n 1.5 20 0.5\n"
     );
 }
+
+#[test]
+fn should_check_if_matrix_is_square() {
+    let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
+    let matrix2 = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+
+    assert_eq!(matrix1.is_square(), false);
+    assert_eq!(matrix2.is_square(), true);
+}
+
+#[test]
+fn should_check_if_matrix_is_identity() {
+    let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
+    let matrix2 = mat![[1, 0], [0, 1]];
+    let matrix3 = mat![[10, 2, 3], [3, 40, 1], [3, 40, 1]];
+    let matrix4 = mat![[1, 1, 3], [3, 40, 1], [3, 40, 1]];
+
+    assert_eq!(matrix1.is_identity(), false);
+    assert_eq!(matrix2.is_identity(), true);
+    assert_eq!(matrix3.is_identity(), false);
+    assert_eq!(matrix4.is_identity(), false);
+}
+
+#[test]
+fn should_check_if_matrix_is_upper_triangular() {
+    let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
+    let matrix2 = mat![[1, 2, 3], [0, 4, 5], [0, 0, 7]];
+    let matrix3 = mat![[10, 2, 3], [3, 40, 1], [3, 40, 1]];
+
+    assert_eq!(matrix1.is_upper_triangular(), false);
+    assert_eq!(matrix2.is_upper_triangular(), true);
+    assert_eq!(matrix3.is_upper_triangular(), false);
+}
+
+#[test]
+fn should_check_if_matrix_is_lower_triangular() {
+    let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
+    let matrix2 = mat![[1, 0, 0], [3, 4, 0], [5, 6, 7]];
+    let matrix3 = mat![[10, 2, 3], [3, 40, 1], [3, 40, 1]];
+
+    assert_eq!(matrix1.is_lower_triangular(), false);
+    assert_eq!(matrix2.is_lower_triangular(), true);
+    assert_eq!(matrix3.is_lower_triangular(), false);
+}

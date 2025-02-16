@@ -127,6 +127,54 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
         }
         result
     }
+
+    pub fn is_square(&self) -> bool {
+        ROWS == COLS
+    }
+
+    pub fn is_identity(&self) -> bool {
+        if self.is_square() == false {
+            return false;
+        }
+        for i in 0..ROWS {
+            for j in 0..COLS {
+                if i == j && self[(i, j)] != T::one() {
+                    return false;
+                } else if i != j && self[(i, j)] != T::default() {
+                    return false;
+                }
+            }
+        }
+        true
+    }
+
+    pub fn is_upper_triangular(&self) -> bool {
+        if self.is_square() == false {
+            return false;
+        }
+        for i in 0..ROWS {
+            for j in 0..i {
+                if self[(i, j)] != T::default() {
+                    return false;
+                }
+            }
+        }
+        true
+    }
+
+    pub fn is_lower_triangular(&self) -> bool {
+        if self.is_square() == false {
+            return false;
+        }
+        for i in 0..ROWS {
+            for j in i + 1..COLS {
+                if self[(i, j)] != T::default() {
+                    return false;
+                }
+            }
+        }
+        true
+    }
 }
 
 impl<T, const ROWS: usize, const COLS: usize> Index<(usize, usize)> for Matrix<T, ROWS, COLS> {

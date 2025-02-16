@@ -44,14 +44,26 @@ fn main() {
 
     println!();
 
-    println!(
-        "UM of {} is : {}",
-        matrix4,
-        upper_triangular(&mut (matrix4.clone()))
-    );
-    println!(
-        "LM of {} is : {}",
-        matrix4,
-        lower_triangular(&mut (matrix4.clone()))
-    );
+    let um4 = upper_triangular(&mut (matrix4.clone())).clone();
+    let lm4 = lower_triangular(&mut (matrix4.clone())).clone();
+
+    println!("UM of {} is : {}", matrix4, um4);
+    println!("LM of {} is : {}", matrix4, lm4);
+
+    println!();
+
+    println!("M1 is_square : {}", matrix1.is_square());
+    println!("UM is_square : {}", matrix2.is_square());
+
+    println!();
+
+    println!("M1 is_identity : {}", matrix1.is_identity());
+    println!("I9 is_identity : {}", identity::<i8, 9>().is_identity());
+
+    println!();
+
+    println!("UM4 is_upper_triangular : {}", um4.is_upper_triangular());
+    println!("UM4 is_lower_triangular : {}", um4.is_lower_triangular());
+    println!("LM4 is_upper_triangular : {}", lm4.is_upper_triangular());
+    println!("LM4 is_lower_triangular : {}", lm4.is_lower_triangular());
 }

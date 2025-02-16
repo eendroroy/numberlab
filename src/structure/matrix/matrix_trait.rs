@@ -6,10 +6,12 @@ pub trait MatrixDataTrait:
     Default
     + One
     + Copy
+    + Clone
     + Add<Output = Self>
     + Sub<Output = Self>
     + Mul<Output = Self>
     + Div<Output = Self>
+    + PartialOrd
     + Display
 {
 }
@@ -18,10 +20,12 @@ impl<T> MatrixDataTrait for T where
     T: Default
         + One
         + Copy
+        + Clone
         + Add<Output = Self>
         + Sub<Output = Self>
         + Mul<Output = Self>
         + Div<Output = Self>
+        + PartialOrd
         + Display
 {
 }
