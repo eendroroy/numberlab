@@ -128,10 +128,39 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
         result
     }
 
+    /// Checks if the matrix is square.
+    ///
+    /// # Returns
+    ///
+    /// `true` if the matrix is square (i.e., the number of rows is equal to the number of columns),
+    /// `false` otherwise.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use numberlab::structure::matrix::Matrix;
+    ///
+    /// let matrix = Matrix::from_array([[1, 2], [3, 4]]);
+    /// assert!(matrix.is_square());
+    /// ```
     pub fn is_square(&self) -> bool {
         ROWS == COLS
     }
 
+    /// Checks if the matrix is an identity matrix.
+    ///
+    /// # Returns
+    ///
+    /// `true` if the matrix is an identity matrix, `false` otherwise.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use numberlab::structure::matrix::Matrix;
+    ///
+    /// let matrix = Matrix::from_array([[1, 0], [0, 1]]);
+    /// assert!(matrix.is_identity());
+    /// ```
     pub fn is_identity(&self) -> bool {
         if self.is_square() == false {
             return false;
@@ -148,6 +177,20 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
         true
     }
 
+    /// Checks if the matrix is upper triangular.
+    ///
+    /// # Returns
+    ///
+    /// `true` if the matrix is upper triangular, `false` otherwise.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use numberlab::structure::matrix::Matrix;
+    ///
+    /// let matrix = Matrix::from_array([[1, 2], [0, 3]]);
+    /// assert!(matrix.is_upper_triangular());
+    /// ```
     pub fn is_upper_triangular(&self) -> bool {
         if self.is_square() == false {
             return false;
@@ -162,6 +205,20 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
         true
     }
 
+    /// Checks if the matrix is lower triangular.
+    ///
+    /// # Returns
+    ///
+    /// `true` if the matrix is lower triangular, `false` otherwise.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use numberlab::structure::matrix::Matrix;
+    ///
+    /// let matrix = Matrix::from_array([[1, 0], [2, 3]]);
+    /// assert!(matrix.is_lower_triangular());
+    /// ```
     pub fn is_lower_triangular(&self) -> bool {
         if self.is_square() == false {
             return false;
