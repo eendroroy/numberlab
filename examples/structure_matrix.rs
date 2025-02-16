@@ -1,7 +1,5 @@
 use numberlab::mat;
-use numberlab::structure::matrix::{
-    identity, lower_triangular, upper_triangular, Matrix, MatrixTrait,
-};
+use numberlab::structure::matrix::{identity, lower_triangular, upper_triangular, Matrix};
 
 fn main() {
     let matrix1 = mat![[10, 2, 3], [3, 40, 1]];

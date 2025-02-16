@@ -1,6 +1,5 @@
 use numberlab::mat;
-use numberlab::structure::matrix::{identity, lower_triangular, Matrix};
-use numberlab::structure::matrix::{upper_triangular, MatrixTrait};
+use numberlab::structure::matrix::{identity, lower_triangular, upper_triangular, Matrix};
 
 #[test]
 fn should_create_matrix_of_different_data_type() {

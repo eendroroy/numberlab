@@ -4,7 +4,7 @@
 ///
 /// ```
 /// use numberlab::mat;
-/// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+/// use numberlab::structure::matrix::Matrix;
 ///
 /// let matrix = mat![
 ///     [1, 2, 3],
@@ -28,7 +28,6 @@ macro_rules! mat {
 #[cfg(test)]
 mod mat_tests {
     use crate::structure::matrix::Matrix;
-    use crate::structure::matrix::MatrixTrait;
 
     #[test]
     fn should_create_matrix() {

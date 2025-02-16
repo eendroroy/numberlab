@@ -7,4 +7,3 @@ mod macros;
 
 pub use matrix::Matrix;
 pub use matrix_functions::{identity, lower_triangular, upper_triangular};
-pub use matrix_trait::MatrixTrait;

@@ -1,6 +1,6 @@
 use crate::structure::matrix::matrix_trait::MatrixDataTrait;
 use crate::structure::matrix::one::One;
-use crate::structure::matrix::{Matrix, MatrixTrait};
+use crate::structure::matrix::Matrix;
 use std::fmt::Display;
 use std::ops::{Add, Div, Mul, Sub};
 
@@ -20,7 +20,7 @@ use std::ops::{Add, Div, Mul, Sub};
 /// # Example
 ///
 /// ```
-/// use numberlab::structure::matrix::{Matrix, MatrixTrait, identity};
+/// use numberlab::structure::matrix::{Matrix, identity};
 ///
 /// let matrix = identity::<i32, 3>();
 ///
@@ -76,7 +76,7 @@ where
 /// # Example
 ///
 /// ```
-/// use numberlab::structure::matrix::{Matrix, MatrixTrait, upper_triangular};
+/// use numberlab::structure::matrix::{Matrix, upper_triangular};
 ///
 /// let mut matrix = Matrix::from_array([
 ///     [1, 2, 3],
@@ -127,7 +127,7 @@ pub fn upper_triangular<T: MatrixDataTrait, const SIZE: usize>(
 /// # Example
 ///
 /// ```
-/// use numberlab::structure::matrix::{Matrix, MatrixTrait, lower_triangular};
+/// use numberlab::structure::matrix::{Matrix, lower_triangular};
 ///
 /// let mut matrix = Matrix::from_array([
 ///     [1, 2, 3],

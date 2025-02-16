@@ -1,6 +1,4 @@
-use crate::structure::matrix::matrix_trait::{
-    MatrixDataTrait, MatrixDataTraitFraction, MatrixTrait,
-};
+use crate::structure::matrix::matrix_trait::{MatrixDataTrait, MatrixDataTraitFraction};
 use std::collections::HashMap;
 use std::fmt::{Display, Formatter};
 use std::ops::{Add, Div, Index, IndexMut, Mul, Sub};
@@ -17,17 +15,13 @@ pub struct Matrix<T, const ROWS: usize, const COLS: usize = ROWS> {
     data: [[T; COLS]; ROWS],
 }
 
-impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> MatrixTrait<T, ROWS, COLS>
-    for Matrix<T, ROWS, COLS>
-{
-    type Transpose = Matrix<T, COLS, ROWS>;
-
+impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, COLS> {
     /// Creates a new instance of the matrix with default values.
     ///
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix: Matrix<i32, 2, 2> = Matrix::new();
     /// assert_eq!(matrix[(0, 0)], 0);
@@ -35,7 +29,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> MatrixTrait<T, RO
     /// assert_eq!(matrix[(1, 0)], 0);
     /// assert_eq!(matrix[(1, 1)], 0);
     /// ```
-    fn new() -> Self {
+    pub fn new() -> Self {
         Self {
             data: [[T::default(); COLS]; ROWS],
         }
@@ -50,7 +44,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> MatrixTrait<T, RO
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let data = [[1, 2], [3, 4]];
     /// let matrix = Matrix::from_array(data);
@@ -59,7 +53,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> MatrixTrait<T, RO
     /// assert_eq!(matrix[(1, 0)], 3);
     /// assert_eq!(matrix[(1, 1)], 4);
     /// ```
-    fn from_array(data: [[T; COLS]; ROWS]) -> Self {
+    pub fn from_array(data: [[T; COLS]; ROWS]) -> Self {
         Self { data }
     }
 
@@ -68,13 +62,13 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> MatrixTrait<T, RO
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix = Matrix::from_array([[1, 2, 3], [4, 5, 6]]);
     /// let transposed = matrix.transpose();
     /// assert_eq!(transposed, Matrix::from_array([[1, 4], [2, 5], [3, 6]]));
     /// ```
-    fn transpose(&self) -> Matrix<T, COLS, ROWS> {
+    pub fn transpose(&self) -> Matrix<T, COLS, ROWS> {
         let mut result = Matrix::<T, COLS, ROWS>::new();
         for i in 0..ROWS {
             for j in 0..COLS {
@@ -97,13 +91,13 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> MatrixTrait<T, RO
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix = Matrix::from_array([[1, 2], [3, 4]]);
     /// let row = matrix.row(1);
     /// assert_eq!(row, [3, 4]);
     /// ```
-    fn row(&self, index: usize) -> [T; COLS] {
+    pub fn row(&self, index: usize) -> [T; COLS] {
         self.data[index]
     }
 
@@ -120,13 +114,13 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> MatrixTrait<T, RO
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix = Matrix::from_array([[1, 2], [3, 4]]);
     /// let col = matrix.col(1);
     /// assert_eq!(col, [2, 4]);
     /// ```
-    fn col(&self, index: usize) -> [T; ROWS] {
+    pub fn col(&self, index: usize) -> [T; ROWS] {
         let mut result = [T::default(); ROWS];
         for i in 0..ROWS {
             result[i] = self[(i, index)];
@@ -147,7 +141,7 @@ impl<T, const ROWS: usize, const COLS: usize> Index<(usize, usize)> for Matrix<T
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix = Matrix::from_array([[1, 2], [3, 4]]);
     /// assert_eq!(matrix[(0, 0)], 1);
@@ -168,7 +162,7 @@ impl<T, const ROWS: usize, const COLS: usize> IndexMut<(usize, usize)> for Matri
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let mut matrix = Matrix::from_array([[1, 2], [3, 4]]);
     /// matrix[(0, 0)] = 5;
@@ -196,7 +190,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Add for Matrix<T,
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix1 = Matrix::from_array([[1, 2], [3, 4]]);
     /// let matrix2 = Matrix::from_array([[5, 6], [7, 8]]);
@@ -231,7 +225,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Sub for Matrix<T,
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix1 = Matrix::from_array([[5, 6], [7, 8]]);
     /// let matrix2 = Matrix::from_array([[1, 2], [3, 4]]);
@@ -268,7 +262,7 @@ impl<T: MatrixDataTrait, const R: usize, const C: usize, const K: usize> Mul<Mat
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix1 = Matrix::from_array([[1, 2], [3, 4]]);
     /// let matrix2 = Matrix::from_array([[5, 6], [7, 8]]);
@@ -305,7 +299,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Add<T> for Matrix
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix = Matrix::from_array([[1, 2], [3, 4]]);
     /// let result = matrix + 1;
@@ -339,7 +333,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Sub<T> for Matrix
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix = Matrix::from_array([[2, 3], [4, 5]]);
     /// let result = matrix - 1;
@@ -373,7 +367,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Mul<T> for Matrix
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix = Matrix::from_array([[1, 2], [3, 4]]);
     /// let result = matrix * 2;
@@ -409,7 +403,7 @@ impl<T: MatrixDataTraitFraction, const ROWS: usize, const COLS: usize> Div<T>
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix = Matrix::from_array([[2.0, 3.0], [6.0, 8.0]]);
     /// let result = matrix / 2.0;
@@ -432,7 +426,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Display for Matri
     /// # Example
     ///
     /// ```
-    /// use numberlab::structure::matrix::{Matrix, MatrixTrait};
+    /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix = Matrix::from_array([[1, 2], [3, 4]]);
     /// println!("{}", matrix);
