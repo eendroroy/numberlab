@@ -184,6 +184,34 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
         true
     }
 
+    /// Checks if the matrix is symmetric.
+    ///
+    /// # Returns
+    ///
+    /// `true` if the matrix is symmetric, `false` otherwise.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use numberlab::structure::matrix::Matrix;
+    ///
+    /// let matrix = Matrix::from_array([[1, 2], [2, 1]]);
+    /// assert!(matrix.is_symmetric());
+    /// ```
+    pub fn is_symmetric(&self) -> bool {
+        if self.is_square() == false {
+            return false;
+        }
+        for i in 0..ROWS {
+            for j in 0..COLS {
+                if self[(i, j)] != self[(j, i)] {
+                    return false;
+                }
+            }
+        }
+        true
+    }
+
     /// Checks if the matrix is upper triangular.
     ///
     /// # Returns

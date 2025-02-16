@@ -228,6 +228,15 @@ fn should_check_if_matrix_is_diagonal() {
 }
 
 #[test]
+fn should_check_if_matrix_is_symmetric() {
+    let matrix1 = mat![[1, 2, 3], [2, 4, 5], [3, 5, 6]];
+    let matrix2 = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+
+    assert_eq!(matrix1.is_symmetric(), true);
+    assert_eq!(matrix2.is_symmetric(), false);
+}
+
+#[test]
 fn should_check_if_matrix_is_upper_triangular() {
     let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
     let matrix2 = mat![[1, 2, 3], [0, 4, 5], [0, 0, 7]];
