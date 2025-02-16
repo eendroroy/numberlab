@@ -1,7 +1,5 @@
-use crate::structure::matrix::matrix_trait::{MatrixDataTrait, MatrixDataTraitFraction};
+use crate::structure::matrix::matrix_trait::MatrixDataTrait;
 use std::collections::HashMap;
-use std::fmt::{Display, Formatter};
-use std::ops::{Add, Div, Index, IndexMut, Mul, Sub};
 
 /// A generic Matrix struct that holds a 2D array of elements.
 ///
@@ -12,7 +10,7 @@ use std::ops::{Add, Div, Index, IndexMut, Mul, Sub};
 /// * `COLS` - The number of columns in the matrix.
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Matrix<T, const ROWS: usize, const COLS: usize = ROWS> {
-    data: [[T; COLS]; ROWS],
+    pub(crate) data: [[T; COLS]; ROWS],
 }
 
 impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, COLS> {
@@ -55,27 +53,6 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
     /// ```
     pub fn from_array(data: [[T; COLS]; ROWS]) -> Self {
         Self { data }
-    }
-
-    /// Returns the transpose of the matrix.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// use numberlab::structure::matrix::Matrix;
-    ///
-    /// let matrix = Matrix::from_array([[1, 2, 3], [4, 5, 6]]);
-    /// let transposed = matrix.transpose();
-    /// assert_eq!(transposed, Matrix::from_array([[1, 4], [2, 5], [3, 6]]));
-    /// ```
-    pub fn transpose(&self) -> Matrix<T, COLS, ROWS> {
-        let mut result = Matrix::<T, COLS, ROWS>::new();
-        for i in 0..ROWS {
-            for j in 0..COLS {
-                result[(j, i)] = self[(i, j)];
-            }
-        }
-        result
     }
 
     /// Returns the elements of the specified row.
@@ -262,37 +239,31 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
         }
         true
     }
-}
 
-impl<T, const ROWS: usize, const COLS: usize> Index<(usize, usize)> for Matrix<T, ROWS, COLS> {
-    type Output = T;
-
-    /// Returns a reference to the element at the specified position.
-    ///
-    /// # Arguments
-    ///
-    /// * `index` - A tuple containing the row and column indices.
+    /// Returns the transpose of the matrix.
     ///
     /// # Example
     ///
     /// ```
     /// use numberlab::structure::matrix::Matrix;
     ///
-    /// let matrix = Matrix::from_array([[1, 2], [3, 4]]);
-    /// assert_eq!(matrix[(0, 0)], 1);
-    /// assert_eq!(matrix[(1, 1)], 4);
+    /// let matrix = Matrix::from_array([[1, 2, 3], [4, 5, 6]]);
+    /// let transposed = matrix.transpose();
+    /// assert_eq!(transposed, Matrix::from_array([[1, 4], [2, 5], [3, 6]]));
     /// ```
-    fn index(&self, index: (usize, usize)) -> &Self::Output {
-        &self.data[index.0][index.1]
+    pub fn transpose(&self) -> Matrix<T, COLS, ROWS> {
+        let mut result = Matrix::<T, COLS, ROWS>::new();
+        for i in 0..ROWS {
+            for j in 0..COLS {
+                result[(j, i)] = self[(i, j)];
+            }
+        }
+        result
     }
-}
 
-impl<T, const ROWS: usize, const COLS: usize> IndexMut<(usize, usize)> for Matrix<T, ROWS, COLS> {
-    /// Returns a mutable reference to the element at the specified position.
+    /// Converts the matrix to an upper triangular matrix in place.
     ///
-    /// # Arguments
-    ///
-    /// * `index` - A tuple containing the row and column indices.
+    /// This method sets all the elements below the main diagonal to the default value.
     ///
     /// # Example
     ///
@@ -300,136 +271,27 @@ impl<T, const ROWS: usize, const COLS: usize> IndexMut<(usize, usize)> for Matri
     /// use numberlab::structure::matrix::Matrix;
     ///
     /// let mut matrix = Matrix::from_array([[1, 2], [3, 4]]);
-    /// matrix[(0, 0)] = 5;
-    /// assert_eq!(matrix[(0, 0)], 5);
+    /// matrix.upper_triangular();
+    /// assert_eq!(matrix, Matrix::from_array([[1, 2], [0, 4]]));
     /// ```
-    fn index_mut(&mut self, index: (usize, usize)) -> &mut Self::Output {
-        &mut self.data[index.0][index.1]
-    }
-}
-
-impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Add for Matrix<T, ROWS, COLS> {
-    type Output = Self;
-
-    /// Adds two matrices element-wise.
-    ///
-    /// # Arguments
-    ///
-    /// * `self` - The first matrix.
-    /// * `other` - The second matrix.
-    ///
-    /// # Returns
-    ///
-    /// A new matrix which is the result of the element-wise addition of the two matrices.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// use numberlab::structure::matrix::Matrix;
-    ///
-    /// let matrix1 = Matrix::from_array([[1, 2], [3, 4]]);
-    /// let matrix2 = Matrix::from_array([[5, 6], [7, 8]]);
-    /// let result = matrix1 + matrix2;
-    /// assert_eq!(result, Matrix::from_array([[6, 8], [10, 12]]));
-    /// ```
-    fn add(self, other: Self) -> Self::Output {
-        let mut result = Self::new();
-        for i in 0..ROWS {
-            for j in 0..COLS {
-                result[(i, j)] = self[(i, j)] + other[(i, j)];
+    pub fn upper_triangular(&mut self) {
+        if self.is_square() == false {
+            panic!("Matrix [{} x {}] is not square", ROWS, COLS);
+        }
+        for j in 0..ROWS {
+            for i in (j + 1)..COLS {
+                self[(i, j)] = T::default();
             }
         }
-        result
     }
-}
 
-impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Sub for Matrix<T, ROWS, COLS> {
-    type Output = Self;
-
-    /// Subtracts two matrices element-wise.
+    /// Converts the matrix to an upper triangular matrix and returns the result.
     ///
-    /// # Arguments
-    ///
-    /// * `self` - The first matrix.
-    /// * `other` - The second matrix.
+    /// This method creates a new matrix that is an upper triangular version of the original matrix.
     ///
     /// # Returns
     ///
-    /// A new matrix which is the result of the element-wise subtraction of the two matrices.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// use numberlab::structure::matrix::Matrix;
-    ///
-    /// let matrix1 = Matrix::from_array([[5, 6], [7, 8]]);
-    /// let matrix2 = Matrix::from_array([[1, 2], [3, 4]]);
-    /// let result = matrix1 - matrix2;
-    /// assert_eq!(result, Matrix::from_array([[4, 4], [4, 4]]));
-    /// ```
-    fn sub(self, other: Self) -> Self::Output {
-        let mut result = Self::new();
-        for i in 0..ROWS {
-            for j in 0..COLS {
-                result[(i, j)] = self[(i, j)] - other[(i, j)];
-            }
-        }
-        result
-    }
-}
-
-impl<T: MatrixDataTrait, const R: usize, const C: usize, const K: usize> Mul<Matrix<T, C, K>>
-    for Matrix<T, R, C>
-{
-    type Output = Matrix<T, R, K>;
-
-    /// Multiplies two matrices.
-    ///
-    /// # Arguments
-    ///
-    /// * `self` - The first matrix.
-    /// * `other` - The second matrix.
-    ///
-    /// # Returns
-    ///
-    /// A new matrix which is the result of the matrix multiplication of the two matrices.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// use numberlab::structure::matrix::Matrix;
-    ///
-    /// let matrix1 = Matrix::from_array([[1, 2], [3, 4]]);
-    /// let matrix2 = Matrix::from_array([[5, 6], [7, 8]]);
-    /// let result = matrix1 * matrix2;
-    /// assert_eq!(result, Matrix::from_array([[19, 22], [43, 50]]));
-    /// ```
-    fn mul(self, other: Matrix<T, C, K>) -> Self::Output {
-        let mut result = Matrix::<T, R, K>::new();
-        for i in 0..R {
-            for j in 0..K {
-                for k in 0..C {
-                    result[(i, j)] = result[(i, j)] + (self.data[i][k] * other.data[k][j]);
-                }
-            }
-        }
-        result
-    }
-}
-
-impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Add<T> for Matrix<T, ROWS, COLS> {
-    type Output = Self;
-
-    /// Adds a scalar to each element of the matrix.
-    ///
-    /// # Arguments
-    ///
-    /// * `self` - The matrix to which the scalar will be added.
-    /// * `other` - The scalar value to add to each element of the matrix.
-    ///
-    /// # Returns
-    ///
-    /// A new matrix with the scalar added to each element.
+    /// A new matrix that is the upper triangular version of the original matrix.
     ///
     /// # Example
     ///
@@ -437,67 +299,48 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Add<T> for Matrix
     /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix = Matrix::from_array([[1, 2], [3, 4]]);
-    /// let result = matrix + 1;
-    /// assert_eq!(result, Matrix::from_array([[2, 3], [4, 5]]));
+    /// let upper_triangular = matrix.to_upper_triangular();
+    /// assert_eq!(upper_triangular, Matrix::from_array([[1, 2], [0, 4]]));
     /// ```
-    fn add(self, other: T) -> Self {
-        let mut result = Self::new();
-        for i in 0..ROWS {
-            for j in 0..COLS {
-                result[(i, j)] = self[(i, j)] + other;
-            }
+    pub fn to_upper_triangular(&self) -> Self {
+        if self.is_square() == false {
+            panic!("Matrix [{} x {}] is not square", ROWS, COLS);
         }
+        let mut result = self.clone();
+        result.upper_triangular();
         result
     }
-}
-
-impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Sub<T> for Matrix<T, ROWS, COLS> {
-    type Output = Self;
-
-    /// Subtracts a scalar from each element of the matrix.
+    /// Converts the matrix to a lower triangular matrix in place.
     ///
-    /// # Arguments
-    ///
-    /// * `self` - The matrix from which the scalar will be subtracted.
-    /// * `other` - The scalar value to subtract from each element of the matrix.
-    ///
-    /// # Returns
-    ///
-    /// A new matrix with the scalar subtracted from each element.
+    /// This method sets all the elements above the main diagonal to the default value.
     ///
     /// # Example
     ///
     /// ```
     /// use numberlab::structure::matrix::Matrix;
     ///
-    /// let matrix = Matrix::from_array([[2, 3], [4, 5]]);
-    /// let result = matrix - 1;
-    /// assert_eq!(result, Matrix::from_array([[1, 2], [3, 4]]));
+    /// let mut matrix = Matrix::from_array([[1, 2], [3, 4]]);
+    /// matrix.lower_triangular();
+    /// assert_eq!(matrix, Matrix::from_array([[1, 0], [3, 4]]));
     /// ```
-    fn sub(self, other: T) -> Self {
-        let mut result = Self::new();
+    pub fn lower_triangular(&mut self) {
+        if self.is_square() == false {
+            panic!("Matrix [{} x {}] is not square", ROWS, COLS);
+        }
         for i in 0..ROWS {
-            for j in 0..COLS {
-                result[(i, j)] = self[(i, j)] - other;
+            for j in i + 1..COLS {
+                self[(i, j)] = T::default();
             }
         }
-        result
     }
-}
 
-impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Mul<T> for Matrix<T, ROWS, COLS> {
-    type Output = Self;
-
-    /// Multiplies each element of the matrix by a scalar.
+    /// Converts the matrix to a lower triangular matrix and returns the result.
     ///
-    /// # Arguments
-    ///
-    /// * `self` - The matrix to be multiplied.
-    /// * `other` - The scalar value to multiply each element of the matrix by.
+    /// This method creates a new matrix that is a lower triangular version of the original matrix.
     ///
     /// # Returns
     ///
-    /// A new matrix with each element multiplied by the scalar.
+    /// A new matrix that is the lower triangular version of the original matrix.
     ///
     /// # Example
     ///
@@ -505,57 +348,22 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Mul<T> for Matrix
     /// use numberlab::structure::matrix::Matrix;
     ///
     /// let matrix = Matrix::from_array([[1, 2], [3, 4]]);
-    /// let result = matrix * 2;
-    /// assert_eq!(result, Matrix::from_array([[2, 4], [6, 8]]));
+    /// let lower_triangular = matrix.to_lower_triangular();
+    /// assert_eq!(lower_triangular, Matrix::from_array([[1, 0], [3, 4]]));
     /// ```
-    fn mul(self, other: T) -> Self {
-        let mut result = Self::new();
-        for i in 0..ROWS {
-            for j in 0..COLS {
-                result[(i, j)] = self[(i, j)] * other;
-            }
+    pub fn to_lower_triangular(&self) -> Self {
+        if self.is_square() == false {
+            panic!("Matrix [{} x {}] is not square", ROWS, COLS);
         }
+        let mut result = self.clone();
+        result.lower_triangular();
         result
     }
 }
 
-impl<T: MatrixDataTraitFraction, const ROWS: usize, const COLS: usize> Div<T>
+impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> std::fmt::Display
     for Matrix<T, ROWS, COLS>
 {
-    type Output = Self;
-
-    /// Divides each element of the matrix by a scalar.
-    ///
-    /// # Arguments
-    ///
-    /// * `self` - The matrix to be divided.
-    /// * `other` - The scalar value to divide each element of the matrix by.
-    ///
-    /// # Returns
-    ///
-    /// A new matrix with each element divided by the scalar.
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// use numberlab::structure::matrix::Matrix;
-    ///
-    /// let matrix = Matrix::from_array([[2.0, 3.0], [6.0, 8.0]]);
-    /// let result = matrix / 2.0;
-    /// assert_eq!(result, Matrix::from_array([[1.0, 1.5], [3.0, 4.0]]));
-    /// ```
-    fn div(self, other: T) -> Self {
-        let mut result = Self::new();
-        for i in 0..ROWS {
-            for j in 0..COLS {
-                result[(i, j)] = self[(i, j)] / other;
-            }
-        }
-        result
-    }
-}
-
-impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Display for Matrix<T, ROWS, COLS> {
     /// Formats the matrix for display.
     ///
     /// # Example
@@ -570,7 +378,7 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Display for Matri
     /// //  3  4
     /// assert_eq!(format!("{}", matrix), "\n 1 2\n 3 4\n");
     /// ```
-    fn fmt(&self, f: &mut Formatter) -> core::fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> core::fmt::Result {
         let mut lengths = HashMap::<usize, usize>::new();
         for j in 0..COLS {
             for i in 0..ROWS {

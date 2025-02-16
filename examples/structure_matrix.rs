@@ -1,5 +1,5 @@
 use numberlab::mat;
-use numberlab::structure::matrix::{identity, lower_triangular, upper_triangular, Matrix};
+use numberlab::structure::matrix::{identity, Matrix};
 
 fn main() {
     let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
@@ -44,11 +44,19 @@ fn main() {
 
     println!();
 
-    let um4 = upper_triangular(&mut (matrix4.clone())).clone();
-    let lm4 = lower_triangular(&mut (matrix4.clone())).clone();
+    let mut um4 = matrix4.clone();
+    let mut lm4 = matrix4.clone();
+
+    um4.upper_triangular();
+    lm4.lower_triangular();
 
     println!("UM of {} is : {}", matrix4, um4);
     println!("LM of {} is : {}", matrix4, lm4);
+
+    println!();
+
+    println!("UM of {} is : {}", matrix4, matrix4.to_lower_triangular());
+    println!("LM of {} is : {}", matrix4, matrix4.to_lower_triangular());
 
     println!();
 

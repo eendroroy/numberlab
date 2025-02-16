@@ -1,5 +1,5 @@
 use numberlab::mat;
-use numberlab::structure::matrix::{identity, lower_triangular, upper_triangular, Matrix};
+use numberlab::structure::matrix::{identity, Matrix};
 
 #[test]
 fn should_create_matrix_of_different_data_type() {
@@ -128,22 +128,6 @@ fn should_transpose_matrix() {
 }
 
 #[test]
-fn should_return_upper_triangular_matrix() {
-    let mut matrix = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
-    upper_triangular(&mut matrix);
-
-    assert_eq!(matrix, mat![[1, 2, 3], [0, 4, 5], [0, 0, 7]]);
-}
-
-#[test]
-fn should_return_lower_triangular_matrix() {
-    let mut matrix = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
-    lower_triangular(&mut matrix);
-
-    assert_eq!(matrix, mat![[1, 0, 0], [3, 4, 0], [5, 6, 7]]);
-}
-
-#[test]
 fn should_return_row() {
     let matrix = mat![[10, 2, 3], [3, 40, 1]];
 
@@ -261,4 +245,70 @@ fn should_check_if_matrix_is_lower_triangular() {
     assert_eq!(matrix1.is_lower_triangular(), false);
     assert_eq!(matrix2.is_lower_triangular(), true);
     assert_eq!(matrix3.is_lower_triangular(), false);
+}
+
+#[test]
+fn should_return_upper_triangular_matrix() {
+    let matrix = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+
+    assert_eq!(
+        matrix.to_upper_triangular(),
+        mat![[1, 2, 3], [0, 4, 5], [0, 0, 7]]
+    );
+}
+
+#[test]
+fn should_return_lower_triangular_matrix() {
+    let matrix = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+
+    assert_eq!(
+        matrix.to_lower_triangular(),
+        mat![[1, 0, 0], [3, 4, 0], [5, 6, 7]]
+    );
+}
+
+#[test]
+fn should_convert_to_upper_triangular_matrix() {
+    let mut matrix = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+
+    matrix.upper_triangular();
+
+    assert_eq!(matrix, mat![[1, 2, 3], [0, 4, 5], [0, 0, 7]]);
+}
+
+#[test]
+fn should_convert_to_lower_triangular_matrix() {
+    let mut matrix = mat![[1, 2, 3], [3, 4, 5], [5, 6, 7]];
+
+    matrix.lower_triangular();
+
+    assert_eq!(matrix, mat![[1, 0, 0], [3, 4, 0], [5, 6, 7]]);
+}
+
+#[test]
+#[should_panic = "Matrix [2 x 3] is not square"]
+fn should_panic_to_upper_triangular_matrix() {
+    let matrix = mat![[1, 2, 3], [3, 4, 5]];
+    matrix.to_upper_triangular();
+}
+
+#[test]
+#[should_panic = "Matrix [2 x 3] is not square"]
+fn should_panic_upper_triangular_matrix() {
+    let mut matrix = mat![[1, 2, 3], [3, 4, 5]];
+    matrix.upper_triangular();
+}
+
+#[test]
+#[should_panic = "Matrix [2 x 3] is not square"]
+fn should_panic_to_lower_triangular_matrix() {
+    let matrix = mat![[1, 2, 3], [3, 4, 5]];
+    matrix.to_lower_triangular();
+}
+
+#[test]
+#[should_panic = "Matrix [2 x 3] is not square"]
+fn should_panic_lower_triangular_matrix() {
+    let mut matrix = mat![[1, 2, 3], [3, 4, 5]];
+    matrix.lower_triangular();
 }
