@@ -3,9 +3,9 @@ pub(crate) mod one;
 mod macros;
 mod matrix;
 mod matrix_functions;
-mod matrix_trait;
-mod matrix_ops;
 mod matrix_index;
+mod matrix_ops;
+mod matrix_trait;
 
 pub use matrix::Matrix;
-pub use matrix_functions::identity;
+pub use matrix_functions::{identity, lower_triangular, transpose, upper_triangular};

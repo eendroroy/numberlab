@@ -1,5 +1,7 @@
 use numberlab::mat;
-use numberlab::structure::matrix::{identity, Matrix};
+use numberlab::structure::matrix::{
+    identity, lower_triangular, transpose, upper_triangular, Matrix,
+};
 
 fn main() {
     let matrix1 = mat![[10, 2, 3], [3, 40, 1]];
@@ -31,9 +33,9 @@ fn main() {
 
     println!();
 
-    println!("Transpose of M1 : {}", matrix1.transpose());
-    println!("Transpose of M2 : {}", matrix2.transpose());
-    println!("Transpose of M3 : {}", matrix3.transpose());
+    println!("Transpose of M1 : {}", transpose(matrix1));
+    println!("Transpose of M2 : {}", transpose(matrix2));
+    println!("Transpose of M3 : {}", transpose(matrix3));
 
     println!();
 
@@ -44,24 +46,13 @@ fn main() {
 
     println!();
 
-    let mut um4 = matrix4.clone();
-    let mut lm4 = matrix4.clone();
-
-    um4.upper_triangular();
-    lm4.lower_triangular();
-
-    println!("UM of {} is : {}", matrix4, um4);
-    println!("LM of {} is : {}", matrix4, lm4);
-
-    println!();
-
-    println!("UM of {} is : {}", matrix4, matrix4.to_lower_triangular());
-    println!("LM of {} is : {}", matrix4, matrix4.to_lower_triangular());
+    println!("UM of {} is : {}", matrix4, upper_triangular(matrix4));
+    println!("LM of {} is : {}", matrix4, lower_triangular(matrix4));
 
     println!();
 
     println!("M1 is_square : {}", matrix1.is_square());
-    println!("UM is_square : {}", matrix2.is_square());
+    println!("M4 is_square : {}", matrix4.is_square());
 
     println!();
 
@@ -70,8 +61,20 @@ fn main() {
 
     println!();
 
-    println!("UM4 is_upper_triangular : {}", um4.is_upper_triangular());
-    println!("UM4 is_lower_triangular : {}", um4.is_lower_triangular());
-    println!("LM4 is_upper_triangular : {}", lm4.is_upper_triangular());
-    println!("LM4 is_lower_triangular : {}", lm4.is_lower_triangular());
+    println!(
+        "UM4 is_upper_triangular : {}",
+        upper_triangular(matrix4).is_upper_triangular()
+    );
+    println!(
+        "UM4 is_lower_triangular : {}",
+        upper_triangular(matrix4).is_lower_triangular()
+    );
+    println!(
+        "LM4 is_upper_triangular : {}",
+        lower_triangular(matrix4).is_upper_triangular()
+    );
+    println!(
+        "LM4 is_lower_triangular : {}",
+        lower_triangular(matrix4).is_lower_triangular()
+    );
 }
