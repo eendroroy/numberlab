@@ -46,13 +46,7 @@ where
         + Display,
 {
     let mut result = Matrix::<T, SIZE, SIZE>::new();
-    for i in 0..SIZE {
-        for j in 0..SIZE {
-            if i == j {
-                result[(i, j)] = T::one();
-            }
-        }
-    }
+    (0..SIZE).for_each(|i| result[(i, i)] = T::one());
     result
 }
 
