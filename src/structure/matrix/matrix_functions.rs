@@ -1,8 +1,5 @@
 use crate::structure::matrix::matrix_trait::MatrixDataTrait;
-use crate::structure::matrix::one::One;
 use crate::structure::matrix::Matrix;
-use std::fmt::Display;
-use std::ops::{Add, Div, Mul, Sub};
 
 /// Creates an identity matrix of the given size.
 ///
@@ -34,17 +31,7 @@ use std::ops::{Add, Div, Mul, Sub};
 /// assert_eq!(matrix[(2, 0)], 0);
 /// assert_eq!(matrix[(2, 1)], 0);
 /// ```
-pub fn identity<T, const SIZE: usize>() -> Matrix<T, SIZE, SIZE>
-where
-    T: Default
-        + One
-        + Copy
-        + Add<Output = T>
-        + Sub<Output = T>
-        + Mul<Output = T>
-        + Div<Output = T>
-        + Display,
-{
+pub fn identity<T: MatrixDataTrait, const SIZE: usize>() -> Matrix<T, SIZE, SIZE> {
     let mut result = Matrix::<T, SIZE, SIZE>::new();
     (0..SIZE).for_each(|i| result[(i, i)] = T::one());
     result
