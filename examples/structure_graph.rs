@@ -2,12 +2,12 @@ use numberlab::structure::graph::{bfs, dfs, Graph};
 
 fn main() {
     let graph = Graph::new_with_edges([
-        [None, Some(1.0), None, None, None, None],
-        [None, None, Some(1.0), None, None, Some(1.0)],
-        [None, None, None, None, None, Some(1.0)],
-        [None, None, Some(1.0), None, None, None],
-        [None, None, None, None, None, Some(1.0)],
-        [None, None, None, None, Some(1.0), None],
+        [None, Some(1), None, None, None, Some(1)],
+        [None, None, Some(1), None, None, None],
+        [None, None, None, None, None, Some(1)],
+        [None, None, Some(1), None, None, None],
+        [None, None, None, Some(1), None, None],
+        [None, None, None, None, Some(1), None],
     ]);
 
     println!("{:?}", graph);
