@@ -14,25 +14,41 @@ pub struct Graph<D, const NODES: usize> {
 impl<D: GraphDistanceTrait, const NODES: usize> Graph<D, NODES> {
     /// Creates a new graph with no edges.
     ///
-    /// # Returns
+    /// # Examples
     ///
-    /// A new `Graph` instance with all edges set to `None`.
+    /// ```
+    /// use numberlab::structure::graph::Graph;
+    ///
+    /// let graph = Graph::<i32, 3>::new();
+    /// assert_eq!(graph, Graph::new_with_edges([[None; 3]; 3]));
+    /// ```
     pub fn new() -> Self {
         Self {
             edges: [[None; NODES]; NODES],
         }
     }
 
-    /// Creates a new graph with the specified edges.
+    /// Creates a new graph with the given edges.
     ///
     /// # Parameters
     ///
-    /// * `edges` - A 2D array representing the edges of the graph. Each element is an `Option`
-    ///   containing the distance or weight of the edge.
+    /// * `edges` - A 2D array representing the edges of the graph.
     ///
-    /// # Returns
+    /// # Examples
     ///
-    /// A new `Graph` instance with the specified edges.
+    /// ```
+    /// use numberlab::structure::graph::Graph;
+    ///
+    /// let edges = [
+    ///     [None, Some(1), None],
+    ///     [None, None, Some(1)],
+    ///     [None, None, None],
+    /// ];
+    /// let graph = Graph::new_with_edges(edges);
+    /// assert_eq!(graph[(0, 1)], Some(1));
+    /// assert_eq!(graph[(1, 2)], Some(1));
+    /// assert_eq!(graph[(2, 0)], None);
+    /// ```
     pub fn new_with_edges(edges: [[Option<D>; NODES]; NODES]) -> Self {
         Self { edges }
     }
