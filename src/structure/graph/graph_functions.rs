@@ -2,8 +2,8 @@ use crate::structure::graph::graph_trait::GraphDistanceTrait;
 use crate::structure::graph::Graph;
 use std::collections::{BTreeMap, VecDeque};
 
-fn dfs_visit<T: GraphDistanceTrait, const NODES: usize>(
-    graph: Graph<T, NODES>,
+fn dfs_visit<D: GraphDistanceTrait, const NODES: usize>(
+    graph: Graph<D, NODES>,
     node: usize,
     end: usize,
     path: &mut Vec<usize>,
@@ -46,8 +46,8 @@ fn dfs_visit<T: GraphDistanceTrait, const NODES: usize>(
 /// # Panics
 ///
 /// Panics if the source or destination node indices are out of bounds.
-pub fn dfs<T: GraphDistanceTrait, const NODES: usize>(
-    graph: Graph<T, NODES>,
+pub fn dfs<D: GraphDistanceTrait, const NODES: usize>(
+    graph: Graph<D, NODES>,
     source: usize,
     destination: usize,
 ) -> Vec<usize> {
@@ -85,8 +85,8 @@ pub fn dfs<T: GraphDistanceTrait, const NODES: usize>(
 /// # Panics
 ///
 /// Panics if the source or destination node indices are out of bounds.
-pub fn bfs<T: GraphDistanceTrait, const NODES: usize>(
-    graph: Graph<T, NODES>,
+pub fn bfs<D: GraphDistanceTrait, const NODES: usize>(
+    graph: Graph<D, NODES>,
     source: usize,
     destination: usize,
 ) -> Vec<usize> {

@@ -11,6 +11,9 @@ fn main() {
     ]);
 
     println!("{:?}", graph);
+
+    println!();
+
     println!("DFS - {:?}, BFS - {:?}", dfs(graph, 0, 0), bfs(graph, 0, 0));
     println!("DFS - {:?}, BFS - {:?}", dfs(graph, 0, 1), bfs(graph, 0, 1));
     println!("DFS - {:?}, BFS - {:?}", dfs(graph, 0, 2), bfs(graph, 0, 2));
