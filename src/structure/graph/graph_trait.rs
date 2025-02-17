@@ -2,7 +2,7 @@ use crate::one::One;
 use std::fmt::Display;
 use std::ops::{Add, Div, Mul, Sub};
 
-pub trait MatrixDataTrait:
+pub trait GraphDistanceTrait:
     One
     + Copy
     + Clone
@@ -15,7 +15,7 @@ pub trait MatrixDataTrait:
 {
 }
 
-impl<T> MatrixDataTrait for T where
+impl<T> GraphDistanceTrait for T where
     T: One
         + Copy
         + Clone
@@ -28,6 +28,6 @@ impl<T> MatrixDataTrait for T where
 {
 }
 
-pub trait MatrixDataTraitFraction: MatrixDataTrait + From<f32> + Into<f64> {}
-
-impl<T> MatrixDataTraitFraction for T where T: MatrixDataTrait + From<f32> + Into<f64> {}
+// pub trait GraphDistanceTraitFraction: GraphDistanceTrait + From<f32> + Into<f64> {}
+//
+// impl<T> GraphDistanceTraitFraction for T where T: GraphDistanceTrait + From<f32> + Into<f64> {}

@@ -1,5 +1,3 @@
-pub(crate) mod one;
-
 mod macros;
 mod matrix;
 mod matrix_functions;

@@ -58,6 +58,7 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
     - Tribonacci Sequence ([OEIS A000073](https://oeis.org/A000073))
 - Structures:
     - Matrix
+    - Graph
 
 ## License
 
