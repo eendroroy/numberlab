@@ -13,7 +13,7 @@ To use the `numberlab` library in your Rust project, add the following to your `
 
 ```toml
 [dependencies]
-numberlab = "0.1.7"
+numberlab = "0.1.8"
 ```
 
 For examples of how to use this library, refer to the documentation at [docs.rs](https://docs.rs/numberlab).
