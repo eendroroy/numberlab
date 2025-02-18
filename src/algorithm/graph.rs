@@ -35,8 +35,8 @@ fn dfs_visit<W: GraphWeightTrait, const NODES: usize>(
 /// # Arguments
 ///
 /// * `graph` - The graph to search.
-/// * `source` - The starting node for the search.
-/// * `destination` - The target node to reach.
+/// * `source` - The starting node index for the search.
+/// * `destination` - The target node index to reach.
 ///
 /// # Returns
 ///
@@ -74,8 +74,8 @@ pub fn dfs<W: GraphWeightTrait, const NODES: usize>(
 /// # Arguments
 ///
 /// * `graph` - The graph to search.
-/// * `source` - The starting node for the search.
-/// * `destination` - The target node to reach.
+/// * `source` - The starting node index for the search.
+/// * `destination` - The target node index to reach.
 ///
 /// # Returns
 ///
