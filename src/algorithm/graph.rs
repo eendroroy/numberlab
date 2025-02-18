@@ -6,16 +6,16 @@ fn dfs_visit<W: GraphWeightTrait, const NODES: usize>(
     graph: &Graph<W, NODES>,
     node: usize,
     end: usize,
-    path: &mut Vec<usize>,
+    path: &mut Vec<(usize, String)>,
     visited: &mut Vec<bool>,
 ) -> bool {
     if node == end {
-        path.push(node);
+        path.push((node, graph[node].clone()));
         return true;
     }
 
     visited[node] = true;
-    path.push(node);
+    path.push((node, graph[node].clone()));
 
     for next in 0..NODES {
         if graph.edges[node][next].is_some() && !visited[next] {
@@ -40,7 +40,7 @@ fn dfs_visit<W: GraphWeightTrait, const NODES: usize>(
 ///
 /// # Returns
 ///
-/// A vector of node indices representing the path from the source to the destination.
+/// A vector of nodes `(index, label)` representing the path from the source to the destination.
 /// If no path is found, returns an empty vector.
 ///
 /// # Panics
@@ -50,7 +50,7 @@ pub fn dfs<W: GraphWeightTrait, const NODES: usize>(
     graph: &Graph<W, NODES>,
     source: usize,
     destination: usize,
-) -> Vec<usize> {
+) -> Vec<(usize, String)> {
     if source >= NODES || destination >= NODES {
         panic!(
             "Invalid start ({}) or end node ({}), available nodes (0 - {})",
@@ -61,7 +61,7 @@ pub fn dfs<W: GraphWeightTrait, const NODES: usize>(
     }
 
     let mut visited = vec![false; NODES];
-    let mut path: Vec<usize> = vec![];
+    let mut path: Vec<(usize, String)> = vec![];
     if dfs_visit(graph, source, destination, &mut path, &mut visited) {
         path
     } else {
@@ -79,7 +79,7 @@ pub fn dfs<W: GraphWeightTrait, const NODES: usize>(
 ///
 /// # Returns
 ///
-/// A vector of node indices representing the path from the source to the destination.
+/// A vector of nodes `(index, label)` representing the path from the source to the destination.
 /// If no path is found, returns an empty vector.
 ///
 /// # Panics
@@ -89,7 +89,7 @@ pub fn bfs<W: GraphWeightTrait, const NODES: usize>(
     graph: &Graph<W, NODES>,
     source: usize,
     destination: usize,
-) -> Vec<usize> {
+) -> Vec<(usize, String)> {
     if source >= NODES || destination >= NODES {
         panic!(
             "Invalid start ({}) or end node ({}), available nodes (0 - {})",
@@ -108,13 +108,13 @@ pub fn bfs<W: GraphWeightTrait, const NODES: usize>(
 
     while let Some(current) = queue.pop_back() {
         if current == destination {
-            let mut path = Vec::new();
+            let mut path = Vec::<(usize, String)>::new();
             let mut current = destination;
             while parent.contains_key(&current) {
-                path.push(current);
+                path.push((current, graph[current].clone()));
                 current = parent[&current];
             }
-            path.push(current);
+            path.push((current, graph[current].clone()));
             path.reverse();
             return path;
         }

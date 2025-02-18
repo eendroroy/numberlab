@@ -40,12 +40,73 @@ fn should_find_path_from_source_to_destination_using_dfs() {
         [None, None, None, None, Some(1.0), None],
     ]);
 
-    assert_eq!(dfs(graph, 0, 0), vec![0]);
-    assert_eq!(dfs(graph, 0, 1), vec![0, 1]);
-    assert_eq!(dfs(graph, 0, 2), vec![0, 1, 2]);
-    assert_eq!(dfs(graph, 0, 3), vec![]);
-    assert_eq!(dfs(graph, 0, 4), vec![0, 1, 2, 5, 4]);
-    assert_eq!(dfs(graph, 0, 5), vec![0, 1, 2, 5]);
+    assert_eq!(
+        dfs(graph, 0, 0).iter().map(|p| p.0).collect::<Vec<usize>>(),
+        vec![0]
+    );
+    assert_eq!(
+        dfs(graph, 0, 1).iter().map(|p| p.0).collect::<Vec<usize>>(),
+        vec![0, 1]
+    );
+    assert_eq!(
+        dfs(graph, 0, 2).iter().map(|p| p.0).collect::<Vec<usize>>(),
+        vec![0, 1, 2]
+    );
+    assert_eq!(
+        dfs(graph, 0, 3).iter().map(|p| p.0).collect::<Vec<usize>>(),
+        vec![]
+    );
+    assert_eq!(
+        dfs(graph, 0, 4).iter().map(|p| p.0).collect::<Vec<usize>>(),
+        vec![0, 1, 2, 5, 4]
+    );
+    assert_eq!(
+        dfs(graph, 0, 5).iter().map(|p| p.0).collect::<Vec<usize>>(),
+        vec![0, 1, 2, 5]
+    );
+
+    assert_eq!(
+        dfs(graph, 0, 0)
+            .iter()
+            .map(|p| p.1.clone())
+            .collect::<Vec<String>>(),
+        vec!["0"]
+    );
+    assert_eq!(
+        dfs(graph, 0, 1)
+            .iter()
+            .map(|p| p.1.clone())
+            .collect::<Vec<String>>(),
+        vec!["0", "1"]
+    );
+    assert_eq!(
+        dfs(graph, 0, 2)
+            .iter()
+            .map(|p| p.1.clone())
+            .collect::<Vec<String>>(),
+        vec!["0", "1", "2"]
+    );
+    assert_eq!(
+        dfs(graph, 0, 3)
+            .iter()
+            .map(|p| p.1.clone())
+            .collect::<Vec<String>>(),
+        Vec::<String>::new()
+    );
+    assert_eq!(
+        dfs(graph, 0, 4)
+            .iter()
+            .map(|p| p.1.clone())
+            .collect::<Vec<String>>(),
+        vec!["0", "1", "2", "5", "4"]
+    );
+    assert_eq!(
+        dfs(graph, 0, 5)
+            .iter()
+            .map(|p| p.1.clone())
+            .collect::<Vec<String>>(),
+        vec!["0", "1", "2", "5"]
+    );
 }
 
 #[test]
@@ -59,10 +120,71 @@ fn should_find_path_from_source_to_destination_using_bfs() {
         [None, None, None, None, Some(1.0), None],
     ]);
 
-    assert_eq!(bfs(graph, 0, 0), vec![0]);
-    assert_eq!(bfs(graph, 0, 1), vec![0, 1]);
-    assert_eq!(bfs(graph, 0, 2), vec![0, 1, 2]);
-    assert_eq!(bfs(graph, 0, 3), vec![]);
-    assert_eq!(bfs(graph, 0, 4), vec![0, 1, 5, 4]);
-    assert_eq!(bfs(graph, 0, 5), vec![0, 1, 5]);
+    assert_eq!(
+        bfs(graph, 0, 0).iter().map(|p| p.0).collect::<Vec<usize>>(),
+        vec![0]
+    );
+    assert_eq!(
+        bfs(graph, 0, 1).iter().map(|p| p.0).collect::<Vec<usize>>(),
+        vec![0, 1]
+    );
+    assert_eq!(
+        bfs(graph, 0, 2).iter().map(|p| p.0).collect::<Vec<usize>>(),
+        vec![0, 1, 2]
+    );
+    assert_eq!(
+        bfs(graph, 0, 3).iter().map(|p| p.0).collect::<Vec<usize>>(),
+        vec![]
+    );
+    assert_eq!(
+        bfs(graph, 0, 4).iter().map(|p| p.0).collect::<Vec<usize>>(),
+        vec![0, 1, 5, 4]
+    );
+    assert_eq!(
+        bfs(graph, 0, 5).iter().map(|p| p.0).collect::<Vec<usize>>(),
+        vec![0, 1, 5]
+    );
+
+    assert_eq!(
+        bfs(graph, 0, 0)
+            .iter()
+            .map(|p| p.1.clone())
+            .collect::<Vec<String>>(),
+        vec!["0"]
+    );
+    assert_eq!(
+        bfs(graph, 0, 1)
+            .iter()
+            .map(|p| p.1.clone())
+            .collect::<Vec<String>>(),
+        vec!["0", "1"]
+    );
+    assert_eq!(
+        bfs(graph, 0, 2)
+            .iter()
+            .map(|p| p.1.clone())
+            .collect::<Vec<String>>(),
+        vec!["0", "1", "2"]
+    );
+    assert_eq!(
+        bfs(graph, 0, 3)
+            .iter()
+            .map(|p| p.1.clone())
+            .collect::<Vec<String>>(),
+        Vec::<String>::new()
+    );
+    assert_eq!(
+        bfs(graph, 0, 4)
+            .iter()
+            .map(|p| p.1.clone())
+            .collect::<Vec<String>>(),
+        vec!["0", "1", "5", "4"]
+    );
+    assert_eq!(
+        bfs(graph, 0, 5)
+            .iter()
+            .map(|p| p.1.clone())
+            .collect::<Vec<String>>(),
+        vec!["0", "1", "5"]
+    );
 }
