@@ -2,7 +2,7 @@ use crate::one::One;
 use std::fmt::Display;
 use std::ops::{Add, Div, Mul, Sub};
 
-pub trait GraphDistanceTrait:
+pub trait GraphWeightTrait:
     One
     + Copy
     + Clone
@@ -15,8 +15,8 @@ pub trait GraphDistanceTrait:
 {
 }
 
-impl<T> GraphDistanceTrait for T where
-    T: One
+impl<W> GraphWeightTrait for W where
+    W: One
         + Copy
         + Clone
         + Add<Output = Self>

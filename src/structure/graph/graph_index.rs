@@ -1,8 +1,9 @@
+use crate::structure::graph::graph_trait::GraphWeightTrait;
 use crate::structure::graph::Graph;
 use std::ops::{Index, IndexMut};
 
-impl<T, const NODES: usize> Index<(usize, usize)> for Graph<T, NODES> {
-    type Output = Option<T>;
+impl<W: GraphWeightTrait, const NODES: usize> Index<(usize, usize)> for Graph<W, NODES> {
+    type Output = Option<W>;
 
     /// Returns a reference to the edge value at the given (row, column) index.
     ///
@@ -12,7 +13,7 @@ impl<T, const NODES: usize> Index<(usize, usize)> for Graph<T, NODES> {
     ///
     /// # Returns
     ///
-    /// * `&Self::Output` - A reference to the edge value, which is an `Option<T>`.
+    /// * `&Self::Output` - A reference to the edge value, which is an `Option<W>`.
     ///
     /// # Example
     ///
@@ -35,7 +36,7 @@ impl<T, const NODES: usize> Index<(usize, usize)> for Graph<T, NODES> {
     }
 }
 
-impl<T, const NODES: usize> IndexMut<(usize, usize)> for Graph<T, NODES> {
+impl<W: GraphWeightTrait, const NODES: usize> IndexMut<(usize, usize)> for Graph<W, NODES> {
     /// Returns a mutable reference to the edge value at the given (row, column) index.
     ///
     /// # Arguments
@@ -44,7 +45,7 @@ impl<T, const NODES: usize> IndexMut<(usize, usize)> for Graph<T, NODES> {
     ///
     /// # Returns
     ///
-    /// * `&mut Self::Output` - A mutable reference to the edge value, which is an `Option<T>`.
+    /// * `&mut Self::Output` - A mutable reference to the edge value, which is an `Option<W>`.
     ///
     /// # Example
     ///

@@ -1,17 +1,17 @@
-use crate::structure::graph::graph_trait::GraphDistanceTrait;
+use crate::structure::graph::graph_trait::GraphWeightTrait;
 
 /// A struct representing a graph with a fixed number of nodes and edges.
 ///
 /// # Type Parameters
 ///
-/// * `D` - The type of the distance or weight of the edges.
+/// * `W` - The type of the weight of the edges.
 /// * `NODES` - The number of nodes in the graph.
 #[derive(Debug, Clone, Copy, PartialEq)]
-pub struct Graph<D, const NODES: usize> {
-    pub(crate) edges: [[Option<D>; NODES]; NODES],
+pub struct Graph<W, const NODES: usize> {
+    pub(crate) edges: [[Option<W>; NODES]; NODES],
 }
 
-impl<D: GraphDistanceTrait, const NODES: usize> Graph<D, NODES> {
+impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     /// Creates a new graph with no edges.
     ///
     /// # Examples
@@ -49,7 +49,7 @@ impl<D: GraphDistanceTrait, const NODES: usize> Graph<D, NODES> {
     /// assert_eq!(graph[(1, 2)], Some(1));
     /// assert_eq!(graph[(2, 0)], None);
     /// ```
-    pub fn new_with_edges(edges: [[Option<D>; NODES]; NODES]) -> Self {
+    pub fn new_with_edges(edges: [[Option<W>; NODES]; NODES]) -> Self {
         Self { edges }
     }
 }
