@@ -3,14 +3,14 @@ use numberlab::structure::graph::{bfs, dfs, Graph};
 fn main() {
     let graph = Graph::new_with_edges([
         [None, Some(1), None, None, None, Some(1)],
-        [None, None, Some(1), None, None, None],
-        [None, None, None, None, None, Some(1)],
+        [None, None, Some(100000), None, None, None],
+        [None, None, None, None, None, Some(1000000000)],
         [None, None, Some(1), None, None, None],
         [None, None, None, Some(1), None, None],
         [None, None, None, None, Some(1), None],
     ]);
 
-    println!("{:?}", graph);
+    println!("{}", graph);
 
     println!();
 
