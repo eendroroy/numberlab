@@ -23,6 +23,9 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
 
 - Algorithms:
     - Factorization
+    - Graph
+        - BFS
+        - DFS
 - Coordinates:
     - Cartesian
     - Polar

@@ -1,9 +1,7 @@
-mod graph;
-mod graph_edge_index;
-mod graph_functions;
-mod graph_node_index;
-mod graph_trait;
+pub(crate) mod graph;
+pub(crate) mod graph_edge_index;
+pub(crate) mod graph_functions;
+pub(crate) mod graph_node_index;
+pub(crate) mod graph_trait;
 
 pub use graph::Graph;
-pub use graph_functions::bfs;
-pub use graph_functions::dfs;
