@@ -1,14 +1,17 @@
 use numberlab::structure::graph::{bfs, dfs, Graph};
 
 fn main() {
-    let graph = Graph::new_with_edges([
-        [None, Some(1), None, None, None, Some(1)],
-        [None, None, Some(100000), None, None, None],
-        [None, None, None, None, None, Some(1000000000)],
-        [None, None, Some(1), None, None, None],
-        [None, None, None, Some(1), None, None],
-        [None, None, None, None, Some(1), None],
-    ]);
+    let graph = &Graph::from(
+        ["A", "B", "C", "D", "E", "F"],
+        [
+            [None, Some(1), None, None, None, Some(2)],
+            [None, None, Some(3), None, None, None],
+            [None, None, None, None, None, Some(4)],
+            [None, None, Some(5), None, None, None],
+            [None, None, None, Some(6), None, None],
+            [None, None, None, None, Some(7), None],
+        ],
+    );
 
     println!("{}", graph);
 

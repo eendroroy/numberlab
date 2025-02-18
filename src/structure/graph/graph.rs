@@ -7,25 +7,61 @@ use std::collections::HashMap;
 ///
 /// * `W` - The type of the weight of the edges.
 /// * `NODES` - The number of nodes in the graph.
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct Graph<W, const NODES: usize> {
+    pub(crate) nodes: [String; NODES],
     pub(crate) edges: [[Option<W>; NODES]; NODES],
 }
 
 impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     /// Creates a new graph with no edges.
     ///
-    /// # Examples
+    /// # Example
     ///
     /// ```
     /// use numberlab::structure::graph::Graph;
     ///
     /// let graph = Graph::<i32, 3>::new();
-    /// assert_eq!(graph, Graph::new_with_edges([[None; 3]; 3]));
+    /// assert_eq!(graph, Graph::from_edges([[None; 3]; 3]));
     /// ```
     pub fn new() -> Self {
         Self {
+            nodes: std::array::from_fn(|n| n.to_string()),
             edges: [[None; NODES]; NODES],
+        }
+    }
+
+    /// Creates a new graph with the given nodes and edges.
+    ///
+    /// # Parameters
+    ///
+    /// * `nodes` - An array of node names.
+    /// * `edges` - A 2D array representing the edges of the graph.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use numberlab::structure::graph::Graph;
+    ///
+    /// let nodes = ["A", "B", "C"];
+    /// let edges = [
+    ///     [None, Some(1), None],
+    ///     [None, None, Some(1)],
+    ///     [None, None, None],
+    /// ];
+    /// let graph = Graph::from(nodes, edges);
+    ///
+    /// assert_eq!(graph[0], "A");
+    /// assert_eq!(graph[1], "B");
+    /// assert_eq!(graph[2], "C");
+    /// assert_eq!(graph[(0, 1)], Some(1));
+    /// assert_eq!(graph[(1, 2)], Some(1));
+    /// assert_eq!(graph[(2, 0)], None);
+    /// ```
+    pub fn from(nodes: [&str; NODES], edges: [[Option<W>; NODES]; NODES]) -> Self {
+        Self {
+            nodes: std::array::from_fn(|i| nodes[i].to_string()),
+            edges,
         }
     }
 
@@ -35,7 +71,7 @@ impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     ///
     /// * `edges` - A 2D array representing the edges of the graph.
     ///
-    /// # Examples
+    /// # Example
     ///
     /// ```
     /// use numberlab::structure::graph::Graph;
@@ -45,13 +81,16 @@ impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     ///     [None, None, Some(1)],
     ///     [None, None, None],
     /// ];
-    /// let graph = Graph::new_with_edges(edges);
+    /// let graph = Graph::from_edges(edges);
     /// assert_eq!(graph[(0, 1)], Some(1));
     /// assert_eq!(graph[(1, 2)], Some(1));
     /// assert_eq!(graph[(2, 0)], None);
     /// ```
-    pub fn new_with_edges(edges: [[Option<W>; NODES]; NODES]) -> Self {
-        Self { edges }
+    pub fn from_edges(edges: [[Option<W>; NODES]; NODES]) -> Self {
+        Self {
+            nodes: std::array::from_fn(|n| n.to_string()),
+            edges,
+        }
     }
 }
 
@@ -62,7 +101,7 @@ impl<W: GraphWeightTrait, const NODES: usize> std::fmt::Display for Graph<W, NOD
         for j in 0..NODES {
             let header_length = format!("N{}", j).len();
             let max_entry_length = (0..NODES)
-                .map(|i| match self.edges[i][j] {
+                .map(|i| match self[(i, j)] {
                     None => 1,
                     Some(w) => w.to_string().len(),
                 })
@@ -74,7 +113,7 @@ impl<W: GraphWeightTrait, const NODES: usize> std::fmt::Display for Graph<W, NOD
         write!(f, "{:>width$} ", " ", width = lengths[&0] + 1)
             .expect("Failed to write to formatter");
         for j in 0..NODES {
-            write!(f, " {:>width$}", format!("N{}", j), width = lengths[&j] + 1)
+            write!(f, " {:>width$}", self[j], width = lengths[&j] + 1)
                 .expect("Failed to write to formatter");
         }
         writeln!(f).expect("Failed to write to formatter");
@@ -88,13 +127,8 @@ impl<W: GraphWeightTrait, const NODES: usize> std::fmt::Display for Graph<W, NOD
         writeln!(f)?;
 
         for i in 0..NODES {
-            write!(
-                f,
-                "{:>width$} |",
-                format!("N{}", i),
-                width = lengths[&0] + 1
-            )
-            .expect("Failed to write to formatter");
+            write!(f, "{:>width$} |", self[i], width = lengths[&0] + 1)
+                .expect("Failed to write to formatter");
             for j in 0..NODES {
                 let w = match self.edges[i][j] {
                     None => ".".to_string(),

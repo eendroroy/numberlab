@@ -20,7 +20,7 @@ impl<W: GraphWeightTrait, const NODES: usize> Index<(usize, usize)> for Graph<W,
     /// ```
     /// use numberlab::structure::graph::Graph;
     ///
-    /// let graph = Graph::<f32, 6>::new_with_edges([
+    /// let graph = Graph::<f32, 6>::from_edges([
     ///     [None, Some(1.0), None, None, None, None],
     ///     [None, None, Some(1.0), None, None, Some(1.0)],
     ///     [None, None, None, None, None, Some(1.0)],
@@ -52,7 +52,7 @@ impl<W: GraphWeightTrait, const NODES: usize> IndexMut<(usize, usize)> for Graph
     /// ```
     /// use numberlab::structure::graph::Graph;
     ///
-    /// let mut graph = Graph::<f32, 6>::new_with_edges([
+    /// let mut graph = Graph::<f32, 6>::from_edges([
     ///     [None, Some(1.0), None, None, None, None],
     ///     [None, None, Some(1.0), None, None, Some(1.0)],
     ///     [None, None, None, None, None, Some(1.0)],

@@ -3,7 +3,7 @@ use crate::structure::graph::Graph;
 use std::collections::{BTreeMap, VecDeque};
 
 fn dfs_visit<W: GraphWeightTrait, const NODES: usize>(
-    graph: Graph<W, NODES>,
+    graph: &Graph<W, NODES>,
     node: usize,
     end: usize,
     path: &mut Vec<usize>,
@@ -47,7 +47,7 @@ fn dfs_visit<W: GraphWeightTrait, const NODES: usize>(
 ///
 /// Panics if the source or destination node indices are out of bounds.
 pub fn dfs<W: GraphWeightTrait, const NODES: usize>(
-    graph: Graph<W, NODES>,
+    graph: &Graph<W, NODES>,
     source: usize,
     destination: usize,
 ) -> Vec<usize> {
@@ -86,7 +86,7 @@ pub fn dfs<W: GraphWeightTrait, const NODES: usize>(
 ///
 /// Panics if the source or destination node indices are out of bounds.
 pub fn bfs<W: GraphWeightTrait, const NODES: usize>(
-    graph: Graph<W, NODES>,
+    graph: &Graph<W, NODES>,
     source: usize,
     destination: usize,
 ) -> Vec<usize> {
