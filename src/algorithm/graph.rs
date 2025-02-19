@@ -178,61 +178,50 @@ pub fn dijkstra<W: GraphWeightTrait, const NODES: usize>(
     source: usize,
     destination: usize,
 ) -> Vec<(usize, String, W)> {
-    let mut parents: HashMap<usize, usize> = HashMap::with_capacity(NODES);
-
-    let mut costs: [Option<W>; NODES] = [None; NODES];
-    let mut explored: [bool; NODES] = [false; NODES];
+    let mut parents = HashMap::with_capacity(NODES);
+    let mut costs = [None; NODES];
+    let mut explored = [false; NODES];
 
     costs[source] = Some(W::zero());
-
     let mut current = source;
 
     while current < NODES {
-        if destination == current {
+        if current == destination {
             let mut path = vec![(current, graph[current].clone(), costs[current].unwrap())];
-            while parents.contains_key(&current) {
-                let parent = parents[&current];
+            while let Some(&parent) = parents.get(&current) {
                 path.push((parent, graph[parent].clone(), costs[parent].unwrap()));
-
                 current = parent;
             }
-
             path.reverse();
-
             return path;
         }
+
         explored[current] = true;
-        let mut to_visit = usize::MAX;
-        let mut to_visit_cost: Option<W> = None;
+        let mut next = usize::MAX;
+        let mut next_weight = None;
+
         for adj in 0..NODES {
-            match graph[(current, adj)] {
-                Some(weight) => {
-                    match costs[adj] {
-                        None => {
-                            costs[adj] = Some(costs[current].unwrap() + weight);
-                            parents.insert(adj, current);
-                        }
-                        Some(prev_cost) => {
-                            let new_cost = costs[current].unwrap() + weight;
-                            if new_cost <= prev_cost {
-                                costs[adj] = Some(new_cost);
-                                parents.insert(adj, current);
-                            }
-                        }
+            if let Some(weight) = graph[(current, adj)] {
+                let new_cost = costs[current].unwrap() + weight;
+                match costs[adj] {
+                    None => {
+                        costs[adj] = Some(new_cost);
+                        parents.insert(adj, current);
                     }
-                    if costs[adj].is_some()
-                        && !explored[adj]
-                        && (to_visit_cost.is_none() || to_visit_cost.unwrap() > costs[adj].unwrap())
-                    {
-                        to_visit_cost = costs[adj];
-                        to_visit = adj;
+                    Some(prev_cost) if new_cost < prev_cost => {
+                        costs[adj] = Some(new_cost);
+                        parents.insert(adj, current);
                     }
+                    _ => {}
                 }
-                None => {}
+                if !explored[adj] && (next_weight.is_none() || new_cost < next_weight.unwrap()) {
+                    next_weight = Some(new_cost);
+                    next = adj;
+                }
             }
         }
-        current = to_visit;
+        current = next;
     }
 
-    Vec::<(usize, String, W)>::new()
+    Vec::new()
 }
