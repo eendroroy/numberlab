@@ -131,12 +131,54 @@ pub fn bfs<W: GraphWeightTrait, const NODES: usize>(
     vec![]
 }
 
+/// Performs Dijkstra's algorithm on the graph to find the shortest path from the source node to the destination node.
+///
+/// # Arguments
+///
+/// * `graph` - The graph to search.
+/// * `source` - The starting node index for the search.
+/// * `destination` - The target node index to reach.
+///
+/// # Returns
+///
+/// A vector of nodes `(index, label, cost)` representing the path from the source to the destination.
+/// If no path is found, returns an empty vector.
+///
+/// # Panics
+///
+/// Panics if the source or destination node indices are out of bounds.
+///
+/// # Example
+///
+/// ```
+/// use numberlab::algorithm::graph::dijkstra;
+/// use numberlab::structure::graph::Graph;
+///
+/// let graph = &Graph::from(
+///     ["A", "B", "C", "D", "E", "F"],
+///     [
+///         [None, Some(6.5), None, None, None, Some(9.5)],
+///         [None, None, Some(1.5), None, None, None],
+///         [None, None, None, None, None, Some(2.5)],
+///         [None, None, Some(4.5), None, None, None],
+///         [None, None, None, Some(2.5), None, None],
+///         [None, None, None, None, Some(8.5), None],
+///     ],
+/// );
+/// let path = dijkstra(graph, 0, 3);
+/// assert_eq!(path, vec![
+///     (0, "A".to_string(), 0.0),
+///     (5, "F".to_string(), 9.5),
+///     (4, "E".to_string(), 18.0),
+///     (3, "D".to_string(), 20.5),
+/// ]);
+/// ```
 pub fn dijkstra<W: GraphWeightTrait, const NODES: usize>(
     graph: &Graph<W, NODES>,
     source: usize,
     destination: usize,
 ) -> Vec<(usize, String, W)> {
-    let mut parent: HashMap<usize, usize> = HashMap::with_capacity(NODES);
+    let mut parents: HashMap<usize, usize> = HashMap::with_capacity(NODES);
 
     let mut costs: [Option<W>; NODES] = [None; NODES];
     let mut explored: [bool; NODES] = [false; NODES];
@@ -147,20 +189,12 @@ pub fn dijkstra<W: GraphWeightTrait, const NODES: usize>(
 
     while current < NODES {
         if destination == current {
-            let mut path = vec![(
-                destination,
-                graph[destination].clone(),
-                costs[destination].unwrap(),
-            )];
-            while parent.contains_key(&current) {
-                let parent_node = parent[&current];
-                path.push((
-                    parent_node,
-                    graph[parent_node].clone(),
-                    costs[parent_node].unwrap(),
-                ));
+            let mut path = vec![(current, graph[current].clone(), costs[current].unwrap())];
+            while parents.contains_key(&current) {
+                let parent = parents[&current];
+                path.push((parent, graph[parent].clone(), costs[parent].unwrap()));
 
-                current = parent_node;
+                current = parent;
             }
 
             path.reverse();
@@ -176,13 +210,13 @@ pub fn dijkstra<W: GraphWeightTrait, const NODES: usize>(
                     match costs[adj] {
                         None => {
                             costs[adj] = Some(costs[current].unwrap() + weight);
-                            parent.insert(adj, current);
+                            parents.insert(adj, current);
                         }
                         Some(prev_cost) => {
                             let new_cost = costs[current].unwrap() + weight;
                             if new_cost <= prev_cost {
                                 costs[adj] = Some(new_cost);
-                                parent.insert(adj, current);
+                                parents.insert(adj, current);
                             }
                         }
                     }

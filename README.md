@@ -26,6 +26,7 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
     - Graph
         - BFS
         - DFS
+        - Dijkstra
 - Coordinates:
     - Cartesian
     - Polar

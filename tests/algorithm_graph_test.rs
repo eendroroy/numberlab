@@ -1,4 +1,4 @@
-use numberlab::algorithm::graph::{bfs, dfs};
+use numberlab::algorithm::graph::{bfs, dfs, dijkstra};
 use numberlab::structure::graph::Graph;
 
 #[test]
@@ -187,4 +187,90 @@ fn should_find_path_from_source_to_destination_using_bfs() {
             .collect::<Vec<String>>(),
         vec!["0", "1", "5"]
     );
+}
+
+#[test]
+fn should_find_shortest_path_using_dijkstra() {
+    let graph = &Graph::from(
+        ["A", "B", "C", "D", "E", "F"],
+        [
+            [None, Some(6.5), None, None, None, Some(9.5)],
+            [None, None, Some(1.5), None, None, None],
+            [None, None, None, None, None, Some(2.5)],
+            [None, None, Some(4.5), None, None, None],
+            [None, None, None, Some(2.5), None, None],
+            [None, None, None, None, Some(8.5), None],
+        ],
+    );
+
+    assert_eq!(
+        dijkstra(graph, 0, 3)
+            .iter()
+            .map(|i| i.0)
+            .collect::<Vec<_>>(),
+        vec![0, 5, 4, 3]
+    );
+
+    assert_eq!(
+        dijkstra(graph, 0, 3)
+            .iter()
+            .map(|i| i.1.clone())
+            .collect::<Vec<_>>(),
+        vec!["A", "F", "E", "D"]
+    );
+
+    assert_eq!(
+        dijkstra(graph, 0, 3)
+            .iter()
+            .map(|i| i.2)
+            .collect::<Vec<_>>(),
+        vec![0.0, 9.5, 18.0, 20.5]
+    );
+
+    let graph = &Graph::from(
+        ["A", "B", "C", "D", "E", "F"],
+        [
+            [None, Some(6.5), None, None, None, Some(9.5)],
+            [None, None, Some(-1.5), None, None, None],
+            [None, None, None, None, None, Some(2.5)],
+            [None, None, Some(4.5), None, None, None],
+            [None, None, None, Some(-2.5), None, None],
+            [None, None, None, None, Some(0.5), None],
+        ],
+    );
+
+    assert_eq!(
+        dijkstra(graph, 0, 3)
+            .iter()
+            .map(|i| i.0)
+            .collect::<Vec<_>>(),
+        vec![0, 1, 2, 5, 4, 3]
+    );
+
+    assert_eq!(
+        dijkstra(graph, 0, 3)
+            .iter()
+            .map(|i| i.1.clone())
+            .collect::<Vec<_>>(),
+        vec!["A", "B", "C", "F", "E", "D"]
+    );
+
+    assert_eq!(
+        dijkstra(graph, 0, 3)
+            .iter()
+            .map(|i| i.2)
+            .collect::<Vec<_>>(),
+        vec![0.0, 6.5, 5.0, 7.5, 8.0, 5.5]
+    );
+
+    let graph = &Graph::from(
+        ["A", "B", "C"],
+        [
+            [None, Some(6.5), None],
+            [Some(6.5), None, None],
+            [None, None, None],
+        ],
+    );
+
+    assert_eq!(dijkstra(graph, 0, 2), vec![]);
 }
