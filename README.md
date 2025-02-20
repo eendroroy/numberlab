@@ -27,6 +27,11 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
         - BFS
         - DFS
         - Dijkstra
+        - A*
+    - Matrix
+        - BFS
+        - DFS
+        - Dijkstra
 - Coordinates:
     - Cartesian
     - Polar
