@@ -1,6 +1,6 @@
-use num::traits::real::Real;
+use num::Num;
 use std::fmt::Display;
 
-pub trait GraphWeightTrait: Real + Copy + Clone + Display {}
+pub trait GraphWeightTrait: Num + Copy + Clone + Display + PartialOrd {}
 
-impl<W: Real + Copy + Clone + Display> GraphWeightTrait for W {}
+impl<W: Num + Copy + Clone + Display + PartialOrd> GraphWeightTrait for W {}

@@ -5,12 +5,12 @@ fn main() {
     let graph = &Graph::from_adjacency_matrix_with_labels(
         ["A", "B", "C", "D", "E", "F"],
         [
-            [None, Some(6.5), None, None, None, Some(9.5)],
-            [None, None, Some(1.5), None, None, None],
-            [None, None, None, None, None, Some(2.5)],
-            [None, None, Some(4.5), None, None, None],
-            [None, None, None, Some(2.5), None, None],
-            [None, None, None, None, Some(8.5), None],
+            [None, Some(6), None, None, None, Some(9)],
+            [None, None, Some(1), None, None, None],
+            [None, None, None, None, None, Some(2)],
+            [None, None, Some(4), None, None, None],
+            [None, None, None, Some(2), None, None],
+            [None, None, None, None, Some(8), None],
         ],
     );
 
