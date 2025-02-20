@@ -2,6 +2,9 @@ use crate::structure::matrix::matrix_trait::MatrixDataTrait;
 use crate::structure::matrix::Matrix;
 use std::collections::{BTreeMap, HashMap, VecDeque};
 
+/// A collection of popular heuristic functions for a* algorithm
+pub mod heuristics;
+
 fn validate<const ROWS: usize, const COLS: usize>(
     source: (usize, usize),
     destination: (usize, usize),
@@ -238,6 +241,88 @@ pub fn dijkstra<T: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
                 && (next_weight.is_none() || new_cost < next_weight.unwrap())
             {
                 next_weight = Some(new_cost);
+                next = neighbour;
+            }
+        }
+        current = next;
+    }
+
+    Vec::new()
+}
+
+/// Performs the A* algorithm on a matrix to find the shortest path from the source node
+/// to the destination node using a heuristic function.
+///
+/// # Arguments
+///
+/// * `matrix` - A reference to the matrix to be searched.
+/// * `source` - A tuple representing the starting node (row, column).
+/// * `destination` - A tuple representing the ending node (row, column).
+/// * `heu` - A heuristic function that takes two nodes and returns a cost.
+///
+/// # Returns
+///
+/// A vector of tuples representing the path from the source node to the destination node,
+/// along with the cost associated with each node. If no path is found, returns an empty vector.
+///
+/// # Panics
+///
+/// Panics if the source or destination nodes are out of the matrix bounds.
+pub fn a_star<T: MatrixDataTrait, const ROWS: usize, const COLS: usize, H>(
+    matrix: &Matrix<T, ROWS, COLS>,
+    source: (usize, usize),
+    destination: (usize, usize),
+    heu: H,
+) -> Vec<((usize, usize), T)>
+where
+    T: MatrixDataTrait,
+    H: Fn((usize, usize), (usize, usize)) -> T,
+{
+    validate::<ROWS, COLS>(source, destination);
+
+    let mut parents: HashMap<(usize, usize), (usize, usize)> = HashMap::with_capacity(ROWS * COLS);
+    let mut costs: HashMap<(usize, usize), T> = HashMap::with_capacity(ROWS * COLS);
+    let mut explored: HashMap<(usize, usize), bool> = HashMap::with_capacity(ROWS * COLS);
+
+    costs.insert(source, T::zero());
+    let mut current = source;
+
+    while current.0 < ROWS && current.1 < COLS {
+        if current == destination {
+            return reconstruct_path::<T, ROWS, COLS>(parents, costs, current);
+        }
+
+        explored.insert(current, true);
+        let mut next = (usize::MAX, usize::MAX);
+        let mut next_heu = None;
+
+        let neighbours = find_neighbours(matrix, current);
+
+        if neighbours.is_empty() {
+            return Vec::new();
+        }
+
+        for neighbour in find_neighbours(matrix, current) {
+            let weight = matrix[neighbour];
+
+            let new_cost = *costs.get(&current).unwrap() + weight;
+            let new_heu = new_cost + heu(neighbour, destination);
+            match costs.get(&neighbour) {
+                None => {
+                    costs.insert(neighbour, new_cost);
+                    parents.insert(neighbour, current);
+                }
+                Some(prev_cost) if new_cost < *prev_cost => {
+                    costs.insert(neighbour, new_cost);
+                    parents.insert(neighbour, current);
+                }
+                _ => {}
+            }
+            if (explored.get(&neighbour).is_none()
+                || explored.get(&neighbour).unwrap().clone() == false)
+                && (next_heu.is_none() || new_heu < next_heu.unwrap())
+            {
+                next_heu = Some(new_heu);
                 next = neighbour;
             }
         }
