@@ -72,7 +72,7 @@ pub fn dfs<W: GraphWeightTrait, const NODES: usize>(
 ) -> Vec<(usize, String)> {
     if source >= NODES || destination >= NODES {
         panic!(
-            "Invalid start ({}) or end node ({}), available nodes (0 - {})",
+            "Invalid start({}) or end({}) node, available nodes (0 - {})",
             source,
             destination,
             NODES - 1
@@ -111,7 +111,7 @@ pub fn bfs<W: GraphWeightTrait, const NODES: usize>(
 ) -> Vec<(usize, String)> {
     if source >= NODES || destination >= NODES {
         panic!(
-            "Invalid start ({}) or end node ({}), available nodes (0 - {})",
+            "Invalid start({}) or end({}) node, available nodes (0 - {})",
             source,
             destination,
             NODES - 1
@@ -200,7 +200,7 @@ pub fn dijkstra<W: GraphWeightTrait, const NODES: usize>(
 ) -> Vec<(usize, String, W)> {
     if source >= NODES || destination >= NODES {
         panic!(
-            "Invalid start ({}) or end node ({}), available nodes (0 - {})",
+            "Invalid start({}) or end({}) node, available nodes (0 - {})",
             source,
             destination,
             NODES - 1
@@ -301,7 +301,7 @@ pub fn a_star<W: GraphWeightTrait, const NODES: usize, H: Fn(usize, usize) -> W>
 ) -> Vec<(usize, String, W)> {
     if source >= NODES || destination >= NODES {
         panic!(
-            "Invalid start ({}) or end node ({}), available nodes (0 - {})",
+            "Invalid start({}) or end({}) node, available nodes (0 - {})",
             source,
             destination,
             NODES - 1

@@ -2,28 +2,28 @@ use numberlab::algorithm::graph::{bfs, dfs, dijkstra};
 use numberlab::structure::graph::Graph;
 
 #[test]
-#[should_panic(expected = "Invalid start (6) or end node (0), available nodes (0 - 5)")]
+#[should_panic(expected = "Invalid start(6) or end(0) node, available nodes (0 - 5)")]
 fn should_panic_if_source_invalid_for_dfs() {
     let graph = &Graph::<f32, 6>::new();
     dfs(graph, 6, 0);
 }
 
 #[test]
-#[should_panic(expected = "Invalid start (0) or end node (6), available nodes (0 - 5)")]
+#[should_panic(expected = "Invalid start(0) or end(6) node, available nodes (0 - 5)")]
 fn should_panic_if_destination_invalid_for_dfs() {
     let graph = &Graph::<f32, 6>::new();
     dfs(graph, 0, 6);
 }
 
 #[test]
-#[should_panic(expected = "Invalid start (6) or end node (0), available nodes (0 - 5)")]
+#[should_panic(expected = "Invalid start(6) or end(0) node, available nodes (0 - 5)")]
 fn should_panic_if_source_invalid_for_bfs() {
     let graph = &Graph::<f32, 6>::new();
     bfs(graph, 6, 0);
 }
 
 #[test]
-#[should_panic(expected = "Invalid start (0) or end node (6), available nodes (0 - 5)")]
+#[should_panic(expected = "Invalid start(0) or end(6) node, available nodes (0 - 5)")]
 fn should_panic_if_destination_invalid_for_bfs() {
     let graph = &Graph::<f32, 6>::new();
     bfs(graph, 0, 6);
