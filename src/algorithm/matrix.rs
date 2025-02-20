@@ -172,6 +172,23 @@ pub fn bfs<T: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
     Vec::new()
 }
 
+/// Performs Dijkstra's algorithm on a matrix to find the shortest path from the source node
+/// to the destination node.
+///
+/// # Arguments
+///
+/// * `matrix` - A reference to the matrix to be searched.
+/// * `source` - A tuple representing the starting node (row, column).
+/// * `destination` - A tuple representing the ending node (row, column).
+///
+/// # Returns
+///
+/// A vector of tuples representing the path from the source node to the destination node,
+/// along with the cost associated with each node. If no path is found, returns an empty vector.
+///
+/// # Panics
+///
+/// Panics if the source or destination nodes are out of the matrix bounds.
 pub fn dijkstra<T: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
     matrix: &Matrix<T, ROWS, COLS>,
     source: (usize, usize),
