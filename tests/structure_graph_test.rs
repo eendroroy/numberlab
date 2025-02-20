@@ -47,12 +47,12 @@ fn should_display_graph() {
     let graph = &Graph::from_adjacency_matrix_with_labels(
         ["A", "B", "C", "D", "E", "F"],
         [
-            [None, Some(1), None, None, None, Some(2)],
-            [None, None, Some(3), None, None, None],
-            [None, None, None, None, None, Some(4)],
-            [None, None, Some(5), None, None, None],
-            [None, None, None, Some(6), None, None],
-            [None, None, None, None, Some(7), None],
+            [None, Some(1.0), None, None, None, Some(2.0)],
+            [None, None, Some(3.0), None, None, None],
+            [None, None, None, None, None, Some(4.0)],
+            [None, None, Some(5.0), None, None, None],
+            [None, None, None, Some(6.0), None, None],
+            [None, None, None, None, Some(7.0), None],
         ],
     );
     let dis = "       A   B   C   D   E   F\

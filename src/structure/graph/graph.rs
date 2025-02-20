@@ -21,7 +21,7 @@ impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     /// ```
     /// use numberlab::structure::graph::Graph;
     ///
-    /// let graph = Graph::<i32, 3>::new();
+    /// let graph = Graph::<f32, 3>::new();
     /// assert_eq!(graph, Graph::from_adjacency_matrix([[None; 3]; 3]));
     /// ```
     pub fn new() -> Self {
@@ -45,8 +45,8 @@ impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     ///
     /// let labels = ["A", "B", "C"];
     /// let adjacency = [
-    ///     [None, Some(1), None],
-    ///     [None, None, Some(1)],
+    ///     [None, Some(1.0), None],
+    ///     [None, None, Some(1.0)],
     ///     [None, None, None],
     /// ];
     /// let graph = Graph::from_adjacency_matrix_with_labels(labels, adjacency);
@@ -54,8 +54,8 @@ impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     /// assert_eq!(graph[0], "A");
     /// assert_eq!(graph[1], "B");
     /// assert_eq!(graph[2], "C");
-    /// assert_eq!(graph[(0, 1)], Some(1));
-    /// assert_eq!(graph[(1, 2)], Some(1));
+    /// assert_eq!(graph[(0, 1)], Some(1.0));
+    /// assert_eq!(graph[(1, 2)], Some(1.0));
     /// assert_eq!(graph[(2, 0)], None);
     /// ```
     pub fn from_adjacency_matrix_with_labels(
@@ -80,13 +80,13 @@ impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     /// use numberlab::structure::graph::Graph;
     ///
     /// let adjacency = [
-    ///     [None, Some(1), None],
-    ///     [None, None, Some(1)],
+    ///     [None, Some(1.0), None],
+    ///     [None, None, Some(1.0)],
     ///     [None, None, None],
     /// ];
     /// let graph = Graph::from_adjacency_matrix(adjacency);
-    /// assert_eq!(graph[(0, 1)], Some(1));
-    /// assert_eq!(graph[(1, 2)], Some(1));
+    /// assert_eq!(graph[(0, 1)], Some(1.0));
+    /// assert_eq!(graph[(1, 2)], Some(1.0));
     /// assert_eq!(graph[(2, 0)], None);
     /// ```
     pub fn from_adjacency_matrix(adjacency: [[Option<W>; NODES]; NODES]) -> Self {
@@ -108,11 +108,11 @@ impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     /// ```
     /// use numberlab::structure::graph::Graph;
     ///
-    /// let edges = vec![(0, 1, 1), (1, 2, 1)];
-    /// let graph = Graph::from_edges(edges);
+    /// let edges = vec![(0, 1, 1.0), (1, 2, 1.0)];
+    /// let graph = Graph::<f64, 3>::from_edges(edges);
     ///
-    /// assert_eq!(graph[(0, 1)], Some(1));
-    /// assert_eq!(graph[(1, 2)], Some(1));
+    /// assert_eq!(graph[(0, 1)], Some(1.0));
+    /// assert_eq!(graph[(1, 2)], Some(1.0));
     /// assert_eq!(graph[(2, 0)], None);
     /// ```
     pub fn from_edges(edges: Vec<(usize, usize, W)>) -> Self {
@@ -140,14 +140,14 @@ impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     /// use numberlab::structure::graph::Graph;
     ///
     /// let labels = ["A", "B", "C"];
-    /// let edges = vec![(0, 1, 1), (1, 2, 1)];
+    /// let edges = vec![(0, 1, 1.0), (1, 2, 1.0)];
     /// let graph = Graph::from_edges_with_labels(labels, edges);
     ///
     /// assert_eq!(graph[0], "A");
     /// assert_eq!(graph[1], "B");
     /// assert_eq!(graph[2], "C");
-    /// assert_eq!(graph[(0, 1)], Some(1));
-    /// assert_eq!(graph[(1, 2)], Some(1));
+    /// assert_eq!(graph[(0, 1)], Some(1.0));
+    /// assert_eq!(graph[(1, 2)], Some(1.0));
     /// assert_eq!(graph[(2, 0)], None);
     /// ```
     pub fn from_edges_with_labels(labels: [&str; NODES], edges: Vec<(usize, usize, W)>) -> Self {

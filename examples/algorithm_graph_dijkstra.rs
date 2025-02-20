@@ -7,16 +7,16 @@ use numberlab::structure::graph::Graph;
 
 fn main() {
     let graph = &Graph::from_adjacency_matrix([
-        [None, Some(4), Some(1), None, None, None, None, None, None, None],
-        [Some(4), None, Some(2), Some(1), None, None, None, None, None, None],
-        [Some(1), Some(2), None, Some(5), Some(3), None, None, None, None, None],
-        [None, Some(1), Some(5), None, Some(2), Some(8), None, None, None, None],
-        [None, None, Some(3), Some(2), None, Some(6), Some(7), None, None, None],
-        [None, None, None, Some(8), Some(6), None, Some(2), Some(3), None, None],
-        [None, None, None, None, Some(7), Some(2), None, Some(5), Some(1), None],
-        [None, None, None, None, None, Some(3), Some(5), None, Some(4), Some(2)],
-        [None, None, None, None, None, None, Some(1), Some(4), None, Some(6)],
-        [None, None, None, None, None, None, None, Some(2), Some(6), None],
+        [None, Some(4.0), Some(1.0), None, None, None, None, None, None, None],
+        [Some(4.0), None, Some(2.0), Some(1.0), None, None, None, None, None, None],
+        [Some(1.0), Some(2.0), None, Some(5.0), Some(3.0), None, None, None, None, None],
+        [None, Some(1.0), Some(5.0), None, Some(2.0), Some(8.0), None, None, None, None],
+        [None, None, Some(3.0), Some(2.0), None, Some(6.0), Some(7.0), None, None, None],
+        [None, None, None, Some(8.0), Some(6.0), None, Some(2.0), Some(3.0), None, None],
+        [None, None, None, None, Some(7.0), Some(2.0), None, Some(5.0), Some(1.0), None],
+        [None, None, None, None, None, Some(3.0), Some(5.0), None, Some(4.0), Some(2.0)],
+        [None, None, None, None, None, None, Some(1.0), Some(4.0), None, Some(6.0)],
+        [None, None, None, None, None, None, None, Some(2.0), Some(6.0), None],
     ]);
 
     println!("{}", graph);
