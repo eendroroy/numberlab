@@ -29,7 +29,6 @@ fn dfs_visit<W: GraphWeightTrait, const NODES: usize>(
     }
 
     path.pop();
-    visited[node] = false;
     false
 }
 

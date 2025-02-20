@@ -19,7 +19,8 @@ fn validate<const ROWS: usize, const COLS: usize>(
     }
 }
 
-fn find_neighbours<const ROWS: usize, const COLS: usize>(
+fn find_neighbours<T: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
+    matrix: &Matrix<T, ROWS, COLS>,
     node: (usize, usize),
 ) -> Vec<(usize, usize)> {
     match node {
@@ -33,6 +34,10 @@ fn find_neighbours<const ROWS: usize, const COLS: usize>(
         (r, c) if c == COLS - 1 => vec![(r - 1, c), (r + 1, c), (r, c - 1)], // right
         (r, c) => vec![(r + 1, c), (r, c + 1), (r - 1, c), (r, c - 1)], // inner
     }
+    .iter()
+    .filter(|p| matrix[**p] > T::zero())
+    .map(|p| p.clone())
+    .collect()
 }
 
 fn dfs_visit<W: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
@@ -50,10 +55,8 @@ fn dfs_visit<W: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
     visited.insert(node, true);
     path.push(node);
 
-    for next in find_neighbours::<ROWS, COLS>(node) {
-        if matrix[next] > W::zero()
-            && (visited.get(&next).is_none() || visited.get(&next).unwrap().clone() == false)
-        {
+    for next in find_neighbours(matrix, node) {
+        if visited.get(&next).is_none() || visited.get(&next).unwrap().clone() == false {
             if dfs_visit(matrix, next.clone(), end, path, visited) {
                 return true;
             }
@@ -61,8 +64,22 @@ fn dfs_visit<W: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
     }
 
     path.pop();
-    visited.insert(node, false);
     false
+}
+
+fn reconstruct_path<T: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
+    parents: HashMap<(usize, usize), (usize, usize)>,
+    costs: HashMap<(usize, usize), T>,
+    node: (usize, usize),
+) -> Vec<((usize, usize), T)> {
+    let mut current = node;
+    let mut path = vec![(current, *costs.get(&current).unwrap())];
+    while let Some(&parent) = parents.get(&current) {
+        path.push((parent, *costs.get(&parent).unwrap()));
+        current = parent;
+    }
+    path.reverse();
+    path
 }
 
 /// Performs a depth-first search (DFS) on a matrix to find a path from the source node
@@ -143,15 +160,71 @@ pub fn bfs<T: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
             return path;
         }
 
-        for next in find_neighbours::<ROWS, COLS>(current) {
-            if matrix[next] > T::zero()
-                && (visited.get(&next).is_none() || visited.get(&next).unwrap().clone() == false)
-            {
+        for next in find_neighbours(matrix, current) {
+            if visited.get(&next).is_none() || visited.get(&next).unwrap().clone() == false {
                 visited.insert(next, true);
                 parent.insert(next, current);
                 queue.push_front(next);
             }
         }
+    }
+
+    Vec::new()
+}
+
+pub fn dijkstra<T: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
+    matrix: &Matrix<T, ROWS, COLS>,
+    source: (usize, usize),
+    destination: (usize, usize),
+) -> Vec<((usize, usize), T)> {
+    validate::<ROWS, COLS>(source, destination);
+
+    let mut parents: HashMap<(usize, usize), (usize, usize)> = HashMap::with_capacity(ROWS * COLS);
+    let mut costs: HashMap<(usize, usize), T> = HashMap::with_capacity(ROWS * COLS);
+    let mut explored: HashMap<(usize, usize), bool> = HashMap::with_capacity(ROWS * COLS);
+
+    costs.insert(source, T::zero());
+    let mut current = source;
+
+    while current.0 < ROWS && current.1 < COLS {
+        if current == destination {
+            return reconstruct_path::<T, ROWS, COLS>(parents, costs, current);
+        }
+
+        explored.insert(current, true);
+        let mut next = (usize::MAX, usize::MAX);
+        let mut next_weight = None;
+
+        let neighbours = find_neighbours(matrix, current);
+
+        if neighbours.is_empty() {
+            return Vec::new();
+        }
+
+        for neighbour in find_neighbours(matrix, current) {
+            let weight = matrix[neighbour];
+
+            let new_cost = *costs.get(&current).unwrap() + weight;
+            match costs.get(&neighbour) {
+                None => {
+                    costs.insert(neighbour, new_cost);
+                    parents.insert(neighbour, current);
+                }
+                Some(prev_cost) if new_cost < *prev_cost => {
+                    costs.insert(neighbour, new_cost);
+                    parents.insert(neighbour, current);
+                }
+                _ => {}
+            }
+            if (explored.get(&neighbour).is_none()
+                || explored.get(&neighbour).unwrap().clone() == false)
+                && (next_weight.is_none() || new_cost < next_weight.unwrap())
+            {
+                next_weight = Some(new_cost);
+                next = neighbour;
+            }
+        }
+        current = next;
     }
 
     Vec::new()
