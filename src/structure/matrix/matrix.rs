@@ -1,4 +1,5 @@
 use crate::structure::matrix::matrix_trait::MatrixDataTrait;
+use crate::structure::matrix::MatrixVis;
 use std::collections::HashMap;
 
 /// A generic Matrix struct that holds a 2D array of elements.
@@ -53,6 +54,25 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
     /// ```
     pub fn from_array(data: [[T; COLS]; ROWS]) -> Self {
         Self { data }
+    }
+
+    pub fn draw(&self, w: char, b: char) -> MatrixVis<ROWS, COLS> {
+        MatrixVis::<ROWS, COLS>::from_mat(self, w, b)
+    }
+
+    /// Converts the matrix to a `MatrixVis` representation.
+    ///
+    /// # Arguments
+    ///
+    /// * `path` - A vector of tuples representing the coordinates of the path in the matrix.
+    /// * `w` - A character to represent the path in the matrix.
+    /// * `b` - A character to represent the background in the matrix.
+    ///
+    /// # Returns
+    ///
+    /// A `MatrixVis` instance representing the matrix visualization.
+    pub fn draw_path(&self, path: Vec<(usize, usize)>, w: char, b: char) -> MatrixVis<ROWS, COLS> {
+        MatrixVis::<ROWS, COLS>::from_path(path, w, b)
     }
 
     /// Returns the elements of the specified row.
