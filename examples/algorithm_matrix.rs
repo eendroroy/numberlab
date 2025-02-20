@@ -1,4 +1,4 @@
-use numberlab::algorithm::matrix::dfs;
+use numberlab::algorithm::matrix::{bfs, dfs};
 use numberlab::structure::matrix::Matrix;
 
 fn main() {
@@ -27,11 +27,17 @@ fn main() {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     ]);
 
-    let from = (0, 0);
-    let to = (21, 42);
+    let (from, to) = ((0, 0), (21, 42));
+
     println!("{}", matrix.draw('█', '░'));
+
     println!();
+
     println!("Path from {:?} -> {:?} (Using DFS)", from, to);
-    println!();
     println!("{}", matrix.draw_path(dfs(matrix, from, to), '█', '░'));
+
+    println!();
+
+    println!("Path from {:?} -> {:?} (Using BFS)", from, to);
+    println!("{}", matrix.draw_path(bfs(matrix, from, to), '█', '░'));
 }
