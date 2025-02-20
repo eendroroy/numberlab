@@ -20,7 +20,7 @@ impl<W: GraphWeightTrait, const NODES: usize> Index<(usize, usize)> for Graph<W,
     /// ```
     /// use numberlab::structure::graph::Graph;
     ///
-    /// let graph = Graph::<f32, 6>::from_edges([
+    /// let graph = Graph::<f32, 6>::from_adjacency_matrix([
     ///     [None, Some(1.0), None, None, None, None],
     ///     [None, None, Some(1.0), None, None, Some(1.0)],
     ///     [None, None, None, None, None, Some(1.0)],
@@ -32,7 +32,7 @@ impl<W: GraphWeightTrait, const NODES: usize> Index<(usize, usize)> for Graph<W,
     /// assert_eq!(graph[(0, 2)], None);
     /// ```
     fn index(&self, index: (usize, usize)) -> &Self::Output {
-        &self.edges[index.0][index.1]
+        &self.adjacency[index.0][index.1]
     }
 }
 
@@ -52,7 +52,7 @@ impl<W: GraphWeightTrait, const NODES: usize> IndexMut<(usize, usize)> for Graph
     /// ```
     /// use numberlab::structure::graph::Graph;
     ///
-    /// let mut graph = Graph::<f32, 6>::from_edges([
+    /// let mut graph = Graph::<f32, 6>::from_adjacency_matrix([
     ///     [None, Some(1.0), None, None, None, None],
     ///     [None, None, Some(1.0), None, None, Some(1.0)],
     ///     [None, None, None, None, None, Some(1.0)],
@@ -64,6 +64,6 @@ impl<W: GraphWeightTrait, const NODES: usize> IndexMut<(usize, usize)> for Graph
     /// assert_eq!(graph[(0, 0)], Some(1.0));
     /// ```
     fn index_mut(&mut self, index: (usize, usize)) -> &mut Self::Output {
-        &mut self.edges[index.0][index.1]
+        &mut self.adjacency[index.0][index.1]
     }
 }

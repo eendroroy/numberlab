@@ -31,7 +31,7 @@ fn should_panic_if_destination_invalid_for_bfs() {
 
 #[test]
 fn should_find_path_from_source_to_destination_using_dfs() {
-    let graph = &Graph::from_edges([
+    let graph = &Graph::from_adjacency_matrix([
         [None, Some(1.0), None, None, None, None],
         [None, None, Some(1.0), None, None, Some(1.0)],
         [None, None, None, None, None, Some(1.0)],
@@ -111,7 +111,7 @@ fn should_find_path_from_source_to_destination_using_dfs() {
 
 #[test]
 fn should_find_path_from_source_to_destination_using_bfs() {
-    let graph = &Graph::from_edges([
+    let graph = &Graph::from_adjacency_matrix([
         [None, Some(1.0), None, None, None, None],
         [None, None, Some(1.0), None, None, Some(1.0)],
         [None, None, None, None, None, Some(1.0)],
@@ -191,7 +191,7 @@ fn should_find_path_from_source_to_destination_using_bfs() {
 
 #[test]
 fn should_find_shortest_path_using_dijkstra() {
-    let graph = &Graph::from(
+    let graph = &Graph::from_adjacency_matrix_with_labels(
         ["A", "B", "C", "D", "E", "F"],
         [
             [None, Some(6.5), None, None, None, Some(9.5)],
@@ -227,7 +227,7 @@ fn should_find_shortest_path_using_dijkstra() {
         vec![0.0, 9.5, 18.0, 20.5]
     );
 
-    let graph = &Graph::from(
+    let graph = &Graph::from_adjacency_matrix_with_labels(
         ["A", "B", "C", "D", "E", "F"],
         [
             [None, Some(6.5), None, None, None, Some(9.5)],
@@ -263,7 +263,7 @@ fn should_find_shortest_path_using_dijkstra() {
         vec![0.0, 6.5, 5.0, 7.5, 8.0, 5.5]
     );
 
-    let graph = &Graph::from(
+    let graph = &Graph::from_adjacency_matrix_with_labels(
         ["A", "B", "C"],
         [
             [None, Some(6.5), None],

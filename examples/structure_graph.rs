@@ -1,7 +1,7 @@
 use numberlab::structure::graph::Graph;
 
 fn main() {
-    let graph = Graph::from(
+    let graph = Graph::from_adjacency_matrix_with_labels(
         ["AA", "BB", "CC", "DD", "EE", "FF"],
         [
             [None, Some(1), None, None, None, Some(2)],

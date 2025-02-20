@@ -25,7 +25,7 @@ impl<W: GraphWeightTrait, const NODES: usize> Index<usize> for Graph<W, NODES> {
     /// assert_eq!(graph[1], "1");
     /// ```
     fn index(&self, index: usize) -> &Self::Output {
-        &self.nodes[index]
+        &self.labels[index]
     }
 }
 
@@ -50,6 +50,6 @@ impl<W: GraphWeightTrait, const NODES: usize> IndexMut<usize> for Graph<W, NODES
     /// assert_eq!(graph[0], "A");
     /// ```
     fn index_mut(&mut self, index: usize) -> &mut Self::Output {
-        &mut self.nodes[index]
+        &mut self.labels[index]
     }
 }

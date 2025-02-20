@@ -2,7 +2,7 @@ use numberlab::algorithm::graph::{bfs, dfs, dijkstra};
 use numberlab::structure::graph::Graph;
 
 fn main() {
-    let graph = &Graph::from(
+    let graph = &Graph::from_adjacency_matrix_with_labels(
         ["A", "B", "C", "D", "E", "F"],
         [
             [None, Some(6.5), None, None, None, Some(9.5)],

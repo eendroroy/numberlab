@@ -2,7 +2,7 @@ use numberlab::structure::graph::Graph;
 
 #[test]
 fn should_return_weight_from_node_to_node() {
-    let graph = &mut Graph::from_edges([
+    let graph = &mut Graph::from_adjacency_matrix([
         [None, Some(1.0), None, None, None, None],
         [None, None, Some(1.0), None, None, Some(1.0)],
         [None, None, None, None, None, Some(1.0)],
@@ -26,7 +26,7 @@ fn should_return_weight_from_node_to_node() {
 
 #[test]
 fn should_return_node_label() {
-    let graph = &mut Graph::from(
+    let graph = &mut Graph::from_adjacency_matrix_with_labels(
         ["A", "B", "C"],
         [
             [None, Some(1.0), Some(1.0)],
@@ -44,7 +44,7 @@ fn should_return_node_label() {
 
 #[test]
 fn should_display_graph() {
-    let graph = &Graph::from(
+    let graph = &Graph::from_adjacency_matrix_with_labels(
         ["A", "B", "C", "D", "E", "F"],
         [
             [None, Some(1), None, None, None, Some(2)],

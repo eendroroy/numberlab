@@ -9,8 +9,8 @@ use std::collections::HashMap;
 /// * `NODES` - The number of nodes in the graph.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Graph<W, const NODES: usize> {
-    pub(crate) nodes: [String; NODES],
-    pub(crate) edges: [[Option<W>; NODES]; NODES],
+    pub(crate) labels: [String; NODES],
+    pub(crate) adjacency: [[Option<W>; NODES]; NODES],
 }
 
 impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
@@ -22,12 +22,12 @@ impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     /// use numberlab::structure::graph::Graph;
     ///
     /// let graph = Graph::<i32, 3>::new();
-    /// assert_eq!(graph, Graph::from_edges([[None; 3]; 3]));
+    /// assert_eq!(graph, Graph::from_adjacency_matrix([[None; 3]; 3]));
     /// ```
     pub fn new() -> Self {
         Self {
-            nodes: std::array::from_fn(|n| n.to_string()),
-            edges: [[None; NODES]; NODES],
+            labels: std::array::from_fn(|n| n.to_string()),
+            adjacency: [[None; NODES]; NODES],
         }
     }
 
@@ -35,21 +35,21 @@ impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     ///
     /// # Parameters
     ///
-    /// * `nodes` - An array of node names.
-    /// * `edges` - A 2D array representing the edges of the graph.
+    /// * `labels` - An array of node names.
+    /// * `adjacency` - A 2D array representing the edges of the graph.
     ///
     /// # Example
     ///
     /// ```
     /// use numberlab::structure::graph::Graph;
     ///
-    /// let nodes = ["A", "B", "C"];
-    /// let edges = [
+    /// let labels = ["A", "B", "C"];
+    /// let adjacency = [
     ///     [None, Some(1), None],
     ///     [None, None, Some(1)],
     ///     [None, None, None],
     /// ];
-    /// let graph = Graph::from(nodes, edges);
+    /// let graph = Graph::from_adjacency_matrix_with_labels(labels, adjacency);
     ///
     /// assert_eq!(graph[0], "A");
     /// assert_eq!(graph[1], "B");
@@ -58,10 +58,13 @@ impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     /// assert_eq!(graph[(1, 2)], Some(1));
     /// assert_eq!(graph[(2, 0)], None);
     /// ```
-    pub fn from(nodes: [&str; NODES], edges: [[Option<W>; NODES]; NODES]) -> Self {
+    pub fn from_adjacency_matrix_with_labels(
+        labels: [&str; NODES],
+        adjacency: [[Option<W>; NODES]; NODES],
+    ) -> Self {
         Self {
-            nodes: std::array::from_fn(|i| nodes[i].to_string()),
-            edges,
+            labels: std::array::from_fn(|i| labels[i].to_string()),
+            adjacency,
         }
     }
 
@@ -69,27 +72,92 @@ impl<W: GraphWeightTrait, const NODES: usize> Graph<W, NODES> {
     ///
     /// # Parameters
     ///
-    /// * `edges` - A 2D array representing the edges of the graph.
+    /// * `adjacency` - A 2D array representing the edges of the graph.
     ///
     /// # Example
     ///
     /// ```
     /// use numberlab::structure::graph::Graph;
     ///
-    /// let edges = [
+    /// let adjacency = [
     ///     [None, Some(1), None],
     ///     [None, None, Some(1)],
     ///     [None, None, None],
     /// ];
-    /// let graph = Graph::from_edges(edges);
+    /// let graph = Graph::from_adjacency_matrix(adjacency);
     /// assert_eq!(graph[(0, 1)], Some(1));
     /// assert_eq!(graph[(1, 2)], Some(1));
     /// assert_eq!(graph[(2, 0)], None);
     /// ```
-    pub fn from_edges(edges: [[Option<W>; NODES]; NODES]) -> Self {
+    pub fn from_adjacency_matrix(adjacency: [[Option<W>; NODES]; NODES]) -> Self {
         Self {
-            nodes: std::array::from_fn(|n| n.to_string()),
-            edges,
+            labels: std::array::from_fn(|n| n.to_string()),
+            adjacency,
+        }
+    }
+
+    /// Creates a new graph from a list of edges.
+    ///
+    /// # Parameters
+    ///
+    /// * `edges` - A vector of tuples representing the edges of the graph, where each tuple contains
+    ///   the indices of the start and end nodes and the weight of the edge.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use numberlab::structure::graph::Graph;
+    ///
+    /// let edges = vec![(0, 1, 1), (1, 2, 1)];
+    /// let graph = Graph::from_edges(edges);
+    ///
+    /// assert_eq!(graph[(0, 1)], Some(1));
+    /// assert_eq!(graph[(1, 2)], Some(1));
+    /// assert_eq!(graph[(2, 0)], None);
+    /// ```
+    pub fn from_edges(edges: Vec<(usize, usize, W)>) -> Self {
+        let mut adjacency: [[Option<W>; NODES]; NODES] = [[None; NODES]; NODES];
+        edges
+            .iter()
+            .for_each(|edge| adjacency[edge.0][edge.1] = Some(edge.2));
+        Self {
+            labels: std::array::from_fn(|n| n.to_string()),
+            adjacency,
+        }
+    }
+
+    /// Creates a new graph with the given edges and labels.
+    ///
+    /// # Parameters
+    ///
+    /// * `labels` - An array of node names.
+    /// * `edges` - A vector of tuples representing the edges of the graph, where each tuple contains
+    ///   the indices of the start and end nodes and the weight of the edge.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use numberlab::structure::graph::Graph;
+    ///
+    /// let labels = ["A", "B", "C"];
+    /// let edges = vec![(0, 1, 1), (1, 2, 1)];
+    /// let graph = Graph::from_edges_with_labels(labels, edges);
+    ///
+    /// assert_eq!(graph[0], "A");
+    /// assert_eq!(graph[1], "B");
+    /// assert_eq!(graph[2], "C");
+    /// assert_eq!(graph[(0, 1)], Some(1));
+    /// assert_eq!(graph[(1, 2)], Some(1));
+    /// assert_eq!(graph[(2, 0)], None);
+    /// ```
+    pub fn from_edges_with_labels(labels: [&str; NODES], edges: Vec<(usize, usize, W)>) -> Self {
+        let mut adjacency: [[Option<W>; NODES]; NODES] = [[None; NODES]; NODES];
+        edges
+            .iter()
+            .for_each(|edge| adjacency[edge.0][edge.1] = Some(edge.2));
+        Self {
+            labels: std::array::from_fn(|i| labels[i].to_string()),
+            adjacency,
         }
     }
 }
@@ -130,7 +198,7 @@ impl<W: GraphWeightTrait, const NODES: usize> std::fmt::Display for Graph<W, NOD
             write!(f, "{:>width$} |", self[i], width = lengths[&0] + 1)
                 .expect("Failed to write to formatter");
             for j in 0..NODES {
-                let w = match self.edges[i][j] {
+                let w = match self.adjacency[i][j] {
                     None => ".".to_string(),
                     Some(w) => w.to_string(),
                 };
