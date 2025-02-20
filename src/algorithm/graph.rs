@@ -292,7 +292,7 @@ pub fn dijkstra<W: GraphWeightTrait, const NODES: usize>(
 /// ]);
 /// ```
 //noinspection DuplicatedCode
-pub fn a_star<W: GraphWeightTrait, const NODES: usize, H: Fn(usize, usize) -> W>(
+pub fn a_star<W: GraphWeightTrait, const NODES: usize, H: Fn(usize, usize, usize) -> W>(
     graph: &Graph<W, NODES>,
     source: usize,
     destination: usize,
@@ -326,7 +326,7 @@ pub fn a_star<W: GraphWeightTrait, const NODES: usize, H: Fn(usize, usize) -> W>
         for adj in 0..NODES {
             if let Some(weight) = graph[(current, adj)] {
                 let new_cost = costs[current].unwrap() + weight;
-                let new_heu = new_cost + heu(adj, destination);
+                let new_heu = new_cost + heu(adj, destination, NODES);
                 match costs[adj] {
                     None => {
                         costs[adj] = Some(new_cost);
