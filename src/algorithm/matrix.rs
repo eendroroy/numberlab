@@ -5,7 +5,8 @@ use std::collections::{BTreeMap, HashMap, VecDeque};
 /// A collection of popular heuristic functions for a* algorithm
 pub mod heuristics;
 
-fn validate<const ROWS: usize, const COLS: usize>(
+fn validate<T: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
+    matrix: &Matrix<T, ROWS, COLS>,
     source: (usize, usize),
     destination: (usize, usize),
 ) {
@@ -19,6 +20,12 @@ fn validate<const ROWS: usize, const COLS: usize>(
             ROWS - 1,
             COLS - 1
         );
+    }
+    if matrix[source] < T::one() || matrix[destination] < T::one() {
+        panic!(
+            "Invalid start({},{} [{}]) or end({},{}, [{}]) node",
+            source.0, source.1, matrix[source], destination.0, destination.1, matrix[destination]
+        )
     }
 }
 
@@ -107,7 +114,7 @@ pub fn dfs<T: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
     source: (usize, usize),
     destination: (usize, usize),
 ) -> Vec<(usize, usize)> {
-    validate::<ROWS, COLS>(source, destination);
+    validate(matrix, source, destination);
 
     let mut visited: HashMap<(usize, usize), bool> = HashMap::with_capacity(ROWS * COLS);
 
@@ -141,7 +148,7 @@ pub fn bfs<T: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
     source: (usize, usize),
     destination: (usize, usize),
 ) -> Vec<(usize, usize)> {
-    validate::<ROWS, COLS>(source, destination);
+    validate(matrix, source, destination);
 
     let mut visited: HashMap<(usize, usize), bool> = HashMap::with_capacity(ROWS * COLS);
     let mut parent: BTreeMap<(usize, usize), (usize, usize)> = BTreeMap::new();
@@ -197,7 +204,7 @@ pub fn dijkstra<T: MatrixDataTrait, const ROWS: usize, const COLS: usize>(
     source: (usize, usize),
     destination: (usize, usize),
 ) -> Vec<((usize, usize), T)> {
-    validate::<ROWS, COLS>(source, destination);
+    validate(matrix, source, destination);
 
     let mut parents: HashMap<(usize, usize), (usize, usize)> = HashMap::with_capacity(ROWS * COLS);
     let mut costs: HashMap<(usize, usize), T> = HashMap::with_capacity(ROWS * COLS);
@@ -278,7 +285,7 @@ where
     T: MatrixDataTrait,
     H: Fn((usize, usize), (usize, usize)) -> T,
 {
-    validate::<ROWS, COLS>(source, destination);
+    validate(matrix, source, destination);
 
     let mut parents: HashMap<(usize, usize), (usize, usize)> = HashMap::with_capacity(ROWS * COLS);
     let mut costs: HashMap<(usize, usize), T> = HashMap::with_capacity(ROWS * COLS);
