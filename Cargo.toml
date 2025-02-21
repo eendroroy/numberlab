@@ -21,6 +21,7 @@ crate-type = ["lib"]
 #crate-type = ["staticlib", "lib", "cdylib"]
 
 [dependencies]
+colored = "2.0.2"
 num = "=0.4.3"
 
 [dev-dependencies]

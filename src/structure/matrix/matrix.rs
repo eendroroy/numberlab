@@ -56,23 +56,18 @@ impl<T: MatrixDataTrait, const ROWS: usize, const COLS: usize> Matrix<T, ROWS, C
         Self { data }
     }
 
-    pub fn draw(&self, w: char, b: char) -> MatrixVis<ROWS, COLS> {
-        MatrixVis::<ROWS, COLS>::from_mat(self, w, b)
-    }
-
-    /// Converts the matrix to a `MatrixVis` representation.
+    /// Draws a visual representation of the matrix.
     ///
     /// # Arguments
     ///
-    /// * `path` - A vector of tuples representing the coordinates of the path in the matrix.
     /// * `w` - A character to represent the path in the matrix.
     /// * `b` - A character to represent the background in the matrix.
     ///
     /// # Returns
     ///
-    /// A `MatrixVis` instance representing the matrix visualization.
-    pub fn draw_path(&self, path: Vec<(usize, usize)>, w: char, b: char) -> MatrixVis<ROWS, COLS> {
-        MatrixVis::<ROWS, COLS>::from_path(path, w, b)
+    /// A `MatrixVis` object representing the visual representation of the matrix.
+    pub fn draw(&self, w: char, b: char) -> MatrixVis<ROWS, COLS> {
+        MatrixVis::<ROWS, COLS>::from_mat(self, w, b)
     }
 
     /// Returns the elements of the specified row.

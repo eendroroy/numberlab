@@ -31,6 +31,17 @@ impl<const ROWS: usize, const COLS: usize> MatrixVis<ROWS, COLS> {
         Self { data }
     }
 
+    /// Creates a new `MatrixVis` instance from a given matrix, with specified characters for the path and background.
+    ///
+    /// # Arguments
+    ///
+    /// * `matrix` - A reference to a `Matrix` instance implementing the `MatrixDataTrait`.
+    /// * `w` - A character to represent the path in the matrix.
+    /// * `b` - A character to represent the background in the matrix.
+    ///
+    /// # Returns
+    ///
+    /// A new `MatrixVis` instance with the path and background characters set accordingly.
     pub fn from_mat<T: MatrixDataTrait>(matrix: &Matrix<T, ROWS, COLS>, w: char, b: char) -> Self {
         let mut data: [[String; COLS]; ROWS] = array_fn(|_| array_fn(|_| String::from(b)));
         for i in 0..ROWS {
@@ -43,6 +54,27 @@ impl<const ROWS: usize, const COLS: usize> MatrixVis<ROWS, COLS> {
             }
         }
         Self { data }
+    }
+
+    /// Highlights a given path in the matrix visualization using a specified character and formatting function.
+    ///
+    /// # Arguments
+    ///
+    /// * `path` - A vector of tuples representing the coordinates of the path in the matrix.
+    /// * `w` - A character to represent the path in the matrix.
+    /// * `fmt` - A formatting function to apply to the path character.
+    ///
+    /// # Returns
+    ///
+    /// A new `MatrixVis` instance with the highlighted path.
+    pub fn highlight_path<F>(&self, path: Vec<(usize, usize)>, w: char, fmt: F) -> Self
+    where
+        F: Fn(String) -> String,
+    {
+        let mut cloned = self.clone();
+        path.iter()
+            .for_each(|n| cloned.data[n.0][n.1] = fmt(String::from(w)));
+        cloned
     }
 }
 

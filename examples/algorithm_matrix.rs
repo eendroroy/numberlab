@@ -1,17 +1,25 @@
+use colored::{Color, Colorize};
+use numberlab::algorithm::matrix::heuristics::{
+    chebyshev_heuristic, dijkstra_heuristic, euclidean_heuristic, manhattan_heuristic,
+    octile_heuristic,
+};
 use numberlab::algorithm::matrix::{a_star, bfs, dfs, dijkstra};
-use numberlab::algorithm::matrix::heuristics::{chebyshev_heuristic, dijkstra_heuristic, euclidean_heuristic, manhattan_heuristic, octile_heuristic};
 use numberlab::structure::matrix::Matrix;
+
+fn fmt(w: String) -> String {
+    w.color(Color::TrueColor { r: 1, g: 188, b: 255 }).to_string()
+}
 
 fn main() {
     let matrix = &Matrix::from_array([
         [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         [1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0],
-        [0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0],
+        [0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 5.0, 0.0, 5.0, 0.0, 2.0, 0.0, 2.0, 0.0, 2.0, 0.0, 1.1, 0.0, 0.0, 0.0, 1.1, 0.0, 1.1, 0.0, 2.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0],
         [0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0],
         [0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0],
         [0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0],
         [0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0],
-        [0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0],
+        [0.0, 1.0, 0.0, 1.0, 0.0, 5.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0],
         [0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0],
         [0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0],
         [0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0],
@@ -29,30 +37,39 @@ fn main() {
     ]);
 
     let (from, to) = ((0, 0), (21, 42));
-
-    println!("{}", matrix.draw('█', '░'));
+    let matrix_vis = matrix.draw('█', '░');
 
     println!();
-
     println!("Path from {:?} -> {:?} (Using DFS)", from, to);
-    println!("{}", matrix.draw_path(dfs(matrix, from, to), '█', '░'));
+    println!("{}", matrix_vis.highlight_path(dfs(matrix, from, to), '█', fmt));
 
     println!();
-
     println!("Path from {:?} -> {:?} (Using BFS)", from, to);
-    println!("{}", matrix.draw_path(bfs(matrix, from, to), '█', '░'));
+    println!("{}", matrix_vis.highlight_path(bfs(matrix, from, to), '█', fmt));
+
 
     println!();
-
     println!("Path from {:?} -> {:?} (Using Dijkstra)", from, to);
-    println!("{}", matrix.draw_path(dijkstra(matrix, from, to).iter().map(|p| p.0).collect(), '█', '░'));
+    let dj_path = dijkstra(matrix, from, to).iter().map(|p| p.0).collect();
+    println!("{}", matrix_vis.highlight_path(dj_path, '█', fmt));
 
     println!();
+    println!("Path from {:?} -> {:?} (Using A*) - manhattan_heuristic", from, to);
+    println!("{}", matrix_vis.highlight_path(a_star(matrix, from, to, manhattan_heuristic).iter().map(|p| p.0).collect(), '█', fmt));
 
-    println!("Path from {:?} -> {:?} (Using A*) - ", from, to);
-    println!("{}", matrix.draw_path(a_star(matrix, from, to, manhattan_heuristic).iter().map(|p| p.0).collect(), '█', '░'));
-    println!("{}", matrix.draw_path(a_star(matrix, from, to, euclidean_heuristic).iter().map(|p| p.0).collect(), '█', '░'));
-    println!("{}", matrix.draw_path(a_star(matrix, from, to, chebyshev_heuristic).iter().map(|p| p.0).collect(), '█', '░'));
-    println!("{}", matrix.draw_path(a_star(matrix, from, to, octile_heuristic).iter().map(|p| p.0).collect(), '█', '░'));
-    println!("{}", matrix.draw_path(a_star(matrix, from, to, dijkstra_heuristic).iter().map(|p| p.0).collect(), '█', '░'));
+    println!();
+    println!("Path from {:?} -> {:?} (Using A*) - euclidean_heuristic", from, to);
+    println!("{}", matrix_vis.highlight_path(a_star(matrix, from, to, euclidean_heuristic).iter().map(|p| p.0).collect(), '█', fmt));
+
+    println!();
+    println!("Path from {:?} -> {:?} (Using A*) - chebyshev_heuristic", from, to);
+    println!("{}", matrix_vis.highlight_path(a_star(matrix, from, to, chebyshev_heuristic).iter().map(|p| p.0).collect(), '█', fmt));
+
+    println!();
+    println!("Path from {:?} -> {:?} (Using A*) - octile_heuristic", from, to);
+    println!("{}", matrix_vis.highlight_path(a_star(matrix, from, to, octile_heuristic).iter().map(|p| p.0).collect(), '█', fmt));
+
+    println!();
+    println!("Path from {:?} -> {:?} (Using A*) - dijkstra_heuristic", from, to);
+    println!("{}", matrix_vis.highlight_path(a_star(matrix, from, to, dijkstra_heuristic).iter().map(|p| p.0).collect(), '█', fmt));
 }
