@@ -1,3 +1,4 @@
+use crate::algorithm::graph::heuristics::dijkstra_heuristic;
 use crate::structure::graph::graph_trait::GraphWeightTrait;
 use crate::structure::graph::Graph;
 use std::collections::{BTreeMap, HashMap, VecDeque};
@@ -5,31 +6,52 @@ use std::collections::{BTreeMap, HashMap, VecDeque};
 /// A collection of popular heuristic functions for a* algorithm
 pub mod heuristics;
 
-fn dfs_visit<W: GraphWeightTrait, const NODES: usize>(
+fn traversal<W: GraphWeightTrait, const NODES: usize>(
     graph: &Graph<W, NODES>,
-    node: usize,
-    end: usize,
-    path: &mut Vec<(usize, String)>,
-    visited: &mut Vec<bool>,
-) -> bool {
-    if node == end {
-        path.push((node, graph[node].clone()));
-        return true;
+    source: usize,
+    destination: usize,
+    push: fn(&mut VecDeque<usize>, usize),
+    pop: fn(&mut VecDeque<usize>) -> Option<usize>,
+) -> Vec<(usize, String)> {
+    if source >= NODES || destination >= NODES {
+        panic!(
+            "Invalid start({}) or end({}) node, available nodes (0 - {})",
+            source,
+            destination,
+            NODES - 1
+        );
     }
 
-    visited[node] = true;
-    path.push((node, graph[node].clone()));
+    let mut visited = vec![false; NODES];
+    let mut parent: BTreeMap<usize, usize> = BTreeMap::new();
+    let mut queue = VecDeque::new();
 
-    for next in 0..NODES {
-        if graph.adjacency[node][next].is_some() && !visited[next] {
-            if dfs_visit(graph, next, end, path, visited) {
-                return true;
+    visited[source] = true;
+    push(&mut queue, source);
+
+    while let Some(current) = pop(&mut queue) {
+        if current == destination {
+            let mut path = Vec::<(usize, String)>::new();
+            let mut current = destination;
+            while parent.contains_key(&current) {
+                path.push((current, graph[current].clone()));
+                current = parent[&current];
+            }
+            path.push((current, graph[current].clone()));
+            path.reverse();
+            return path;
+        }
+
+        for next in 0..NODES {
+            if !visited[next] && graph[(current, next)].is_some() {
+                visited[next] = true;
+                parent.insert(next, current);
+                push(&mut queue, next);
             }
         }
     }
 
-    path.pop();
-    false
+    vec![]
 }
 
 fn reconstruct_path<W: GraphWeightTrait, const NODES: usize>(
@@ -69,22 +91,13 @@ pub fn dfs<W: GraphWeightTrait, const NODES: usize>(
     source: usize,
     destination: usize,
 ) -> Vec<(usize, String)> {
-    if source >= NODES || destination >= NODES {
-        panic!(
-            "Invalid start({}) or end({}) node, available nodes (0 - {})",
-            source,
-            destination,
-            NODES - 1
-        );
+    fn push(q: &mut VecDeque<usize>, v: usize) {
+        q.push_back(v)
     }
-
-    let mut visited = vec![false; NODES];
-    let mut path: Vec<(usize, String)> = vec![];
-    if dfs_visit(graph, source, destination, &mut path, &mut visited) {
-        path
-    } else {
-        Vec::new()
+    fn pop(q: &mut VecDeque<usize>) -> Option<usize> {
+        q.pop_back()
     }
+    traversal(graph, source, destination, push, pop)
 }
 
 /// Performs a Breadth-First Search (BFS) on the graph to find a path from the source node to the destination node.
@@ -108,45 +121,13 @@ pub fn bfs<W: GraphWeightTrait, const NODES: usize>(
     source: usize,
     destination: usize,
 ) -> Vec<(usize, String)> {
-    if source >= NODES || destination >= NODES {
-        panic!(
-            "Invalid start({}) or end({}) node, available nodes (0 - {})",
-            source,
-            destination,
-            NODES - 1
-        );
+    fn push(q: &mut VecDeque<usize>, v: usize) {
+        q.push_front(v)
     }
-
-    let mut visited = vec![false; NODES];
-    let mut parent: BTreeMap<usize, usize> = BTreeMap::new();
-    let mut queue = VecDeque::new();
-
-    visited[source] = true;
-    queue.push_front(source);
-
-    while let Some(current) = queue.pop_back() {
-        if current == destination {
-            let mut path = Vec::<(usize, String)>::new();
-            let mut current = destination;
-            while parent.contains_key(&current) {
-                path.push((current, graph[current].clone()));
-                current = parent[&current];
-            }
-            path.push((current, graph[current].clone()));
-            path.reverse();
-            return path;
-        }
-
-        for next in 0..NODES {
-            if !visited[next] && graph[(current, next)].is_some() {
-                visited[next] = true;
-                parent.insert(next, current);
-                queue.push_front(next);
-            }
-        }
+    fn pop(q: &mut VecDeque<usize>) -> Option<usize> {
+        q.pop_back()
     }
-
-    vec![]
+    traversal(graph, source, destination, push, pop)
 }
 
 /// Performs Dijkstra's algorithm on the graph to find the shortest path from the source node to the destination node.
@@ -191,61 +172,12 @@ pub fn bfs<W: GraphWeightTrait, const NODES: usize>(
 ///     (3, "D".to_string(), 20.5),
 /// ]);
 /// ```
-//noinspection DuplicatedCode
 pub fn dijkstra<W: GraphWeightTrait, const NODES: usize>(
     graph: &Graph<W, NODES>,
     source: usize,
     destination: usize,
 ) -> Vec<(usize, String, W)> {
-    if source >= NODES || destination >= NODES {
-        panic!(
-            "Invalid start({}) or end({}) node, available nodes (0 - {})",
-            source,
-            destination,
-            NODES - 1
-        );
-    }
-
-    let mut parents = HashMap::with_capacity(NODES);
-    let mut costs = [None; NODES];
-    let mut explored = [false; NODES];
-
-    costs[source] = Some(W::zero());
-    let mut current = source;
-
-    while current < NODES {
-        if current == destination {
-            return reconstruct_path(graph, parents, costs, current);
-        }
-
-        explored[current] = true;
-        let mut next = usize::MAX;
-        let mut next_weight = None;
-
-        for adj in 0..NODES {
-            if let Some(weight) = graph[(current, adj)] {
-                let new_cost = costs[current].unwrap() + weight;
-                match costs[adj] {
-                    None => {
-                        costs[adj] = Some(new_cost);
-                        parents.insert(adj, current);
-                    }
-                    Some(prev_cost) if new_cost < prev_cost => {
-                        costs[adj] = Some(new_cost);
-                        parents.insert(adj, current);
-                    }
-                    _ => {}
-                }
-                if !explored[adj] && (next_weight.is_none() || new_cost < next_weight.unwrap()) {
-                    next_weight = Some(new_cost);
-                    next = adj;
-                }
-            }
-        }
-        current = next;
-    }
-
-    Vec::new()
+    a_star(graph, source, destination, dijkstra_heuristic)
 }
 
 /// Performs the A\* algorithm on the graph to find the shortest path from the source node to the destination node.
