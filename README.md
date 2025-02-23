@@ -13,7 +13,7 @@ To use the `numberlab` library in your Rust project, add the following to your `
 
 ```toml
 [dependencies]
-numberlab = "0.1.8"
+numberlab = "0.1.9"
 ```
 
 For examples of how to use this library, refer to the documentation at [docs.rs](https://docs.rs/numberlab).
@@ -32,6 +32,7 @@ For specific examples, refer to the [`examples`](./examples) directory in the re
         - BFS
         - DFS
         - Dijkstra
+        - A*
 - Coordinates:
     - Cartesian
     - Polar
