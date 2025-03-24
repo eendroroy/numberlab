@@ -58,11 +58,11 @@ fn should_find_path_from_source_to_destination_using_dfs() {
     );
     assert_eq!(
         dfs(graph, 0, 4).iter().map(|p| p.0).collect::<Vec<usize>>(),
-        vec![0, 1, 2, 5, 4]
+        vec![0, 1, 5, 4]
     );
     assert_eq!(
         dfs(graph, 0, 5).iter().map(|p| p.0).collect::<Vec<usize>>(),
-        vec![0, 1, 2, 5]
+        vec![0, 1, 5]
     );
 
     assert_eq!(
@@ -98,14 +98,14 @@ fn should_find_path_from_source_to_destination_using_dfs() {
             .iter()
             .map(|p| p.1.clone())
             .collect::<Vec<String>>(),
-        vec!["0", "1", "2", "5", "4"]
+        vec!["0", "1", "5", "4"]
     );
     assert_eq!(
         dfs(graph, 0, 5)
             .iter()
             .map(|p| p.1.clone())
             .collect::<Vec<String>>(),
-        vec!["0", "1", "2", "5"]
+        vec!["0", "1", "5"]
     );
 }
 
